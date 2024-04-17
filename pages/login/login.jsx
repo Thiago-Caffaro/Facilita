@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button } from 'react-native';
 import Botao from '../../components/botao/botao';
 
-function Login(){
+function Login({ navigation }){
     return (
-    <>
-          <Image style={styles.facilitaLogo} source={require('../../assets/appImages/appLogo/logoAppWhite.png')} />
-          <StatusBar style="auto" />
+    <View style={styles.container}>
+          <Image style={styles.facilitaLogoLogin} source={require('../../assets/appImages/appLogo/logoAppWhite.png')} />
+          <StatusBar style="light" />
           <View style={styles.inputBox}>
                 <TextInput
                 style={[styles.input, {color: '#ffff'}]}
@@ -22,12 +22,12 @@ function Login(){
           </View>
           <View style={styles.caixaBtn}>
                 <Botao>Entrar</Botao>
-                <Botao>Cadastrar</Botao>
+                <Botao onPress={() => navigation.navigate('Cadastro')}>Cadastrar</Botao>
           </View>
           <Text style={{ bottom: 0, color: '#ffff',marginTop:'auto'}}>
              Todos os direitos reservados © 2024
           </Text>
-    </>    
+    </View>    
       );
     }
     
@@ -38,7 +38,7 @@ function Login(){
         alignItems: 'center',
         justifyContent: 'center',
       },
-      facilitaLogo: {
+      facilitaLogoLogin: {
         height: 100,
         marginTop: '50%',
         maxWidth: 300,
