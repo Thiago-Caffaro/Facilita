@@ -4,7 +4,7 @@ function Botao(props){
         <TouchableOpacity
             style={styles.btn}
         >
-        <Text style={{ color: '#5bea5b' }}>
+        <Text style={{ color: '#f5f5f5', borderWidth: 1, borderRadius: 5, borderColor: '#70d870', padding: 8, width: 90, textAlign: 'center'}}>
             {props.children}
         </Text>
       </TouchableOpacity>
@@ -14,11 +14,10 @@ function Botao(props){
 
 const styles = StyleSheet.create({
     btn:{
-        marginBottom: 20,
-        borderWidht: 20,
-        borderRadius: 10,
-        borderColor:'#70d870',
-      }
+        display: 'flex',
+        alignItems: 'center',
+        marginTop: 20,
+    },
 })
 
 export default Botao

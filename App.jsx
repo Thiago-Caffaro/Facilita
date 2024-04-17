@@ -1,27 +1,32 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { Image, TextInput, TouchableOpacity } from 'react-native';
-
+import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
 import Botao from './components/botao/botao';
 
 export default function App() {
-
   return (
     <View style={styles.container}>
       <Image style={styles.facilitaLogo} source={require('./assets/appImages/facilitaLogo.png')} />
       <StatusBar style="auto" />
-      <TextInput 
-        style={styles.input}
-        placeholder="Matrícula"
-        placeholderTextColor="#f5f5f5"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        placeholderTextColor="#f5f5f5"
-      />
-      <Botao>Entrar</Botao>
-      <Botao>Cadastrar</Botao>
+      <View style={styles.inputBox}>
+        <TextInput
+          style={[styles.input, {color: '#ffff'}]}
+          placeholder="Matrícula"
+          placeholderTextColor="#f5f5f5"
+        />
+        <TextInput
+          style={[styles.input, {color: '#ffff'}]}
+          placeholder="Senha"
+          placeholderTextColor="#f5f5f5"
+        />
+        <Text style={{ color: '#E8E8E8', fontSize: 12, padding: 5 }}>Esqueci minha senha</Text>
+      </View>
+      <View style={styles.caixaBtn}>
+        <Botao>Entrar</Botao>
+        <Botao>Cadastrar</Botao>
+      </View>
+      <Text style={{ bottom: 0, color: '#ffff',marginTop:'auto'}}>
+        Todos os direitos reservados © 2024
+      </Text>
     </View>
   );
 }
@@ -29,26 +34,28 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#b7ffb7',
+    backgroundColor: '#429D1E',
     alignItems: 'center',
-    textAlign:'center',
+    justifyContent: 'center',
   },
-  facilitaLogo:{
+  facilitaLogo: {
     height: 100,
+    marginTop: '50%',
     maxWidth: 300,
-    marginBottom: 150,
-    marginTop:'40%'
   },
-  input:{
-    color:"#ffff",
+  input: {
     height: 35,
     padding: 5,
-    width: 225,
-    marginBottom: 20,
+    width: 250,
+    marginTop: 20,
     borderRadius: 10,
-    borderCurve: "continuous",
     borderWidth: 1,
     borderColor: '#70d870',
   },
-  
-  });
+  caixaBtn: {
+    marginTop: 5,
+  },
+  inputBox: {
+    marginTop: 110,
+  },
+});
