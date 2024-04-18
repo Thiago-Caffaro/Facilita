@@ -25,8 +25,9 @@ function Login({ navigation }){
                 <Botao onPress={() => navigation.navigate('Cadastro')}>Cadastrar</Botao>
           </View>
           <Text style={{ bottom: 0, color: '#ffff',marginTop:'auto'}}>
-             Todos os direitos reservados © 2024
+             Todos os ditos reservados © 2024
           </Text>
+          
     </View>    
       );
     }
