@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { useState } from 'react';
 import Botao from '../../components/botao/botao';
 import Checkbox from 'expo-checkbox';
@@ -6,7 +6,14 @@ import {Ionicons}  from '@expo/vector-icons'; // Importe o Ionicons
 
 function Cadastro({navigation}){
     const [checked, setChecked] = useState(false);
+    const [matricula, setMatricula] = useState('');
+    const [senha, setSenha] = useState('');
+    const [cSenha, setCSenha] = useState('');
+    const [email, setEmail] = useState('');
 
+    const verificarCamposPreenchidos = () => {
+      return matricula != '' && senha != '' && cSenha != '' && email != '' && checked != false && senha == cSenha;
+    };
     return(
         <View style={styles.container}>
             <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.backButton}>
@@ -19,21 +26,29 @@ function Cadastro({navigation}){
                     style={[styles.input, {color: '#ffff'}]}
                     placeholder="Matrícula"
                     placeholderTextColor="#f5f5f5"
+                    value={matricula}
+                    onChangeText={setMatricula}
                 />
                 <TextInput
                     style={[styles.input, {color: '#ffff'}]}
                     placeholder="Senha"
                     placeholderTextColor="#f5f5f5"
+                    value={senha}
+                    onChangeText={setSenha}
                 />
                 <TextInput
                     style={[styles.input, {color: '#ffff'}]}
                     placeholder="Repita Sua Senha"
                     placeholderTextColor="#f5f5f5"
+                    value={cSenha}
+                    onChangeText={setCSenha}
                 />
                 <TextInput
                     style={[styles.input, {color: '#ffff'}]}
                     placeholder="E-mail"
                     placeholderTextColor="#f5f5f5"
+                    value={email}
+                    onChangeText={setEmail}
                 />
 
               <View style={styles.viewCheck}>  
@@ -43,7 +58,7 @@ function Cadastro({navigation}){
                   onValueChange={() => setChecked(!checked)}
                   tintColors={{ true: '#ffff', false: '#ffff' }} // Define a cor do ícone
                 />
-                  <Text style={{marginLeft: 5,marginTop: 10,color: '#ffff' }}>Aceito todos os termos e condições</Text>
+                  <Text style={[styles.termos, {marginLeft: 5,marginTop: 10,color: '#ffff' }]}>Aceito todos os termos e condições</Text>
             </View>  
         </View>
 
@@ -51,7 +66,8 @@ function Cadastro({navigation}){
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
                 </View>
                 <View style={styles.caixaBtn}>
-                <Botao onPress={() => navigation.navigate('Login')}>Cadastrar</Botao>
+                <Botao onPress={() => navigation.navigate('Login')}
+                disabled={!verificarCamposPreenchidos()}>Cadastrar</Botao>
           </View>
 
             </View>
@@ -106,9 +122,11 @@ const styles = StyleSheet.create({
     inputBox: {
 
       marginTop: 110,
-    }
+    },
+    termos:{
 
+    }
   
 });
 
-export default Cadastro;
+export default Cadastro
