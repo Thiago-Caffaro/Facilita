@@ -1,16 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
-
 import Botao from '../../components/botao/botao';
 import Checkbox from 'expo-checkbox';
+import {Ionicons}  from '@expo/vector-icons'; // Importe o Ionicons
 
-function Cadastro(){
+function Cadastro({navigation}){
     const [checked, setChecked] = useState(false);
 
     return(
         <View style={styles.container}>
-            <StatusBar style="light" />
+            <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.backButton}>
+                <Ionicons name="arrow-back" size={25} color="#fff" /> 
+            </TouchableOpacity>
             <Image style={styles.facilitaLogoCadastro} source={require('../../assets/appImages/appLogo/logoAppWhite.png')} />
             
             <View style={styles.inputBox}>
@@ -34,16 +36,22 @@ function Cadastro(){
                     placeholder="E-mail"
                     placeholderTextColor="#f5f5f5"
                 />
-                <Checkbox
-                    value={checked}
-                    onValueChange={() => setChecked(!checked)}
-                   
-                />
-                <Text style={{display: 'flex'}}>Aceito todos os termos e condições</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
+                    <Checkbox
+                        style={{ marginRight: 8 }} // Adicionado marginRight aqui
+                        value={checked}
+                        onValueChange={() => setChecked(!checked)}
+                    />
+                    <Text style={{ color: '#ffff' }}>Aceito todos os termos e condições</Text>
+                </View>
+                <View style={styles.caixaBtn}>
+                <Botao onPress={() => navigation.navigate('Login')}>Cadastrar</Botao>
+          </View>
             </View>
         </View>
     );
 };
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -51,9 +59,14 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    backButton: {
+      position: 'absolute',
+      top: 80,
+      left: 20,
+    },
     facilitaLogoCadastro: {
       height: 100,
-      marginTop: '50%',
+      marginTop: '0%',
       maxWidth: 300,
     },
     input: {
@@ -65,11 +78,11 @@ const styles = StyleSheet.create({
       borderWidth: 1,
       borderColor: '#70d870',
     },
-    caixaBtn: {
-      marginTop: 5,
-    },
     inputBox: {
-      marginTop: 110,
-    }
+      marginTop: 80,
+      alignItems: 'center'
+    },
+    
   });
+
 export default Cadastro;
