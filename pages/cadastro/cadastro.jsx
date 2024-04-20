@@ -3,6 +3,8 @@ import { useState } from 'react';
 import Botao from '../../components/botao/botao';
 import Checkbox from 'expo-checkbox';
 import {Ionicons}  from '@expo/vector-icons'; // Importe o Ionicons
+import globalStyles from '../../styles/globalStyles.js'
+
 
 function Cadastro({navigation}){
     const [checked, setChecked] = useState(false);
@@ -15,36 +17,36 @@ function Cadastro({navigation}){
       return matricula != '' && senha != '' && cSenha != '' && email != '' && checked != false && senha == cSenha;
     };
     return(
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.backButton}>
                 <Ionicons name="arrow-back" size={25} color="#fff" /> 
             </TouchableOpacity>
             <Image style={styles.facilitaLogoCadastro} source={require('../../assets/appImages/appLogo/logoAppWhite.png')} />
             
-            <View style={styles.inputBox}>
+            <View style={globalStyles.inputBox}>
                 <TextInput
-                    style={[styles.input, {color: '#ffff'}]}
+                    style={[globalStyles.input, {color: '#ffff'}]}
                     placeholder="Matrícula"
                     placeholderTextColor="#f5f5f5"
                     value={matricula}
                     onChangeText={setMatricula}
                 />
                 <TextInput
-                    style={[styles.input, {color: '#ffff'}]}
+                    style={[globalStyles.input, {color: '#ffff'}]}
                     placeholder="Senha"
                     placeholderTextColor="#f5f5f5"
                     value={senha}
                     onChangeText={setSenha}
                 />
                 <TextInput
-                    style={[styles.input, {color: '#ffff'}]}
+                    style={[globalStyles.input, {color: '#ffff'}]}
                     placeholder="Repita Sua Senha"
                     placeholderTextColor="#f5f5f5"
                     value={cSenha}
                     onChangeText={setCSenha}
                 />
                 <TextInput
-                    style={[styles.input, {color: '#ffff'}]}
+                    style={[globalStyles.input, {color: '#ffff'}]}
                     placeholder="E-mail"
                     placeholderTextColor="#f5f5f5"
                     value={email}
@@ -62,19 +64,14 @@ function Cadastro({navigation}){
             </View>  
         </View>
 
-            <View style={styles.caixaBtn}>
+            <View style={globalStyles.caixaBtn}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
                 </View>
-                <View style={styles.caixaBtn}>
+                <View style={globalStyles.caixaBtn}>
                 <Botao onPress={() => navigation.navigate('Login')}
                 disabled={!verificarCamposPreenchidos()}>Cadastrar</Botao>
-          </View>
-
             </View>
-          <Text style={{ bottom: 0, color: '#ffff',marginTop:'auto'}}>
-             Todos os direitos reservados © 2024
-          </Text>
-
+        </View>
         </View>
     );
 };
@@ -93,12 +90,6 @@ const styles = StyleSheet.create({
     viewCheck:{
       flexDirection: 'row'
     },
-    container: {
-      flex: 1,
-      backgroundColor: '#429D1E',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
     backButton: {
       position: 'absolute',
       top: 80,
@@ -109,19 +100,6 @@ const styles = StyleSheet.create({
       marginTop: '30%',
 
       maxWidth: 300,
-    },
-    input: {
-      height: 35,
-      padding: 5,
-      width: 250,
-      marginTop: 20,
-      borderRadius: 10,
-      borderWidth: 1,
-      borderColor: '#70d870',
-    },
-    inputBox: {
-
-      marginTop: 110,
     },
     termos:{
 
