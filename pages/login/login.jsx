@@ -57,7 +57,7 @@ function Login({ navigation }){
         marginTop: 5,
       },
       inputBox: {
-        marginTop: 110,
+        marginTop: 80,
       }
     });
     

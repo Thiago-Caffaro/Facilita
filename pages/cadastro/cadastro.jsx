@@ -1,16 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
-
 import Botao from '../../components/botao/botao';
 import Checkbox from 'expo-checkbox';
+import {Ionicons}  from '@expo/vector-icons'; // Importe o Ionicons
 
 function Cadastro({navigation}){
     const [checked, setChecked] = useState(false);
 
     return(
         <View style={styles.container}>
-            <StatusBar style="light" />
+            <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.backButton}>
+                <Ionicons name="arrow-back" size={25} color="#fff" /> 
+            </TouchableOpacity>
             <Image style={styles.facilitaLogoCadastro} source={require('../../assets/appImages/appLogo/logoAppWhite.png')} />
             
             <View style={styles.inputBox}>
@@ -47,7 +48,12 @@ function Cadastro({navigation}){
         </View>
 
             <View style={styles.caixaBtn}>
-                <Botao onPress={() => navigation.navigate('Login')} style={styles.btnCadastrar}>Cadastrar</Botao>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
+                </View>
+                <View style={styles.caixaBtn}>
+                <Botao onPress={() => navigation.navigate('Login')}>Cadastrar</Botao>
+          </View>
+
             </View>
           <Text style={{ bottom: 0, color: '#ffff',marginTop:'auto'}}>
              Todos os direitos reservados © 2024
@@ -56,6 +62,7 @@ function Cadastro({navigation}){
         </View>
     );
 };
+
 const styles = StyleSheet.create({
     checkBox:{
       color: '#ffff',
@@ -76,9 +83,15 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    backButton: {
+      position: 'absolute',
+      top: 80,
+      left: 20,
+    },
     facilitaLogoCadastro: {
       height: 100,
       marginTop: '30%',
+
       maxWidth: 300,
     },
     input: {
@@ -90,12 +103,12 @@ const styles = StyleSheet.create({
       borderWidth: 1,
       borderColor: '#70d870',
     },
-    caixaBtn: {
-      marginTop: 5,
-    },
     inputBox: {
+
       marginTop: 110,
     }
-    
-  });
+
+  
+});
+
 export default Cadastro;
