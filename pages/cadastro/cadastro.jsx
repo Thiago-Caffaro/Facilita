@@ -5,6 +5,13 @@ import Checkbox from 'expo-checkbox';
 import {Ionicons}  from '@expo/vector-icons'; // Importe o Ionicons
 import globalStyles from '../../styles/globalStyles.js'
 
+import { Send } from '../../sendData.js';
+
+let dataTeste = {
+  nome: 'Nome do Usuário Teste',
+  email: 'emailTeste@dominio.com',
+  senha: 'senha123Teste'
+};// Dados de teste para enviar
 
 function Cadastro({navigation}){
     const [checked, setChecked] = useState(false);
@@ -63,12 +70,14 @@ function Cadastro({navigation}){
                   <Text style={[styles.termos, {marginLeft: 5,marginTop: 10,color: '#ffff' }]}>Aceito todos os termos e condições</Text>
             </View>  
         </View>
-
+        <Botao onPress={() => Send(dataTeste)/*navigation.navigate('Login')*/}>
+          Enviar Teste
+        </Botao>
             <View style={globalStyles.caixaBtn}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
                 </View>
                 <View style={globalStyles.caixaBtn}>
-                <Botao onPress={() => navigation.navigate('Login')}
+                <Botao onPress={() => {navigation.navigate('Login')}}
                 disabled={!verificarCamposPreenchidos()}>Cadastrar</Botao>
             </View>
         </View>
