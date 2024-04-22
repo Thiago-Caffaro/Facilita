@@ -7,11 +7,6 @@ import globalStyles from '../../styles/globalStyles.js'
 
 import { Send } from '../../sendData.js';
 
-let dataTeste = {
-  nome: 'Nome do Usuário Teste',
-  email: 'emailTeste@dominio.com',
-  senha: 'senha123Teste'
-};// Dados de teste para enviar
 
 function Cadastro({navigation}){
     const [checked, setChecked] = useState(false);
@@ -19,6 +14,21 @@ function Cadastro({navigation}){
     const [senha, setSenha] = useState('');
     const [cSenha, setCSenha] = useState('');
     const [email, setEmail] = useState('');
+
+    let userData = {
+      matricula: matricula,
+      email: email,
+      senha: senha
+    };// Dados para serem enviados
+    
+    // Função para juntar o redirecionamento de página logo após meio segundo do Cadastro
+    const handleSendLogin = () =>{
+      Send(userData);
+      setTimeout(() => {
+        // OBS: Aqui crio uma arrow Function para o navigate não ser executado imediatamente
+        navigation.navigate('Login');
+      }, 500)
+    }
 
     const verificarCamposPreenchidos = () => {
       return matricula != '' && senha != '' && cSenha != '' && email != '' && checked != false && senha == cSenha;
@@ -70,14 +80,11 @@ function Cadastro({navigation}){
                   <Text style={[styles.termos, {marginLeft: 5,marginTop: 10,color: '#ffff' }]}>Aceito todos os termos e condições</Text>
             </View>  
         </View>
-        <Botao onPress={() => Send(dataTeste)/*navigation.navigate('Login')*/}>
-          Enviar Teste
-        </Botao>
             <View style={globalStyles.caixaBtn}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
                 </View>
                 <View style={globalStyles.caixaBtn}>
-                <Botao onPress={() => {navigation.navigate('Login')}}
+                <Botao onPress={() => handleSendLogin()}
                 disabled={!verificarCamposPreenchidos()}>Cadastrar</Botao>
             </View>
         </View>
