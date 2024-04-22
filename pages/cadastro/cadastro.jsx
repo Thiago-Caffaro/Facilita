@@ -3,6 +3,10 @@ import { useState } from 'react';
 import Botao from '../../components/botao/botao';
 import Checkbox from 'expo-checkbox';
 import {Ionicons}  from '@expo/vector-icons'; // Importe o Ionicons
+import globalStyles from '../../styles/globalStyles.js'
+
+import { Send } from '../../sendData.js';
+
 
 function Cadastro({navigation}){
     const [checked, setChecked] = useState(false);
@@ -11,40 +15,55 @@ function Cadastro({navigation}){
     const [cSenha, setCSenha] = useState('');
     const [email, setEmail] = useState('');
 
+    let userData = {
+      matricula: matricula,
+      email: email,
+      senha: senha
+    };// Dados para serem enviados
+    
+    // Função para juntar o redirecionamento de página logo após meio segundo do Cadastro
+    const handleSendLogin = () =>{
+      Send(userData);
+      setTimeout(() => {
+        // OBS: Aqui crio uma arrow Function para o navigate não ser executado imediatamente
+        navigation.navigate('Login');
+      }, 500)
+    }
+
     const verificarCamposPreenchidos = () => {
       return matricula != '' && senha != '' && cSenha != '' && email != '' && checked != false && senha == cSenha;
     };
     return(
-        <View style={styles.container}>
+        <View style={globalStyles.container}>
             <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.backButton}>
                 <Ionicons name="arrow-back" size={25} color="#fff" /> 
             </TouchableOpacity>
             <Image style={styles.facilitaLogoCadastro} source={require('../../assets/appImages/appLogo/logoAppWhite.png')} />
             
-            <View style={styles.inputBox}>
+            <View style={globalStyles.inputBox}>
                 <TextInput
-                    style={[styles.input, {color: '#ffff'}]}
+                    style={[globalStyles.input, {color: '#ffff'}]}
                     placeholder="Matrícula"
                     placeholderTextColor="#f5f5f5"
                     value={matricula}
                     onChangeText={setMatricula}
                 />
                 <TextInput
-                    style={[styles.input, {color: '#ffff'}]}
+                    style={[globalStyles.input, {color: '#ffff'}]}
                     placeholder="Senha"
                     placeholderTextColor="#f5f5f5"
                     value={senha}
                     onChangeText={setSenha}
                 />
                 <TextInput
-                    style={[styles.input, {color: '#ffff'}]}
+                    style={[globalStyles.input, {color: '#ffff'}]}
                     placeholder="Repita Sua Senha"
                     placeholderTextColor="#f5f5f5"
                     value={cSenha}
                     onChangeText={setCSenha}
                 />
                 <TextInput
-                    style={[styles.input, {color: '#ffff'}]}
+                    style={[globalStyles.input, {color: '#ffff'}]}
                     placeholder="E-mail"
                     placeholderTextColor="#f5f5f5"
                     value={email}
@@ -61,20 +80,14 @@ function Cadastro({navigation}){
                   <Text style={[styles.termos, {marginLeft: 5,marginTop: 10,color: '#ffff' }]}>Aceito todos os termos e condições</Text>
             </View>  
         </View>
-
-            <View style={styles.caixaBtn}>
+            <View style={globalStyles.caixaBtn}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
                 </View>
-                <View style={styles.caixaBtn}>
-                <Botao onPress={() => navigation.navigate('Login')}
+                <View style={globalStyles.caixaBtn}>
+                <Botao onPress={() => handleSendLogin()}
                 disabled={!verificarCamposPreenchidos()}>Cadastrar</Botao>
-          </View>
-
             </View>
-          <Text style={{ bottom: 0, color: '#ffff',marginTop:'auto'}}>
-             Todos os direitos reservados © 2024
-          </Text>
-
+        </View>
         </View>
     );
 };
@@ -93,12 +106,6 @@ const styles = StyleSheet.create({
     viewCheck:{
       flexDirection: 'row'
     },
-    container: {
-      flex: 1,
-      backgroundColor: '#429D1E',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
     backButton: {
       position: 'absolute',
       top: 80,
@@ -109,19 +116,6 @@ const styles = StyleSheet.create({
       marginTop: '30%',
 
       maxWidth: 300,
-    },
-    input: {
-      height: 35,
-      padding: 5,
-      width: 250,
-      marginTop: 20,
-      borderRadius: 10,
-      borderWidth: 1,
-      borderColor: '#70d870',
-    },
-    inputBox: {
-
-      marginTop: 110,
     },
     termos:{
 
