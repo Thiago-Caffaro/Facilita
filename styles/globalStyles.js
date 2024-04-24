@@ -8,6 +8,9 @@ const globalStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },    
+    text: {
+        color:'#ffff'
+    },
     content:{
         display: 'flex',
         justifyContent: 'space-evenly',

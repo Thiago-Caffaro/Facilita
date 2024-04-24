@@ -28,9 +28,11 @@ const recorveryStyles = StyleSheet.create({
         borderColor: '#70d870',
     },
     hint: {
-        color: '#ffff',
         textAlign: 'center',
         fontSize: 16
+    },
+    prosseguir: {
+        textDecorationLine: 'underline'
     }
 })
 export default recorveryStyles;
