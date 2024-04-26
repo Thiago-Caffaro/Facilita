@@ -30,7 +30,9 @@ function Login({ navigation }){
                   >Esqueci minha senha</Text>
             </View>
             <View style={globalStyles.caixaBtn}>
-                  <Botao>Entrar</Botao>
+                  <Botao
+                    onPress={() => navigation.navigate('Cardapio')}
+                  >Entrar</Botao>
                   {/* Colocar um onPress com caminho da pagina inicial (cardápio) */}
                   
                   <Botao 

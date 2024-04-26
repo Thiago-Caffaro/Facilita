@@ -37,6 +37,7 @@ function Cadastro({navigation}){
 			<View style={globalStyles.container}>
 				<ReturnArrow navigation={navigation} />
 				<View style={globalStyles.content}>
+				
 					<LogoFacilita />
 					<View style={[globalStyles.inputBox, {height: '40%'}]}>
 							<TextInput
@@ -75,7 +76,7 @@ function Cadastro({navigation}){
 								onValueChange={() => setChecked(!checked)}
 								tintColors={{ true: '#ffff', false: '#ffff' }} // Define a cor do ícone
 							/>
-								<Text style={[styles.termos, {marginLeft: 5,marginTop: 10,color: '#ffff' }]}>
+								<Text style={{marginLeft: 5,marginTop: 10,color: '#ffff' }}>
 									Aceito todos os termos e condições
 								</Text>
 						</View>  
