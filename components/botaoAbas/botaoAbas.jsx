@@ -1,6 +1,9 @@
 import { TouchableOpacity, Text, StyleSheet} from "react-native"
 import { useState } from 'react';
 
+
+function BotaoAbas({navigation}){
+    
 const [pressionado, setPressionado] = useState(false);
 const estiloTexto = {
     color: '#0000',
@@ -11,8 +14,6 @@ const estiloTexto = {
     textAlign: 'center',
   };
 
-
-function BotaoAbas({navigation}){
    return(
     <TouchableOpacity
         onPress={() => setPressionado(true)}
