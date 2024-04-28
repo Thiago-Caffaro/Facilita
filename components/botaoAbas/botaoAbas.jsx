@@ -2,7 +2,7 @@ import { TouchableOpacity, Text, StyleSheet} from "react-native"
 import { useState } from 'react';
 
 
-function BotaoAbas({navigation}){
+function BotaoAbas({navigation, children}){
     
 const [pressionado, setPressionado] = useState(false);
 const estiloTexto = {

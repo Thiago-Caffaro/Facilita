@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View, TextInput} from 'react-native';
 import axios from 'axios';
+import { useState } from 'react';
 
 import globalStyles from '../../styles/globalStyles.js'
 import Botao from '../../components/botao/botao';
@@ -13,7 +14,7 @@ function Login({ navigation }){
 
     const handleLogin = async (matricula, senha) => {
       try {
-        const response = await axios.post('https://api.caffaro.cloud/getUser', {
+        const response = await axios.post('https://api.caffaro.cloud/login', {
           matricula,
           senha,
         });
@@ -59,9 +60,8 @@ function Login({ navigation }){
             </View>
             <View style={globalStyles.caixaBtn}>
                   <Botao
-                    onPress={handleLogin(matricula, senha)}
+                    onPress={() => handleLogin(matricula, senha)}
                   >Entrar</Botao>
-                  {/* Colocar um onPress com caminho da pagina inicial (cardápio) */}
                   
                   <Botao 
                     onPress={() => navigation.navigate('Cadastro')}
@@ -75,5 +75,4 @@ function Login({ navigation }){
       );
     }
 
-    
 export default Login
