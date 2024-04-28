@@ -9,8 +9,8 @@ import LogoFacilita from '../../components/logoFacilita/logoFacilita.jsx';
 import ReturnArrow from '../../components/returnArrow/returnArrow.jsx';
 
 function Login({ navigation }){
-    const [matricula, setMatricula] = useState('');
     const [senha, setSenha] = useState('');
+    const [matricula, setMatricula] = useState('');
 
     const handleLogin = async (matricula, senha) => {
       try {
@@ -21,8 +21,8 @@ function Login({ navigation }){
         // Verifique a resposta do servidor e realize a validação do login.
         if (response.data.success) {
           // Login bem-sucedido
-          console.log('Usuário autenticado:', response.data.user);
-          navigation.navigate('Cardapio')
+          console.log('Usuário autenticado.');
+          navigation.navigate('Perfil');
         } else {
           // Login falhou
           console.error('Erro de autenticação:', response.data.message);

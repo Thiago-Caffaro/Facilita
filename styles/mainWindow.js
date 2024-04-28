@@ -17,8 +17,10 @@ const mainWindowStyles = StyleSheet.create({
     button:{
         color:'green',
         fontSize: 17,
+    },
+    info: {
+        padding: 30
     }
-
 })
 
 export default mainWindowStyles;
