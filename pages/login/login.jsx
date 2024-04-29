@@ -22,7 +22,7 @@ function Login({ navigation }){
         if (response.data.success) {
           // Login bem-sucedido
           console.log('Usuário autenticado.');
-          navigation.navigate('Perfil');
+          navigation.navigate('Cardapio');
         } else {
           // Login falhou
           console.error('Erro de autenticação:', response.data.message);
@@ -61,6 +61,7 @@ function Login({ navigation }){
             <View style={globalStyles.caixaBtn}>
                   <Botao
                     onPress={() => handleLogin(matricula, senha)}
+                    
                   >Entrar</Botao>
                   
                   <Botao 
@@ -74,5 +75,7 @@ function Login({ navigation }){
     </View>    
       );
     }
+
+   
 
 export default Login
