@@ -15,6 +15,7 @@ const mainWindowStyles = StyleSheet.create({
         height: 40,
     },
     button:{
+        marginTop:15,
         color:'green',
         fontSize: 17,
     },
