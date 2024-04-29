@@ -1,6 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { useState } from 'react';
 
 import Cardapio from './pages/cardápio/cardapio';
 import Login from './pages/login/login';

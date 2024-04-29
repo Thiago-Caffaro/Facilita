@@ -8,26 +8,15 @@
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
+  "private": true,
   "dependencies": {
-    "@react-native-community/checkbox": "^0.5.17",
-    "@react-navigation/native": "^6.1.17",
+    "@expo/vector-icons": "^14.0.0",
     "@react-navigation/stack": "^6.3.29",
     "axios": "^1.6.8",
-    "events": "^3.3.0",
-    "expo": "^49.0.23",
-    "expo-checkbox": "~2.7.0",
-    "expo-module-scripts": "^3.4.2",
-    "expo-status-bar": "~1.11.1",
-    "fs": "^0.0.1-security",
-    "mongodb": "^6.5.0",
-    "react": "18.2.0",
-    "react-native": "0.73.6",
-    "react-native-gesture-handler": "~2.14.0",
-    "react-native-screens": "~3.29.0",
-    "stream": "^0.0.2"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.20.0"
-  },
-  "private": true
+    "expo": "^50.0.17",
+    "expo-checkbox": "^2.7.0",
+    "expo-status-bar": "^1.11.1",
+    "react-native": "^0.73.6",
+    "react-native-gesture-handler": "~2.14.0"
+  }
 }
