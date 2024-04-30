@@ -2,8 +2,6 @@ import { Image,StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import mainWindowStyles from '../../styles/mainWindow.js'
 import Perfil from '../perfil/perfil.jsx';
 
-
-
 function Cardapio({navigation}){
 
     return(
@@ -56,7 +54,7 @@ function Cardapio({navigation}){
 };
 const styles = StyleSheet.create({
       footer:{
-        marginTop:750,
+        marginTop:680,
         marginLeft:0,
         backgroundColor:'green',
         padding:50,

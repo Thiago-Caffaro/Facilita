@@ -1,16 +1,19 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Botao from '../../components/botao/botao';
 import Checkbox from 'expo-checkbox';
 import globalStyles from '../../styles/globalStyles.js'
 import ReturnArrow from '../../components/returnArrow/returnArrow.jsx';
 import LogoFacilita from '../../components/logoFacilita/logoFacilita.jsx';
-import { Send } from '../../sendData.js';
+import { useSend } from '../../hooks/enviarDados/sendData.js';
 
+import { AuthContext } from '../../context/auth.js'
 
 function Cadastro({navigation}){
+		const { matricula, setMatricula } = useContext(AuthContext);
+		const Send = useSend();
+		
 		const [checked, setChecked] = useState(false);
-		const [matricula, setMatricula] = useState('');
 		const [senha, setSenha] = useState('');
 		const [cSenha, setCSenha] = useState('');
 		const [email, setEmail] = useState('');

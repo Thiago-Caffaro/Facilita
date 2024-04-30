@@ -1,16 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View, TextInput} from 'react-native';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import globalStyles from '../../styles/globalStyles.js'
 import Botao from '../../components/botao/botao';
 import LogoFacilita from '../../components/logoFacilita/logoFacilita.jsx';
 import ReturnArrow from '../../components/returnArrow/returnArrow.jsx';
 
+import { AuthContext } from '../../context/auth.js'
+
 function Login({ navigation }){
     const [senha, setSenha] = useState('');
-    const [matricula, setMatricula] = useState('');
+    const { matricula, setMatricula } = useContext(AuthContext);
 
     const handleLogin = async (matricula, senha) => {
       try {

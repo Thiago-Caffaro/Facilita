@@ -10,11 +10,14 @@ import NovaSenha from './pages/esqueciSenha/novaSenha/novaSenha';
 import NovaSenhaSuccess from './pages/esqueciSenha/novaSenha/novaSenhaSuccess';
 import Perfil from './pages/perfil/perfil';
 
+import AuthProvider from './context/auth';
+
 export default function App() {
   const Stack = createStackNavigator();
   return (
       <NavigationContainer>
-            <Stack.Navigator initialRouteName="Login">
+        <AuthProvider>
+          <Stack.Navigator initialRouteName="Login">
               <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
               <Stack.Screen name="Cadastro" component={Cadastro} options={{ headerShown: false }} />
               <Stack.Screen name="EnviarCod" component={EnviarCod} options={{ headerShown: false }} />
@@ -24,6 +27,7 @@ export default function App() {
               <Stack.Screen name="Cardapio" component={Cardapio} options={{ headerShown: false }} />
               <Stack.Screen name="Perfil" component={Perfil} options={{ headerShown: false }} />
             </Stack.Navigator>
+        </AuthProvider>
       </NavigationContainer>
   );
 }
