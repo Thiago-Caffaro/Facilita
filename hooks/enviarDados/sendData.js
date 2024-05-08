@@ -13,7 +13,7 @@ export function useSend() {
       const alunoData = await requerirAlunoData(matricula);
       if (alunoData){
         try {
-          const response = await fetch('https://api.caffaro.cloud/addUser', {
+          const response = await fetch('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/addUser', {
             method: 'POST', 
             headers: {
               'Content-Type': 'application/json',

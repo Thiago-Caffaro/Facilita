@@ -16,7 +16,7 @@ function Login({ navigation }){
 
     const handleLogin = async (matricula, senha) => {
       try {
-        const response = await axios.post('https://api.caffaro.cloud/login', {
+        const response = await axios.post('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/login', {
           matricula,
           senha,
         });
