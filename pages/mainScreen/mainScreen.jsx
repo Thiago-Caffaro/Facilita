@@ -1,19 +1,22 @@
-import { View } from "react-native";
-import NavBar from "../../components/navBar/navBar";
-import Footer from "../../components/footer/footer";
+import { View, Text } from "react-native";
 import {useContext} from 'react';
 import { AuthContext } from '../../context/auth.js';
-import { Text } from "react-native";
+
+import NavBar from "../../components/navBar/navBar";
+import Footer from "../../components/footer/footer";
+
+import mainScreenStyles from "./mainWindow.js";
 
 function MainScreen({navigation}){
     const { content } = useContext(AuthContext);
     return (
-        <View>
+        <View id="container" style={mainScreenStyles.container} >
             <NavBar />
-            <View id="mainContentBox">
+            <View id="mainContentBox" style={mainScreenStyles.mainContentBoxStyle}>
                 <Text>{content}</Text>
             </View>
             <Footer navigation = {navigation}/>
+
         </View>
     );
 }

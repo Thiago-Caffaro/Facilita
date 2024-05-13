@@ -6,7 +6,7 @@ function Footer({navigation}){
         <View id="footer" style={styles.footer}>
             <TouchableOpacity>
                 <Image
-                    style={styles.soeSopIcon}
+                    style={styles.icon}
                     id='soeSopIcon' 
                     source={require('./../logoFacilita/assets/Soe_e_Sop.png')} 
                 />
@@ -14,7 +14,7 @@ function Footer({navigation}){
 
             <TouchableOpacity onPress={() => navigation.navigate('Perfil')}>
                 <Image 
-                    style={styles.perfilIcon} 
+                    style={[styles.icon, {height: 50}]} 
                     id='perfilIcon' 
                     source={require('./../logoFacilita/assets/Perfil.png')}
                 />
@@ -22,7 +22,7 @@ function Footer({navigation}){
             
             <TouchableOpacity>
                 <Image 
-                    style={styles.ajudaIcon} 
+                    style={styles.icon} 
                     id='ajudaIcon' 
                     source={require('./../logoFacilita/assets/Ajuda.png')} 
                 />
@@ -33,41 +33,22 @@ function Footer({navigation}){
 }
 const styles = StyleSheet.create({
     footer:{
-        marginTop:680,
-        marginLeft:0,
+        height: 70,
+        width: '100%',
+
+        position: 'absolute',
+        bottom: 0,
+
+        display: 'flex',
+        justifyContent:'space-around',
+        alignItems: 'center',
+        flexDirection:'row',
+
         backgroundColor:'green',
-        padding:50,
     },
-    linha:{
-      borderBottomWidth: 1.5,
-      borderColor: 'green',
-      marginLeft:30,
-      width:368,
-      borderRadius:5,
-    },
-    soeSopIcon:{    
-      width: 41,
-      height: 40,
-     marginTop:-30,
-    },
-    perfilIcon:{   
-      marginLeft:150,  
-      width: 30,
-      height: 34,
-     marginTop:-35,
-    },
-    ajudaIcon:{   
-      marginLeft:290, 
-      width: 35,
-      height: 35,
-     marginTop:-35,
-    },
-    linhaSelecionado:{
-      borderBottomWidth: 2,
-      borderRadius:5,
-      borderColor: '#00FF7F',
-      marginLeft:30,
-      width:68
+    icon:{
+        height: 45,
+        width: 45
     }
 });
 export default Footer;

@@ -7,9 +7,8 @@ import EnviarCod from './pages/telasIniciais/esqueciSenha/enviarCod/enviarCod';
 import EnviarEmail from './pages/telasIniciais/esqueciSenha/enviarEmail/enviarEmail';
 import NovaSenha from './pages/telasIniciais/esqueciSenha/novaSenha/novaSenha';
 import NovaSenhaSuccess from './pages/telasIniciais/esqueciSenha/novaSenha/novaSenhaSuccess';
-import Perfil from './pages/mainContent/perfil/perfil';
+import Perfil from './pages/perfil/perfil';
 import MainScreen from './pages/mainScreen/mainScreen';
-import Footer from './components/footer/footer';
 
 import AuthProvider from './context/auth';
 
