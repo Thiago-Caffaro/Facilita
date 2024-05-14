@@ -3,17 +3,16 @@ import { Text, View, TextInput} from 'react-native';
 import axios from 'axios';
 import { useState, useContext } from 'react';
 
-import globalStyles from '../../styles/globalStyles.js'
-import Botao from '../../components/botao/botao';
-import LogoFacilita from '../../components/logoFacilita/logoFacilita.jsx';
-import ReturnArrow from '../../components/returnArrow/returnArrow.jsx';
+import globalStyles from '../../../styles/globalStyles.js'
+import Botao from '../../../components/botao/botao.jsx';
+import LogoFacilita from '../../../components/logoFacilita/logoFacilita.jsx';
+import ReturnArrow from '../../../components/returnArrow/returnArrow.jsx';
 
-import { AuthContext } from '../../context/auth.js'
+import { AuthContext } from '../../../context/auth.js'
 
 function Login({ navigation }){
     const [senha, setSenha] = useState('');
     const { matricula, setMatricula } = useContext(AuthContext);
-
     const handleLogin = async (matricula, senha) => {
       try {
         const response = await axios.post('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/login', {
@@ -24,7 +23,7 @@ function Login({ navigation }){
         if (response.data.success) {
           // Login bem-sucedido
           console.log('Usuário autenticado.');
-          navigation.navigate('Cardapio');
+          navigation.navigate('mainScreen');
         } else {
           // Login falhou
           console.error('Erro de autenticação:', response.data.message);

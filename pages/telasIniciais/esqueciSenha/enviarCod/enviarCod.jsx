@@ -3,11 +3,11 @@ import { Text, View, TextInput} from 'react-native';
 import { useState, Date } from 'react';
 import axios from 'axios';
 
-import globalStyles from '../../../styles/globalStyles.js'
-import recorveryStyles from '../../../styles/recorveryStyles.js';
+import globalStyles from '../../../../styles/globalStyles.js'
+import recorveryStyles from '../../../../styles/recorveryStyles.js';
 
-import Botao from '../../../components/botao/botao';
-import LogoFacilita from '../../../components/logoFacilita/logoFacilita.jsx';
+import Botao from '../../../../components/botao/botao';
+import LogoFacilita from '../../../../components/logoFacilita/logoFacilita.jsx';
 
 
 function EnviarCod({navigation}){

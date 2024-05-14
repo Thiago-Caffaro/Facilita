@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native';
-import mainWindowStyles from '../../styles/mainWindow.js'
+import mainWindowStyles from '../mainScreen/mainWindow.js'
 import { useEffect, useState, useContext } from 'react';
 
 import { AuthContext } from '../../context/auth.js'

@@ -7,7 +7,7 @@ const globalStyles = StyleSheet.create({
         padding: 30,
         alignItems: 'center',
         justifyContent: 'center',
-    },    
+    },  
     text: {
         color:'#ffff'
     },

@@ -2,10 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import { Text, View} from 'react-native';
 import { Image } from 'react-native';
 
-import globalStyles from '../../../styles/globalStyles.js'
-import recorveryStyles from '../../../styles/recorveryStyles.js';
+import globalStyles from '../../../../styles/globalStyles.js'
+import recorveryStyles from '../../../../styles/recorveryStyles.js';
 
-import LogoFacilita from '../../../components/logoFacilita/logoFacilita.jsx';
+import LogoFacilita from '../../../../components/logoFacilita/logoFacilita.jsx';
 
 
 function NovaSenhaSuccess({navigation}){

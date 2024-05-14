@@ -1,18 +1,15 @@
 import { StyleSheet } from "react-native";
 
-const mainWindowStyles = StyleSheet.create({
-    container: {
-        height: '100vh',
-        width: '100vw',
-        paddingTop: 50
-    },
+const navBarStyle = StyleSheet.create({
     viewNav:{
+        width: "100%",
+        height: 40,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: "space-around",
         alignItems: 'center',
-        width: "100vw",
-        height: 40,
+
+        marginTop: '10%'
     },
     button:{
         marginTop:15,
@@ -24,4 +21,4 @@ const mainWindowStyles = StyleSheet.create({
     }
 })
 
-export default mainWindowStyles;
+export default navBarStyle;
