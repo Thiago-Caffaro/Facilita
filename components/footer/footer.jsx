@@ -6,15 +6,15 @@ function Footer({navigation}){
         <View id="footer" style={styles.footer}>
             <TouchableOpacity>
                 <Image
-                    style={styles.icon}
-                    id='soeSopIcon' 
+                    style={{width: 40, height: 40}}
+                    id='soeSopIcon'
                     source={require('./../logoFacilita/assets/Soe_e_Sop.png')} 
                 />
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.navigate('Perfil')}>
                 <Image 
-                    style={[styles.icon, {height: 50}]} 
+                    style={{width: 30, height: 35}} 
                     id='perfilIcon' 
                     source={require('./../logoFacilita/assets/Perfil.png')}
                 />
@@ -22,7 +22,7 @@ function Footer({navigation}){
             
             <TouchableOpacity>
                 <Image 
-                    style={styles.icon} 
+                    style={{width: 35, height: 35}}  
                     id='ajudaIcon' 
                     source={require('./../logoFacilita/assets/Ajuda.png')} 
                 />
@@ -44,11 +44,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection:'row',
 
+
         backgroundColor:'green',
     },
-    icon:{
-        height: 45,
-        width: 45
-    }
 });
 export default Footer;

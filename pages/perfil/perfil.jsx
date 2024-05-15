@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native';
-import mainWindowStyles from '../mainScreen/mainWindow.js'
+import perfilStyle from './perfilStyle.js';
 import { useEffect, useState, useContext } from 'react';
 
 import { AuthContext } from '../../context/auth.js'
@@ -17,8 +17,8 @@ function Perfil({navigation}){
     }, [matricula]);
 
     return(
-        <View id='container' style={mainWindowStyles.container}>
-            <View id='content' style={mainWindowStyles.info}>
+        <View id='container' style={perfilStyle.container}>
+            <View id='content' style={perfilStyle.info}>
                 {dataObj ? (
                     <>
                         <Text>{dataObj.nomeAluno}</Text>

@@ -12,7 +12,6 @@ import { AuthContext } from '../../../context/auth.js'
 function Cadastro({navigation}){
 		const { matricula, setMatricula } = useContext(AuthContext);
 		const Send = useSend();
-		navigation.navigate('MainScreen')
 		const [checked, setChecked] = useState(false);
 		const [senha, setSenha] = useState('');
 		const [cSenha, setCSenha] = useState('');
@@ -40,14 +39,12 @@ function Cadastro({navigation}){
 			<View style={globalStyles.container}>
 				<ReturnArrow navigation={navigation} />
 				<View style={globalStyles.content}>
-				
 					<LogoFacilita />
 					<View style={[globalStyles.inputBox, {height: '40%'}]}>
 							<TextInput
 									style={globalStyles.input}
 									placeholder="Matrícula"
 									placeholderTextColor="#f5f5f5"
-									value={matricula}
 									onChangeText={setMatricula}
 							/>
 							<TextInput

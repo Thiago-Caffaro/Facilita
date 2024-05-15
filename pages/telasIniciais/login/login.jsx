@@ -23,7 +23,7 @@ function Login({ navigation }){
         if (response.data.success) {
           // Login bem-sucedido
           console.log('Usuário autenticado.');
-          navigation.navigate('mainScreen');
+          navigation.navigate('MainScreen');
         } else {
           // Login falhou
           console.error('Erro de autenticação:', response.data.message);
@@ -44,7 +44,6 @@ function Login({ navigation }){
                   style={globalStyles.input}
                   placeholder="Matrícula"
                   placeholderTextColor="#f5f5f5"
-                  value={matricula}
 									onChangeText={setMatricula}
                   />
                   <TextInput
@@ -66,9 +65,14 @@ function Login({ navigation }){
                   >Entrar</Botao>
                   
                   <Botao 
-                    onPress={() => navigation.navigate('Cadastro')}
+                    onPress={() => {navigation.navigate('Cadastro'); setMatricula('')}}
                   >
                     Cadastrar
+                  </Botao>
+                  <Botao 
+                    onPress={() => {navigation.navigate('MainScreen'); setMatricula('2210134300008')} }
+                  >
+                    DEV
                   </Botao>
           </View>
       </View>

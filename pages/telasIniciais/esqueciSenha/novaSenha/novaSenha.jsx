@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View, TextInput} from 'react-native';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import globalStyles from '../../../../styles/globalStyles.js'
 import recorveryStyles from '../../../../styles/recorveryStyles.js';
@@ -8,15 +8,33 @@ import recorveryStyles from '../../../../styles/recorveryStyles.js';
 import Botao from '../../../../components/botao/botao';
 import LogoFacilita from '../../../../components/logoFacilita/logoFacilita.jsx';
 
+import { AuthContext } from '../../../../context/auth.js'
 
 function NovaSenha({navigation}){
+  const { matricula } = useContext(AuthContext);
   const [senha, setSenha] = useState('');
   const [cSenha, setCSenha] = useState('');
 
   const verificarCamposPreenchidos = () => {
     return senha != '' && cSenha != '' && senha == cSenha;
   };
-
+  const handleAlterarSenha = async (change) =>{
+    if(change){
+      await fetch('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/enviarEmail', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                matricula: matricula
+            }),
+        });
+        navigation.navigate('NovaSenhaSuccess')
+    } else{
+      navigation.navigate('NovaSenhaSuccess')
+    }
+  }
   return (
     <View style={recorveryStyles.container}>
       <View style={recorveryStyles.content}>
@@ -44,7 +62,7 @@ function NovaSenha({navigation}){
           <View style={globalStyles.caixaBtn}>
               <Botao 
                 disabled={!verificarCamposPreenchidos()}
-                onPress={() => navigation.navigate('NovaSenhaSuccess')}
+                onPress={() => handleAlterarSenha(true)}
               >
                 Redefinir
               </Botao>
@@ -52,7 +70,6 @@ function NovaSenha({navigation}){
           <Text 
             style={[recorveryStyles.prosseguir, globalStyles.text]}
           >
-            {/* Colocar um onPress com caminho da pagina inicial (cardápio) */}
             Não quero redefinir, apenas prosseguir.
           </Text>
       </View>

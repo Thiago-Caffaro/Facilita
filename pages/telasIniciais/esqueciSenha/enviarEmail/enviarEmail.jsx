@@ -14,7 +14,7 @@ function EnviarEmail({navigation}){
     const time = new Date();
 
     const sendEmail = async (email, time) => {
-        const response = await fetch('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/enviarEmail', {
+        await fetch('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/enviarEmail', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
