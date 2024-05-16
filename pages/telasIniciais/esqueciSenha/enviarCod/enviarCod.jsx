@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View, TextInput} from 'react-native';
-import { useState, Date } from 'react';
-import axios from 'axios';
+import { useContext, useState } from 'react';
 
 import globalStyles from '../../../../styles/globalStyles.js'
 import recorveryStyles from '../../../../styles/recorveryStyles.js';
@@ -9,22 +8,20 @@ import recorveryStyles from '../../../../styles/recorveryStyles.js';
 import Botao from '../../../../components/botao/botao';
 import LogoFacilita from '../../../../components/logoFacilita/logoFacilita.jsx';
 
+import { AuthContext } from '../../../../context/auth.js'
+
 
 function EnviarCod({navigation}){
-  const [codigo, setCodigo] = useState('');
-  let confirmed = false;
+  const { sentCode } = useContext(AuthContext);
+  const [ userCode, setUserCode] = useState('');
 
   const handleCode = async (codigo) => {
-    const response = await axios.post('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/enviarEmail', {
-      codigo
-    })
-    if (codigo == response.codigo){
-      confirmed = true;
+    
+    if (codigo == sentCode){
       navigation.navigate('NovaSenha')
     }
     else {
-      confirmed = false;
-      alert('Código errado');
+      alert('Código errado' + codigo + sentCode);
     }
   }
   
@@ -41,12 +38,12 @@ function EnviarCod({navigation}){
                   style={globalStyles.input}
                   placeholder="Código"
                   placeholderTextColor="#f5f5f5"
-                  value={codigo}
-                  onChangeText={setCodigo}
+                  value={userCode}
+                  onChangeText={setUserCode}
               />
           </View>
           <View style={globalStyles.caixaBtn}>
-              <Botao onPress={() => handleCode(codigo)}
+              <Botao onPress={() => handleCode(userCode)}
               >Confirmar</Botao>
           </View>
       </View>

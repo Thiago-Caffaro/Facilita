@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View, TextInput} from 'react-native';
 import { useState, useContext } from 'react';
+import axios from 'axios';
 
 import globalStyles from '../../../../styles/globalStyles.js'
 import recorveryStyles from '../../../../styles/recorveryStyles.js';
@@ -20,19 +21,20 @@ function NovaSenha({navigation}){
   };
   const handleAlterarSenha = async (change) =>{
     if(change){
-      await fetch('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/enviarEmail', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: email,
-                matricula: matricula
-            }),
-        });
-        navigation.navigate('NovaSenhaSuccess')
+    await fetch('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/alterarSenha', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            matricula: `${matricula}`,
+            novaSenha: senha
+        }),
+      }).then( () => {
+        navigation.navigate('NovaSenhaSuccess');
+      })
     } else{
-      navigation.navigate('NovaSenhaSuccess')
+      navigation.navigate('MainScreen')
     }
   }
   return (
