@@ -20,7 +20,7 @@ function Footer({navigation}){
                 />
             </TouchableOpacity>
             
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Ajuda')}>
                 <Image 
                     style={{width: 35, height: 35}}  
                     id='ajudaIcon' 

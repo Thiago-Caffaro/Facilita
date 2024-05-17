@@ -2,9 +2,9 @@
   "name": "facilita",
   "version": "1.0.0",
   "scripts": {
-    "start": "expo start --dev-client",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
+    "start": "expo start --tunnel",
+    "android": "expo run:android --tunnel",
+    "ios": "expo run:ios --tunnel",
     "web": "expo start --web"
   },
   "private": true,
@@ -13,7 +13,7 @@
     "@react-navigation/stack": "^6.3.29",
     "axios": "^1.6.8",
     "eas": "^0.1.0",
-    "expo": "^51.0.2",
+    "expo": "^51.0.5",
     "expo-checkbox": "~3.0.0",
     "expo-status-bar": "~1.12.1",
     "expo-updates": "~0.25.12",
