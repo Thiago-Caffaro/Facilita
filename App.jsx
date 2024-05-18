@@ -11,6 +11,7 @@ import Perfil from './pages/perfil/perfil';
 import MainScreen from './pages/mainScreen/mainScreen';
 
 import AuthProvider from './context/auth';
+import Ajuda from './pages/ajuda/ajuda';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -25,6 +26,7 @@ export default function App() {
             <Stack.Screen name="NovaSenha" component={NovaSenha} options={{ headerShown: false }} />
             <Stack.Screen name="NovaSenhaSuccess" component={NovaSenhaSuccess} options={{ headerShown: false }} />
             <Stack.Screen name="Perfil" component={Perfil} options={{ headerShown: false }} />
+            <Stack.Screen name="Ajuda" component={Ajuda} options={{ headerShown: false }} />
             <Stack.Screen name="MainScreen" component={MainScreen} options={{ headerShown: false }} />
           </Stack.Navigator>
         </AuthProvider>
