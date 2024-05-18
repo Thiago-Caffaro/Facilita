@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 import ajudaStyles from './ajudaStyles.js';
-import globalStyles from '../../styles/globalStyles.js';
 
 // Importe imagens usando um caminho relativo ou um pacote como `react-native-svg`
-import seta from '../../components/returnArrow/seta.png';
 import setabaixo from '../../components/returnArrow/setabaixo.png';
 
+import BarraSuperior from '../../components/barraSuperior/barraSuperior.jsx';
+
 const Ajuda = () => {
-  const navigation = useNavigation();
 
   // Defina um array de perguntas e respostas
   const perguntas = [
@@ -58,14 +56,8 @@ const Ajuda = () => {
 
   return (
     <View style={ajudaStyles.container}>
-      {/* Parte superior com seta de volta e título */}
-      <View style={globalStyles.topBar}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image source={seta} style={globalStyles.returnArrow} />
-        </TouchableOpacity>
-        <Text style={globalStyles.topBarText}>Ajuda</Text>
-        
-      </View>
+      {/* Componente  */}
+      <BarraSuperior>Ajuda</BarraSuperior>
      
       
       {/* Conteúdo rolável com itens de FAQ */}
