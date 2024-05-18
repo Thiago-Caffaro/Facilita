@@ -2,7 +2,8 @@
   "name": "facilita",
   "version": "1.0.0",
   "scripts": {
-    "start": "expo start --tunnel",
+    "start": "expo start",
+    "tunnel": "expo start --tunnel",
     "android": "expo run:android --tunnel",
     "ios": "expo run:ios --tunnel",
     "web": "expo start --web"
