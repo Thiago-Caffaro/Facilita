@@ -56,10 +56,7 @@ const Ajuda = () => {
 
   return (
     <View style={ajudaStyles.container}>
-      {/* Componente  */}
       <BarraSuperior>Ajuda</BarraSuperior>
-     
-      
       {/* Conteúdo rolável com itens de FAQ */}
       <ScrollView style={ajudaStyles.content}>
       <Text style={ajudaStyles.h1}>Como Podemos Ajudar?</Text>

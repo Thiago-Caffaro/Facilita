@@ -35,10 +35,7 @@ const globalStyles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'space-evenly'
     }, 
-    loadingGif:{
-        width:100,
-        height:100,
-    },
+    
     
 })
 export default globalStyles;

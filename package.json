@@ -20,7 +20,8 @@
     "expo-updates": "~0.25.12",
     "react": "18.2.0",
     "react-native": "0.74.1",
-    "react-native-gesture-handler": "~2.16.1"
+    "react-native-gesture-handler": "~2.16.1",
+    "react-native-viewport-units": "^0.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0"
