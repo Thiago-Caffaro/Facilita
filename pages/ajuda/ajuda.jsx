@@ -23,8 +23,8 @@ const Ajuda = () => {
       answer: 'Na página de login, clique em "Esqueci Minha Senha" e siga todas as estapas necessárias e solicitadas.',
     },
     {
-      question: 'Aonde vejo minhas faltas?',
-      answer: 'Acesse a aba "Frequência" e lá terá as suas faltasatualizadas.',
+      question: 'Onde vejo minhas faltas?',
+      answer: 'Acesse a aba "Frequência" e lá terá as suas faltas atualizadas.',
     },
     {
       question: 'É possível trocar a foto de perfil?',
