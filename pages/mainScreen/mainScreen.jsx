@@ -6,6 +6,7 @@ import NavBar from "../../components/navBar/navBar";
 import Footer from "../../components/footer/footer";
 
 import mainScreenStyles from "./mainWindow.js";
+import Cardapio from "./contents/cardápio/cardapio.jsx";
 
 function MainScreen({navigation}){
     const { content } = useContext(AuthContext);
