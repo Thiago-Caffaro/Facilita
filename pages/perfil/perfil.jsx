@@ -14,13 +14,14 @@ function Perfil(){
 
     useEffect(() => {
         requerirAlunoData(matricula).then(data => {
+            const senha = data.senhaUsuario // Fazer algo depois com isso
             const userData = {
                 Nome: data.nomeAluno,
                 Turma: data.turmaAluno,
                 Numero: data.numeroAluno,
                 Emails: [
-                    "emailTeste@gmail.com",
-                    "alunoTeste." + matricula + "@aluno.etejk.faetec.rj.gov.br"
+                    data.emailUsuario,
+                    `${data.primeiroNome}.${matricula}@aluno.etejk.faetec.rj.gov.br`
                 ]
             }
             setPerfilData(userData);
