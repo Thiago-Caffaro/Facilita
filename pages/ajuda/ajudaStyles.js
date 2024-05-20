@@ -7,7 +7,7 @@ const ajudaStyles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     h1:{
-        color:"#757575",
+        color:"#008000",
         fontWeight:"bold",
         fontSize:23,
         paddingLeft:"20%",
@@ -36,7 +36,7 @@ const ajudaStyles = StyleSheet.create({
         backgroundColor:"#ffff",
         borderColor:"#757575",
         borderWidth:1,
-        borderRadius:"3%",
+        borderRadius:3, // Alterado para número
         width:"96%",
         marginLeft:"2%",
         shadowColor:"#010101",
@@ -50,16 +50,16 @@ const ajudaStyles = StyleSheet.create({
     questionContainer: {
         backgroundColor:"#fff",
         flexDirection: 'row',
-        borderRadius:"5%",
+        borderRadius:5, // Alterado para número
         justifyContent: 'space-between',
         alignItems: "center",
-        borderColor:"#757575",
+        borderColor:"#008000",
         borderWidth:1,
         borderLeftColor:"#4CAF50",
-        borderLeftWidth:"9",
-        borderTopLeftRadius:"6%",
-        borderBottomLeftRadius:"6%",
-        shadowColor:"#010101",
+        borderLeftWidth:9, // Alterado para número
+        borderTopLeftRadius:6, // Alterado para número
+        borderBottomLeftRadius:6, // Alterado para número
+        shadowColor:"fff",
         shadowOffset:{
             width:"0%",
             height:"5%"},

@@ -12,6 +12,7 @@ import MainScreen from './pages/mainScreen/mainScreen';
 
 import AuthProvider from './context/auth';
 import Ajuda from './pages/ajuda/ajuda';
+import telaReclamaçao from './pages/Reclamaçao/TelaReclamaçao';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -28,6 +29,7 @@ export default function App() {
             <Stack.Screen name="Perfil" component={Perfil} options={{ headerShown: false }} />
             <Stack.Screen name="Ajuda" component={Ajuda} options={{ headerShown: false }} />
             <Stack.Screen name="MainScreen" component={MainScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="TelaReclamação" component={telaReclamaçao} options={{ headerShown: false }} />
           </Stack.Navigator>
         </AuthProvider>
       </NavigationContainer>
