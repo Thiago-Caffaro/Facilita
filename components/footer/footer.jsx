@@ -4,7 +4,7 @@ import Perfil from '../../pages/perfil/perfil.jsx';
 function Footer({navigation}){
     return (
         <View id="footer" style={styles.footer}>
-            <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('TelaReclamação')}>
                 <Image
                     style={{width: 40, height: 40}}
                     id='soeSopIcon'
