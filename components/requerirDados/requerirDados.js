@@ -12,12 +12,15 @@ const requerirAlunoData = async (matricula) => {
         if (data.success) {
             // Vínculo bem-sucedido
             console.log('Aluno encontrado');
-            
+            // Aqui pego o nome do aluno e separo conforme os espaços entre cada nome, e pego o primeiro nome
+            const nomeFormatado = data.alunoData.aluno.nome.split(" ")[0].toLowerCase();
             return {
                 nomeAluno: data.alunoData.aluno.nome,
+                primeiroNome: nomeFormatado,
                 turmaAluno: data.alunoData.aluno.turma,
                 numeroAluno: data.alunoData.aluno.numero,
-                matriculaAluno: matricula
+                emailUsuario: data.userData.user.email,
+                senhaUsuario: data.userData.user.senha
             }
         } else {
           // Vínculo falhou
