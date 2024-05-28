@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 import ajudaStyles from './ajudaStyles.js';
-import globalStyles from '../../styles/globalStyles.js';
 
 // Importe imagens usando um caminho relativo ou um pacote como `react-native-svg`
-import seta from '../../components/returnArrow/seta.png';
 import setabaixo from '../../components/returnArrow/setabaixo.png';
 
+import BarraSuperior from '../../components/barraSuperior/barraSuperior.jsx';
+
 const Ajuda = () => {
-  const navigation = useNavigation();
 
   // Defina um array de perguntas e respostas
   const perguntas = [
@@ -23,8 +21,8 @@ const Ajuda = () => {
       answer: 'Na página de login, clique em "Esqueci Minha Senha" e siga todas as estapas necessárias e solicitadas.',
     },
     {
-      question: 'Aonde vejo minhas faltas?',
-      answer: 'Acesse a aba "Frequência" e lá terá as suas faltasatualizadas.',
+      question: 'Onde vejo minhas faltas?',
+      answer: 'Acesse a aba "Frequência" e lá terá as suas faltas atualizadas.',
     },
     {
       question: 'É possível trocar a foto de perfil?',
@@ -58,16 +56,7 @@ const Ajuda = () => {
 
   return (
     <View style={ajudaStyles.container}>
-      {/* Parte superior com seta de volta e título */}
-      <View style={globalStyles.topBar}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image source={seta} style={globalStyles.returnArrow} />
-        </TouchableOpacity>
-        <Text style={globalStyles.topBarText}>Ajuda</Text>
-        
-      </View>
-     
-      
+      <BarraSuperior>Ajuda</BarraSuperior>
       {/* Conteúdo rolável com itens de FAQ */}
       <ScrollView style={ajudaStyles.content}>
       <Text style={ajudaStyles.h1}>Como Podemos Ajudar?</Text>

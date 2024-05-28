@@ -7,7 +7,6 @@ function AuthProvider({children}){
     const [content, setContent] = useState('Initial Content');
     const [sentCode, setSentCode] = useState('');
 
-
     return(
         <AuthContext.Provider value={{
             matricula,
@@ -15,7 +14,8 @@ function AuthProvider({children}){
             content, 
             setContent,
             sentCode,
-            setSentCode
+            setSentCode,
+
         }}>
             {children}
         </AuthContext.Provider>
