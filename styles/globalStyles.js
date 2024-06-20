@@ -60,6 +60,8 @@ const globalStyles = StyleSheet.create({
         padding:10,
         marginLeft: "20%",
         tintColor: '#fff',
-    }
+    },
+    
+  
 })
 export default globalStyles;
