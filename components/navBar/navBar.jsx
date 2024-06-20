@@ -1,12 +1,12 @@
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { View, Text } from 'react-native'
 import {useContext} from 'react';
-import { AuthContext } from '../../context/auth.js';
+import { AuthContext } from '@/context/auth';
 
 import navBarStyle from './navBarStyle.js';
-import Cardapio from '../../pages/mainScreen/contents/cardápio/cardapio.jsx';
-import gradeHoraria from '../../pages/mainScreen/contents/gradeHoraria/gradeHoraria.jsx';
-import frequencia from '../../pages/mainScreen/contents/frequência/frequencia.jsx';
+import Cardapio from './navContent/cardapio.jsx';
+import gradeHoraria from './navContent/gradeHoraria.jsx';
+import frequencia from './navContent/frequencia.jsx';
 
 function NavBar(){
     const { setContent } = useContext(AuthContext);

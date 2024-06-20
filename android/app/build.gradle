@@ -83,7 +83,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.facilita"
+    namespace 'com.tagos.Facilita'
     defaultConfig {
         applicationId 'com.tagos.Facilita'
         minSdkVersion rootProject.ext.minSdkVersion
