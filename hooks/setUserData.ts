@@ -13,7 +13,6 @@ export default function useSetUserData(){
                 setUser(user);
                 console.log("atrubutos:" + JSON.stringify(atributes))
             }).then(() => {
-                
                 console.log(`Dados guardados:
                     matricula: ${matricula},
                     email: ${email},

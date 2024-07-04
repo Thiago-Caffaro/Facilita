@@ -7,7 +7,11 @@ const client = generateClient<Schema>({
 
 // Aqui estou importando o Schema criado no amplify/data/resource.ts e passando para o client para a criação do dataClient
 const fetchChats = async () => {
-  const { data: Chat, errors } = await client.models.Chat.list();
-  return await client.models.Chat.list()
+  try {
+    return client.models.Chat.list()
+ } catch (error) {
+   console.error(error);
+   return { error: 'Failed to fetch chats' }
+ }
 };
 export default fetchChats

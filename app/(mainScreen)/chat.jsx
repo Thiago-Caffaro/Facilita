@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import ChatComponent from '@/components/chat/chatComponent';
 import Coruja from '@/assets/Coruja.png'
 const chat = () => {
   const [onChat, setOnChat] = useState(false)
@@ -7,6 +8,7 @@ const chat = () => {
   return (
     <View style={estilos.container}>      
       {/* Caixas com imagens e texto */}
+      
       {!onChat ? 
         <View style={estilos.conteudo}>
           <TouchableOpacity style={estilos.caixaImagem} onPress={() =>{setOnChat(true)}}>
@@ -33,11 +35,11 @@ const chat = () => {
       : 
         <View  style={estilos.conteudo}>
           <TouchableOpacity onPress={() => setOnChat(!onChat)}>
-            <Text>Futuro chat</Text>
+            <Text>Voltar</Text>
           </TouchableOpacity>
+          <ChatComponent />
         </View>
       }
-      
     </View>
   );
 };
