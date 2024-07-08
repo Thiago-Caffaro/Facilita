@@ -1,25 +1,22 @@
-import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import ChatComponent from '@/components/chat/chatComponent';
+import { router, Link } from 'expo-router';
+
 import Coruja from '@/assets/Coruja.png'
 const chat = () => {
-  const [onChat, setOnChat] = useState(false)
-  
   return (
     <View style={estilos.container}>      
       {/* Caixas com imagens e texto */}
-      
-      {!onChat ? 
         <View style={estilos.conteudo}>
-          <TouchableOpacity style={estilos.caixaImagem} onPress={() =>{setOnChat(true)}}>
+          <Link href="chats/1" style={estilos.caixaImagem}>
             <View>
               <Image
-              source={Coruja}
+                source={Coruja}
                 style={estilos.imagem}
               />
               <Text style={estilos.textoCaixa}>S.O.E.</Text>
             </View>
-          </TouchableOpacity>
+          </Link>
           {/* Adicionei um espaço entre as caixas */}
           <View style={{ height: 20 }} />
           <TouchableOpacity style={estilos.caixaImagem} onPress={() =>{setOnChat(true)}}>
@@ -32,14 +29,7 @@ const chat = () => {
             </View>
           </TouchableOpacity>
         </View> 
-      : 
-        <View  style={estilos.conteudo}>
-          <TouchableOpacity onPress={() => setOnChat(!onChat)}>
-            <Text>Voltar</Text>
-          </TouchableOpacity>
-          <ChatComponent />
-        </View>
-      }
+        
     </View>
   );
 };
