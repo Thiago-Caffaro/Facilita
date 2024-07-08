@@ -51,15 +51,29 @@
               "isRequired": false,
               "attributes": []
             },
-            "sender": {
-              "name": "sender",
+            "senderId": {
+              "name": "senderId",
               "isArray": false,
               "type": "String",
               "isRequired": false,
               "attributes": []
             },
-            "receiver": {
-              "name": "receiver",
+            "receiverId": {
+              "name": "receiverId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "senderName": {
+              "name": "senderName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "receiverName": {
+              "name": "receiverName",
               "isArray": false,
               "type": "String",
               "isRequired": false,

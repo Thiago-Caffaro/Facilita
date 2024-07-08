@@ -4,37 +4,41 @@ import type { Schema } from '@/amplify/data/resource'; // Caminho do arquivo do 
 const client = generateClient<Schema>({
   authMode: 'userPool',
 });
-export default async function Teste(choice: number) {
+export { client };
+export default async function SendMessage(messageData: {
+  content: string,
+  senderId: string,
+  receiverId: string,
+  senderName: string,
+  receiverName: string,
+}) {
   const input = {
-    content: "Mensagem Teste",
-    sender: "O Sender",
-    receiver: "O Receiver",
+    content: messageData.content,
+    senderId: messageData.senderId,
+    receiverId: messageData.receiverId ,
+    senderName: messageData.senderName,
+    receiverName: messageData.receiverName
   };
   try {
-    if (choice === 1) {
-      const response = await client.graphql({
-        query: `mutation createChat($input: CreateChatInput!) {
-          createChat(input: $input) {
-            id
-            content
-            sender
-            receiver
-            createdAt
-          }
-        }`,
-        variables: { input },
-      });
-      console.log("Response:", response)
+    const response = await client.graphql({
+      query: `mutation createChat($input: CreateChatInput!) {
+        createChat(input: $input) {
+          id
+          content
+          senderId
+          receiverId
+          senderName
+          receiverName
+          createdAt
+        }
+      }`,
+      variables: { input },
+    });
+    console.log("Response:", response)
+    } catch (err){
+      console.error(err);
     }
-    else if (choice === 2) {
-      const response = await client.models.Chat.list();
-      console.log("Response:", response)
-      return response.data[0].content
-    }
-  } catch (err){
-    console.error(err);
-  }
-  
 }
 
 // Aqui estou importando o Schema criado no amplify/data/resource.ts e passando para o client para a criação do dataClient
+// const response = await client.models.Chat.list();

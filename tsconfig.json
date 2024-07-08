@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "components/alertDialog/infoBox.jsx"  ]
+, "components/alertDialog/infoBox.jsx", "app/(mainScreen)/chats/[otherUserId].jsx"  ]
 }

@@ -4,8 +4,10 @@ const schema = a.schema({
   Chat: a
     .model({
         content: a.string(),
-        sender: a.string(),
-        receiver: a.string()
+        senderId: a.string(),
+        receiverId: a.string(),
+        senderName: a.string(),
+        receiverName: a.string()
     })
     .authorization((allow) => [allow.authenticated()]),
 });

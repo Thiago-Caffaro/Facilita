@@ -1,35 +1,35 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import ChatComponent from '@/components/chat/chatComponent';
-import { router, Link } from 'expo-router';
+import { Link } from 'expo-router';
 
 import Coruja from '@/assets/Coruja.png'
+import { useState } from 'react';
 const chat = () => {
+  const otherUserId1 = "chats/34d89468-40f1-70dd-78ed-f35475a1ae0b"
+  const otherUserId2 = "chats/34d89468-40f1-70dd-78ed-f35475a1ae0b"//id do pedro
+
   return (
     <View style={estilos.container}>      
-      {/* Caixas com imagens e texto */}
-        <View style={estilos.conteudo}>
-          <Link href="chats/1" style={estilos.caixaImagem}>
-            <View>
-              <Image
-                source={Coruja}
-                style={estilos.imagem}
-              />
-              <Text style={estilos.textoCaixa}>S.O.E.</Text>
-            </View>
-          </Link>
-          {/* Adicionei um espaço entre as caixas */}
-          <View style={{ height: 20 }} />
-          <TouchableOpacity style={estilos.caixaImagem} onPress={() =>{setOnChat(true)}}>
-            <View>
-              <Image
-              source={Coruja} 
-                style={estilos.imagem}
-              />
-              <Text style={estilos.textoCaixa}>S.O.P.</Text>
-            </View>
-          </TouchableOpacity>
-        </View> 
-        
+      <View style={estilos.conteudo}>
+        <Link href={otherUserId1} style={[estilos.caixaImagem, {textAlign: 'center'}]}>
+          <View>
+            <Image
+              source={Coruja}
+              style={estilos.imagem}
+            />
+            <Text style={estilos.textoCaixa}>S.O.E</Text>
+          </View>
+        </Link>
+        <View style={{ height: 20 }} />
+        <Link href={otherUserId2} style={[estilos.caixaImagem, {textAlign: 'center'}]}>
+          <View>
+            <Image
+              source={Coruja}
+              style={estilos.imagem}
+            />
+            <Text style={estilos.textoCaixa}>S.O.P</Text>
+          </View>
+        </Link>
+      </View> 
     </View>
   );
 };
