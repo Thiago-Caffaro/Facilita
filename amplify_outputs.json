@@ -1,9 +1,9 @@
 {
   "auth": {
-    "user_pool_id": "us-east-1_ml5bI1zdr",
+    "user_pool_id": "us-east-1_C713Z5hCT",
     "aws_region": "us-east-1",
-    "user_pool_client_id": "2ce7gd24ib4rvrlhietvch2kas",
-    "identity_pool_id": "us-east-1:0e13addc-c210-49a3-be63-6f84f7b93dd5",
+    "user_pool_client_id": "3cl35nq5d9ku7qp9hr09mfs97k",
+    "identity_pool_id": "us-east-1:23ff09f2-905e-4593-9a21-e3aea299f242",
     "mfa_methods": [],
     "standard_required_attributes": [
       "email"
@@ -25,7 +25,7 @@
     "unauthenticated_identities_enabled": true
   },
   "data": {
-    "url": "https://zvshlj62cbcilmf7iyeyewrknu.appsync-api.us-east-1.amazonaws.com/graphql",
+    "url": "https://5vsoe4fukvguzfascmgkg5b5pi.appsync-api.us-east-1.amazonaws.com/graphql",
     "aws_region": "us-east-1",
     "default_authorization_type": "AMAZON_COGNITO_USER_POOLS",
     "authorization_types": [
@@ -51,15 +51,29 @@
               "isRequired": false,
               "attributes": []
             },
-            "sender": {
-              "name": "sender",
+            "senderId": {
+              "name": "senderId",
               "isArray": false,
               "type": "String",
               "isRequired": false,
               "attributes": []
             },
-            "receiver": {
-              "name": "receiver",
+            "receiverId": {
+              "name": "receiverId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "senderName": {
+              "name": "senderName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "receiverName": {
+              "name": "receiverName",
               "isArray": false,
               "type": "String",
               "isRequired": false,
