@@ -17,6 +17,7 @@ if (Array.isArray(cfnUserPool.schema)) {
     attributeDataType: 'String', // O tipo de dado do atributo, neste caso, um booleano.
     developerOnlyAttribute: false, // Indica que é um atributo apenas para desenvolvedores.
   });
+  
   cfnUserPool.addPropertyOverride('Policies.PasswordPolicy.MinimumLength', 6);
   cfnUserPool.addPropertyOverride('Policies.PasswordPolicy.RequireUppercase', true);
   cfnUserPool.addPropertyOverride('Policies.PasswordPolicy.RequireNumbers', true);
