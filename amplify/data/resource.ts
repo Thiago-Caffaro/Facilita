@@ -10,6 +10,15 @@ const schema = a.schema({
         receiverName: a.string()
     })
     .authorization((allow) => [allow.authenticated()]),
+    Post : a
+    .model({
+      id: a.id(),
+      user: a.string(),
+      title: a.string(),
+      content: a.string(),
+      upvotes: a.integer(),
+      downvotes: a.integer(),
+    }).authorization((allow) => [allow.authenticated()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
