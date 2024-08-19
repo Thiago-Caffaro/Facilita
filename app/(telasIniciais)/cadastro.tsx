@@ -39,7 +39,7 @@ function Cadastro(){
 				{hasAlert && alertType}
 			</View>
 			<View style={globalStyles.content}>
-				<LogoFacilita />
+				<LogoFacilita tamanho={0} />
 				<View style={[globalStyles.inputBox, {height: '40%'}]}>
 						<TextInput
 								style={globalStyles.input}
@@ -86,7 +86,6 @@ function Cadastro(){
 							style={[localStyles.checkBox, { borderColor: '#ffff' }]} // Define a cor da borda
 							value={checked}
 							onValueChange={() => setChecked(!checked)}
-							tintColors={{ true: '#ffff', false: '#ffff' }} // Define a cor do ícone
 						/>
 							<Text style={{marginLeft: 5,marginTop: 10,color: '#ffff' }}>
 								Aceito todos os termos e condições
@@ -97,7 +96,7 @@ function Cadastro(){
 				<View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }} />
 				<View style={globalStyles.caixaBtn}>
 					<Botao 
-						onPress={() => cadastrar(matricula, email, senha)}
+						onPress={() => matricula !== undefined && cadastrar(matricula, email, senha)} // Checa se a matricula existe e chama a função de cadastro
 						disabled={!verificarCamposPreenchidos()}
 					>
 						Cadastrar

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { fetchUserAttributes, getCurrentUser } from "aws-amplify/auth"
+import { fetchUserAttributes } from "aws-amplify/auth"
 async function requerirAlunoData(requestType: string) {
     const atributes = await fetchUserAttributes();
     //const user = await getCurrentUser();

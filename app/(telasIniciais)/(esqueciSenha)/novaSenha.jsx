@@ -18,6 +18,7 @@ function NovaSenha(){
   const [cSenha, setCSenha] = useState('');
   const { tempPassword, hasAlert, alertType  } = useContext(AuthContext);
   const newPassword = useNewPassword();
+
   const verificarCamposPreenchidos = () => {
     return senha != '' && cSenha != '' && senha == cSenha;
   };

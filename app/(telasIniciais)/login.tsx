@@ -25,8 +25,11 @@ function Login() {
 
     // UseEffect para limpar os campos de texto quando o componente é montado
     useEffect(() => {
+      
       const handleRouteChange = () => {
-        limparVariaveisGlobais();
+        if (segments[0] === 'login') {
+          limparVariaveisGlobais();
+        }
       };
       // Chama a função handleRouteChange quando o componente é montado/mudado
       handleRouteChange();

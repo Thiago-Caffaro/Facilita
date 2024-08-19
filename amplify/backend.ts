@@ -19,8 +19,8 @@ if (Array.isArray(cfnUserPool.schema)) {
   });
   cfnUserPool.schema.push({
     name: 'hasCompletedSingup', // O nome do novo atributo.
-    attributeDataType: 'Boolean', // O tipo de dado do atributo, neste caso, um booleano.
-    developerOnlyAttribute: true, // Indica que é um atributo apenas para desenvolvedores.
+    attributeDataType: 'String', // O tipo de dado do atributo, neste caso, um booleano.
+    developerOnlyAttribute: false, // Indica que é um atributo apenas para desenvolvedores.
   });
   cfnUserPool.schema.push({
     name: 'position', // O nome do novo atributo.
