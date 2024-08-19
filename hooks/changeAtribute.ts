@@ -4,8 +4,8 @@ function useChangeAttribute() {
   const client = new CognitoIdentityProviderClient({
      region: 'us-east-1',
      credentials: {
-      accessKeyId: 'AKIAZQ3DOYSYXXUWQVSO',
-      secretAccessKey: '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',
+      accessKeyId: '',
+      secretAccessKey: '',
     },
   });
 // Função para atualizar atributos
