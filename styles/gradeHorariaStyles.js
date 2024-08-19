@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { BackHandler, StyleSheet } from "react-native";
 
 
 const gradeHorariaSyles = StyleSheet.create({
@@ -13,6 +13,13 @@ const gradeHorariaSyles = StyleSheet.create({
        
     },
 
+    backGround:{
+        backgroundColor:"green",
+        width:350,
+        height:500,
+        marginTop:200,
+        borderRadius:4,
+    },
 
 })
 

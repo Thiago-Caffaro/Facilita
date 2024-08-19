@@ -1,51 +1,55 @@
-import {Text, View} from 'react-native';
-import mainScreenStyles from './mainWindow.js'
-import cardapioStyles from '../../../styles/cardapioStyles.js';
+import { Text, View } from 'react-native';
+import { useState, useEffect } from 'react';
+import mainScreenStyles from './mainWindow.js';
+import cardapioStyles from '@/styles/cardapioStyles.js';
+import getCardapio from '@/hooks/getCardapio.ts';
 
+function Cardapio({ navigation }) {
+    if (!navigation) {
+        console.error("Navigation prop is undefined!");
+        return null;
+    }
+  const [cardapioData, setCardapioData] = useState(null);
 
+  useEffect(() => {
+    const loadCardapio = async () => {
+      const cardapio = await getCardapio();
+      const cardapioPoggers = {
+        Dia1: cardapio.Dia1,
+        Dia2: cardapio.Dia2,
+        Dia3: cardapio.Dia3,
+        Dia4: cardapio.Dia4,
+        Dia5: cardapio.Dia5,
+      };
+      setCardapioData(cardapioPoggers);
+    };
+    loadCardapio();
+  }, []);
 
-function Cardapio({navigation}){
-    return(
-     
-        <View id='container'>
-            <View id='content' style={cardapioStyles.content}>
-                <View style={cardapioStyles.line}/> 
-                <Text style={cardapioStyles.title}>Segunda, 19/08</Text>
+  return (
+    <View id="container">
+      {cardapioData ? (
+        <View id="content" style={cardapioStyles.content}>
+          {Object.keys(cardapioData).map((key) => {
+            return (
+              <View style={[cardapioStyles.line]} key={key}>
+                <Text style={cardapioStyles.title}>{cardapioData[key].title}</Text>
                 <Text style={cardapioStyles.infos}>
-                    ARROZ PARBOLIZADO E FEIJÃO PRETO{'\n'}PICADINHO DE CARNE{'\n'}BATATA SAUTÊ
+                  {cardapioData[key].base}
+                  {'\n'}
+                  {cardapioData[key].main}
+                  {'\n'}
+                  {cardapioData[key].acompanhamento}
                 </Text>
-                <View style={cardapioStyles.line}/> 
-                
-                <Text style={cardapioStyles.title}>Terça, 20/08</Text>
-                <Text style={cardapioStyles.infos}>
-                    ARROZ PARBOLIZADO E FEIJÃO PRETO{'\n'}PICADINHO DE CARNE{'\n'}BATATA SAUTÊ
-                </Text>
-                <View style={cardapioStyles.line}/>
-
-                <Text style={cardapioStyles.title}>Quarta, 21/08</Text>
-                <Text style={cardapioStyles.infos}>
-                    ARROZ PARBOLIZADO E FEIJÃO PRETO{'\n'}PICADINHO DE CARNE{'\n'}BATATA SAUTÊ
-                </Text>
-                <View style={cardapioStyles.line}/>
-
-                <Text style={cardapioStyles.title}>Quinta, 22/08</Text>
-                <Text style={cardapioStyles.infos}>
-                    ARROZ PARBOLIZADO E FEIJÃO PRETO{'\n'}PICADINHO DE CARNE{'\n'}BATATA SAUTÊ
-                </Text>
-                <View style={cardapioStyles.line}/>
-
-                <Text style={cardapioStyles.title}>Sexta, 23/08</Text>
-                <Text style={cardapioStyles.infos}>
-                    ARROZ PARBOLIZADO E FEIJÃO PRETO{'\n'}PICADINHO DE CARNE{'\n'}BATATA SAUTÊ
-                </Text>
-                <View style={cardapioStyles.line}/>
-            </View>
+              </View>
+            );
+          })}
         </View>
-        
-    );
-};
-
-
-
+      ) : (
+        <Text>Loading...</Text>
+      )}
+    </View>
+  );
+}
 
 export default Cardapio;

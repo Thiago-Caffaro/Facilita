@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View} from 'react-native';
 import mainWindowStyles from './mainWindow.js'
-import frequenciaStyles from '../../../styles/frequenciaStyles.js';
+import frequenciaStyles from '@/styles/frequenciaStyles.js';
 
 
 function frequencia({navigation}){

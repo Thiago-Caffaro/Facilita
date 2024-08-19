@@ -1,9 +1,9 @@
 {
   "auth": {
-    "user_pool_id": "us-east-1_ml5bI1zdr",
+    "user_pool_id": "us-east-1_eoV39YcqI",
     "aws_region": "us-east-1",
-    "user_pool_client_id": "2ce7gd24ib4rvrlhietvch2kas",
-    "identity_pool_id": "us-east-1:0e13addc-c210-49a3-be63-6f84f7b93dd5",
+    "user_pool_client_id": "u41fhfhea1n7e0tshf4s6i65c",
+    "identity_pool_id": "us-east-1:953f8981-f10e-41d7-9848-3b466d8c6d4a",
     "mfa_methods": [],
     "standard_required_attributes": [
       "email"
@@ -25,7 +25,7 @@
     "unauthenticated_identities_enabled": true
   },
   "data": {
-    "url": "https://zvshlj62cbcilmf7iyeyewrknu.appsync-api.us-east-1.amazonaws.com/graphql",
+    "url": "https://dbsbc5l7w5gzthoqfriuy56h4y.appsync-api.us-east-1.amazonaws.com/graphql",
     "aws_region": "us-east-1",
     "default_authorization_type": "AMAZON_COGNITO_USER_POOLS",
     "authorization_types": [
@@ -51,15 +51,29 @@
               "isRequired": false,
               "attributes": []
             },
-            "sender": {
-              "name": "sender",
+            "senderId": {
+              "name": "senderId",
               "isArray": false,
               "type": "String",
               "isRequired": false,
               "attributes": []
             },
-            "receiver": {
-              "name": "receiver",
+            "receiverId": {
+              "name": "receiverId",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "senderName": {
+              "name": "senderName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "receiverName": {
+              "name": "receiverName",
               "isArray": false,
               "type": "String",
               "isRequired": false,
@@ -111,11 +125,111 @@
             "primaryKeyFieldName": "id",
             "sortKeyFieldNames": []
           }
+        },
+        "Post": {
+          "name": "Post",
+          "fields": {
+            "id": {
+              "name": "id",
+              "isArray": false,
+              "type": "ID",
+              "isRequired": true,
+              "attributes": []
+            },
+            "user": {
+              "name": "user",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "title": {
+              "name": "title",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "content": {
+              "name": "content",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "upvotes": {
+              "name": "upvotes",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "downvotes": {
+              "name": "downvotes",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false,
+              "attributes": []
+            },
+            "createdAt": {
+              "name": "createdAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            },
+            "updatedAt": {
+              "name": "updatedAt",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false,
+              "attributes": [],
+              "isReadOnly": true
+            }
+          },
+          "syncable": true,
+          "pluralName": "Posts",
+          "attributes": [
+            {
+              "type": "model",
+              "properties": {}
+            },
+            {
+              "type": "key",
+              "properties": {
+                "fields": [
+                  "id"
+                ]
+              }
+            },
+            {
+              "type": "auth",
+              "properties": {
+                "rules": [
+                  {
+                    "allow": "private",
+                    "operations": [
+                      "create",
+                      "update",
+                      "delete",
+                      "read"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "primaryKeyInfo": {
+            "isCustomPrimaryKey": false,
+            "primaryKeyFieldName": "id",
+            "sortKeyFieldNames": []
+          }
         }
       },
       "enums": {},
       "nonModels": {}
     }
   },
-  "version": "1"
+  "version":"1"
 }
