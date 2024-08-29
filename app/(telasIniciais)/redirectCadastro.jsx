@@ -5,14 +5,29 @@ import globalStyles from '@/styles/globalStyles.js'
 import recorveryStyles from '@/styles/recorveryStyles.js';
 
 import LogoFacilita from '@/components/logoFacilita/logoFacilita.jsx';
+import { updateUserAttribute, getCurrentUser } from '@aws-amplify/auth';
 
 import { useEffect } from 'react';
 
 function Redirect(){
   useEffect(() => {
-    setTimeout(() => {
-      router.push("(mainScreen)/main");
-    }, 3000)
+    // Chama a função para atualizar o atributo customizado
+    async function atualizarAtributo() {
+      const user = await getCurrentUser();
+
+    // Atualiza o atributo customizado
+      await updateUserAttribute({
+          user: user,
+          userAttribute: { 
+              attributeKey: 'custom:hasCompletedSingup',
+              value: 'completo',
+          }
+      })
+      setTimeout(() => {
+        router.push("(mainScreen)/main");
+      }, 3000)
+    }
+    atualizarAtributo();
   }, [])
   return (
     <View style={recorveryStyles.container}>

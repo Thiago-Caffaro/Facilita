@@ -8,6 +8,7 @@ import recorveryStyles from '@/styles/recorveryStyles.js';
 
 import Botao from '@/components/botao/botao.jsx';
 import LogoFacilita from '@/components/logoFacilita/logoFacilita.jsx';
+import SetaSuperior from '@/components/setaSuperior/setaSuperior';
 
 import { AuthContext } from '@/context/auth'
 import { router } from 'expo-router';
@@ -35,6 +36,7 @@ function ReceberCod(){
   
   return (
     <View style={recorveryStyles.container}>
+      <SetaSuperior />
       <View style={recorveryStyles.content}>
           <LogoFacilita tamanho={50} />
           <StatusBar style="light" />

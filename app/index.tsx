@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { getCurrentUser,fetchAuthSession  } from 'aws-amplify/auth';
+import { getCurrentUser,fetchAuthSession, fetchUserAttributes  } from 'aws-amplify/auth';
 import { useEffect } from "react";
 import { Amplify } from "aws-amplify";
 import amplifyOutputs from '@/amplify_outputs.json';
@@ -23,8 +23,15 @@ export default function loadAndCheckUser() {
     // Checa se o usuário está logado, caso esteja, redireciona para a tela principal
     try {
       const { signInDetails } = await getCurrentUser();
+      const attributes = await fetchUserAttributes();
       console.log("Detalhes do login:", signInDetails);
-      router.push("(mainScreen)/main");
+      console.log(attributes)
+      if (attributes["custom:hasCompletedSingup"] == "incompleto"){
+        router.push("(telasIniciais)/login");
+        alert("Por favor, faça a alteração da senha");
+      } else {
+        router.push("(mainScreen)/main");
+      }
     } catch(error: any){
       if(error.name == "UserUnAuthenticatedException" || error.name == "UserNotFoundException"){
         router.push("(telasIniciais)/login");

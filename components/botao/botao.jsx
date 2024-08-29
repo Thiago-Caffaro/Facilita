@@ -1,5 +1,5 @@
 import { TouchableOpacity, Text, StyleSheet } from "react-native"
-function Botao({onPress, children, disabled }){
+function Botao({onPress, children, disabled=false }){
     const estiloBotao = disabled ? styles.btnDesativado : styles.btn;
     const estiloTexto = disabled ? styles.textoDesativado : styles.texto;
 
