@@ -1,5 +1,4 @@
 import { CognitoIdentityProviderClient, AdminUpdateUserAttributesCommand } from '@aws-sdk/client-cognito-identity-provider';
-import useInfoBox from '@/hooks/alertDialog/infoBox';
 function useChangeAttribute() {
   const client = new CognitoIdentityProviderClient({
      region: 'us-east-1',

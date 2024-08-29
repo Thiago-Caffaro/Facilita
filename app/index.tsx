@@ -25,6 +25,7 @@ export default function loadAndCheckUser() {
       const { signInDetails } = await getCurrentUser();
       const attributes = await fetchUserAttributes();
       console.log("Detalhes do login:", signInDetails);
+      console.log(attributes)
       if (attributes["custom:hasCompletedSingup"] == "incompleto"){
         router.push("(telasIniciais)/login");
         alert("Por favor, faça a alteração da senha");

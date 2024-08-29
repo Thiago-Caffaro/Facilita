@@ -20,8 +20,7 @@ export default function useCadastrar(){
                         'custom:matricula': matricula,
                         'custom:hasCompletedSingup': "incompleto",
                         'custom:position': "aluno"
-                    }, 
-                    
+                    },
                 }
                 // Envio dos dados do usuário
             })	

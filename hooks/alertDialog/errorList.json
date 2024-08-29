@@ -1,0 +1,48 @@
+{
+  "errorMessages": {
+    "EmptySignInUsername": {
+      "id": "001",
+      "message": "Email do usuário vazio"
+    },
+    "EmptySignInPassword": {
+      "id": "002",
+      "message": "Senha do usuário vazia"
+    },
+    "InvalidPasswordException": {
+      "id": "003",
+      "message": "A senha deve ter pelo menos uma letra maiúscula, um número, e no mínimo 6 caracteres"
+    },
+    "InvalidParameterException": {
+      "id": "004",
+      "message": "Formato de matricula inválido"
+    },
+    "NotAuthorizedException": {
+      "id": "005",
+      "message": "Email ou senha incorretos"
+    },
+    "ExpiredCodeException": {
+      "id": "006",
+      "message": "Código de confirmação expirado"
+    },
+    "Unknown": {
+      "id": "007",
+      "message": "Erro abominável, catastrófico, devastador!"
+    },
+    "UsernameExistsException": {
+      "id": "008",
+      "message": "O email já existe"
+    },
+    "CodeMismatchException": {
+      "id": "009",
+      "message": "Código de confirmação inválido"
+    },
+    "UserAlreadyAuthenticatedException": {
+      "id": "010",
+      "message": "O usuário está autenticado, porém a senha precisa ser alterada, saindo da conta..."
+    },
+    "UserUnAuthenticatedException": {
+      "id": "011",
+      "message": "Por favor, confirme seu email novamente, saindo da conta..."
+    }
+  }
+}

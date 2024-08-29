@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View, TextInput} from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
 import { useState, useContext } from 'react';
 
 import globalStyles from '@/styles/globalStyles.js'
@@ -14,8 +14,17 @@ import { AuthContext } from '@/context/auth'
 import { router } from 'expo-router';
 
 function NovaSenha(){
+  /**
+   * A tela para lidar com o processo de criação de uma nova senha.
+   * Ela renderiza uma exibição com campos de entrada para a nova senha e sua confirmação,
+   * e um botão para enviar a nova senha.
+  */
   const [senha, setSenha] = useState('');
   const [cSenha, setCSenha] = useState('');
+  const [isHidden, setIsHidden] = useState(true);
+	const hiddenIcon = require('@/assets/icons/olhoSemVer.png');
+	const visibleIcon = require('@/assets/icons/olhoVendo.png');
+
   const { tempPassword, hasAlert, alertType  } = useContext(AuthContext);
   const newPassword = useNewPassword();
 
@@ -27,7 +36,6 @@ function NovaSenha(){
     if (result == "SUCCESS") {
       router.push("redirectSenha");
     }
-    
   }
   return (
     <View style={recorveryStyles.container}>
@@ -41,20 +49,31 @@ function NovaSenha(){
               Digite sua nova senha.
           </Text>
           <View style={[globalStyles.inputBox, {height: '30%'}]}>
-              <TextInput
-                  style={globalStyles.input}
-                  placeholder="Nova senha"
-                  placeholderTextColor="#f5f5f5"
-                  value={senha}
-                  onChangeText={setSenha}
-              />
-              <TextInput
-                  style={globalStyles.input}
-                  placeholder="Repita sua nova senha"
-                  placeholderTextColor="#f5f5f5"
-                  value={cSenha}
-                  onChangeText={setCSenha}
-              />
+          <View style={globalStyles.inputBoxPass}>
+							<TextInput
+								style={globalStyles.input}
+								placeholder="Senha"
+								placeholderTextColor="#f5f5f5"
+								value={senha}
+								onChangeText={setSenha}
+								secureTextEntry={true ? isHidden : false}
+							/>
+							<TouchableOpacity style={globalStyles.eyeStyle} onPress={() => setIsHidden(!isHidden)}>
+								<Image style={globalStyles.eyeImageStyle} 
+								source={hiddenIcon ? isHidden ? hiddenIcon : visibleIcon : hiddenIcon}></Image>
+							</TouchableOpacity>
+						</View>
+						
+						<View style={globalStyles.inputBoxPass}>
+							<TextInput
+									style={globalStyles.input}
+									placeholder="Repita Sua Senha"
+									placeholderTextColor="#f5f5f5"
+									value={cSenha}
+									onChangeText={setCSenha}
+									secureTextEntry={true ? isHidden : false}
+							/>
+						</View>
           </View>
           <View style={globalStyles.caixaBtn}>
               <Botao 
@@ -64,11 +83,6 @@ function NovaSenha(){
                 Redefinir
               </Botao>
           </View>
-          <Text 
-            style={[recorveryStyles.prosseguir, globalStyles.text]}
-          >
-            Não quero redefinir, apenas prosseguir.
-          </Text>
       </View>
     </View>
   );

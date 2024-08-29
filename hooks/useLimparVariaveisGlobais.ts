@@ -11,8 +11,8 @@ export default function useLimparVariaveisGlobais() {
    
     return function limparVariaveisGlobais(){
         setEmail('');
-        setSenha('')
-        setMatricula('')
+        setSenha('');
+        setMatricula('');
     }
     
 }

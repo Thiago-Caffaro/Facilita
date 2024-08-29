@@ -1,11 +1,15 @@
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import useLimparVariaveisGlobais from '@/hooks/useLimparVariaveisGlobais'
+
 export default function SetaSuperior(){
+    const limparVariaveisGlobais = useLimparVariaveisGlobais();
     // Este seta ficará no canto superior esquerdo, e voltará uma tela
     // OBS: ela também irá limpar as variáveis dos campos de texto
     const router = useRouter();
     const handleReturn = () => {
+        limparVariaveisGlobais();
         router.back();
     };
     return(

@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View, TextInput } from 'react-native';
 import { useState, useContext } from 'react';
-import { confirmSignUp } from '@aws-amplify/auth';
+import { signIn as amplifySignIn, confirmSignUp } from '@aws-amplify/auth';
 import { router } from 'expo-router';
 
 import globalStyles from '@/styles/globalStyles.js';
@@ -11,24 +11,36 @@ import Botao from '@/components/botao/botao.jsx';
 import LogoFacilita from '@/components/logoFacilita/logoFacilita.jsx';
 import { AuthContext } from '@/context/auth';
 
-import useSingIn from '@/hooks/signIn-up/signIn';
+import useInfoBox from '@/hooks/alertDialog/infoBox';
 
-export default function confirmarCadastro() {
-    const { senha, email, hasAlert, alertType } = useContext(AuthContext);
+/**
+ * Essa é a tela de confirmação de cadastro.
+ * Aqui, o usuário irá digitar o código que foi enviado para o email
+ * e, se o código for válido, o usuário será redirecionado para a
+ * tela de redirect, onde irá concluir o seu cadastro. (redirectCadastro.jsx)
+ */
+export default function confirmarCadastro() { 
+    const { senha, email, hasAlert, alertType, setHasAlert, setAlertType } = useContext(AuthContext);
     const [awsCode, setAwsCode] = useState('');
-    const singIn = useSingIn();
+    const infoBox = useInfoBox();
 
     const handleSendCod = async () => {
         try {
             // Confirma o registro do usuário
             const { isSignUpComplete } = await confirmSignUp({
-                username: email,
+                username: "thiago.2210134300008@aluno.etejk.faetec.rj.gov.br",
                 confirmationCode: awsCode,
             });
             // Verifique se o signup foi completado com sucesso
             if (isSignUpComplete) {
                 // Realiza o login do usuário
-                await singIn(email, senha);
+                await amplifySignIn({
+                    username: email,
+                    password: senha,
+                    options: {
+                        authFlowType: 'USER_PASSWORD_AUTH'
+                    }
+                });
 
                 // Redireciona para a tela de cadastro completo
                 console.log("Redirecionando...");
@@ -37,7 +49,9 @@ export default function confirmarCadastro() {
                 console.log('Signup não foi completado com sucesso.');
             }
         } catch (error) {
-            console.log(error, email);
+            setHasAlert(true);
+            console.log(error, email, senha);
+            setAlertType(infoBox(error.name));
         }
     };
 
