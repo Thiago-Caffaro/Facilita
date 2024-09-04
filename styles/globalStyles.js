@@ -60,6 +60,22 @@ const globalStyles = StyleSheet.create({
         padding:10,
         marginLeft: "20%",
         tintColor: '#fff',
-    }
+    },
+    inputBoxPass: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    eyeStyle: {
+        position: 'absolute',
+        marginRight: 10,
+        right: 0,
+        opacity: 0.6
+    },
+    eyeImageStyle: {
+        marginRight: 2,
+        height: 18,
+        width: 18
+    },
+  
 })
 export default globalStyles;

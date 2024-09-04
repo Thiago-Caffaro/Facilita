@@ -18,8 +18,9 @@ export default function useCadastrar(){
                 options: {
                     userAttributes: {
                         'custom:matricula': matricula,
-                    }, 
-                    
+                        'custom:hasCompletedSingup': "incompleto",
+                        'custom:position': "aluno"
+                    },
                 }
                 // Envio dos dados do usuário
             })	

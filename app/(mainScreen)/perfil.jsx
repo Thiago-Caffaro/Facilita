@@ -3,34 +3,35 @@ import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '@/context/auth';
 
 import perfilStyle from '@/styles/perfilStyle.js';
-import useRequerirAlunoData from '@/hooks/requerirDados';
+import requerirAlunoData from '@/hooks/requerirDados';
+import getUserData from '@/hooks/setUserData';
+
 import BarraSuperior from '@/components/barraSuperior/barraSuperior.jsx';
 import loadingGif from '@/assets/loading.gif'
 import barras from '@/assets/perfil/barras.png'
 import useSignOut from '@/hooks/useSignOut';
 
-import useSetUserData from '@/context/auth';
 
 function Perfil(){
     const [perfilData, setPerfilData] = useState(null);
-    const { matricula } = useContext(AuthContext);
     const signOut = useSignOut();
-    const requerirAlunoData = useRequerirAlunoData();
-    //OBS: Para ser implementado
-    /*useEffect(() => {
-        requerirAlunoData(matricula).then(data => {
-            const userData = {
-                Nome: data.nomeAluno,
-                Turma: data.turmaAluno,
-                Numero: data.numeroAluno,
+    useEffect(() => {
+        const setData = async () => {
+            const userData = await requerirAlunoData();
+            const userDataOrganized = {
+                Nome: userData.nomeAluno,
+                Turma: userData.turmaAluno,
+                Numero: userData.numeroAluno,
+                Matricula: userData.matriculaAluno,
                 Emails: [
-                    data.emailUsuario,
-                    `${data.primeiroNome}.${data.matriculaAluno}@aluno.etejk.faetec.rj.gov.br`
+                    userData.emailUsuario,
+                    `${userData.nomeAluno.split(' ')[0].toLowerCase()}.${userData.matriculaAluno}@aluno.etejk.faetec.rj.gov.br`
                 ]
             }
-            setPerfilData(userData);
-        });
-    }, []);*/
+            setPerfilData(userDataOrganized);
+        };
+        setData();
+    }, []);
     
     return(
         <View id='container' style={perfilStyle.container}>
@@ -44,7 +45,7 @@ function Perfil(){
                             if( key == 'Nome' ){
                                 return <View style={[perfilStyle.itemBox, perfilStyle.nomeBox]} key={key}>
                                     <Text style={perfilStyle.nome}>{perfilData[key]}</Text>
-                                    <Text style={perfilStyle.perfilItem}>Matrícula: {matricula}</Text>
+                                    <Text style={perfilStyle.perfilItem}>Matrícula: {perfilData['Matricula']}</Text>
                                 </View>
                             }else if (key == 'Emails'){
                                 return <View style={perfilStyle.itemBox} key={key}>
@@ -59,7 +60,7 @@ function Perfil(){
                                     </Text>
                                 </View>
                             }
-                            else{// Apenas os elementos mais simples como Turma e Curso são organizados em "Row"
+                            else if (key != "Matricula"){// Apenas os elementos mais simples como Turma e Curso são organizados em "Row"
                                 return <View style={[perfilStyle.itemBox, {flexDirection: 'row'}]} key={key}>
                                     <Text style={[perfilStyle.perfilItem, perfilStyle.itemTitle]}>{key}: </Text>
                                     <Text style={perfilStyle.perfilItem}>{perfilData[key]}</Text>
@@ -67,8 +68,9 @@ function Perfil(){
                             }
                         })
                         }
-                        <Button onPress={() => signOut()} >
-                            Sair da conta
+                        <Button 
+                            title='Sair da conta' 
+                            onPress={() => signOut()} >
                         </Button>
                         <View id='barCodeBox' style={[perfilStyle.barCodeBox]}>
                             <Image style={perfilStyle.codeImage}  source={barras}></Image>
@@ -80,16 +82,10 @@ function Perfil(){
                         <Button title='Sair da conta' onPress={() => signOut()} >
                         
                         </Button>
-                    </View>
-                    
+                    </View>     
                 )}
-                
-                </View>
-                
-                
-            
+            </View>
         </View>
-        
     );
     
 };
