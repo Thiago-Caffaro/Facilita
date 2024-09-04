@@ -6,22 +6,20 @@ import navBarStyles from "@/styles/navBarStyles";
 export default function MainScreenLayout() {
   return (
     <AuthProvider>
-    <GestureHandlerRootView>
-      <Tabs initialRouteName="main" 
-          screenOptions={{
+      <GestureHandlerRootView>
+          <Tabs initialRouteName="main" 
+            screenOptions={{
           tabBarActiveBackgroundColor: "green",
           tabBarInactiveBackgroundColor: "#429D1E",
 
           tabBarShowLabel: false, // Para ocultar os rótulos das abas
-        }}
-        >
-          <Tabs.Screen name="main" options={{ headerShown: false }}  />
-          <Tabs.Screen name="ajuda" options={{ headerShown: false }} />
-          <Tabs.Screen name="perfil" options={{ headerShown: false }} />
-          <Tabs.Screen name="chat" options={{headerShown: false,  headerStyle: { backgroundColor: '#4CAF50' }}} />
-          <Tabs.Screen name="chats/[otherUserId]" options={{headerShown: true, tabBarButton: () => null}} />
-        </Tabs>
-    </GestureHandlerRootView>
+        }}>
+            <Tabs.Screen name="main" options={{ headerShown: false, }} />
+            <Tabs.Screen name="ajuda"  options={{ headerShown: false }} />
+            <Tabs.Screen name="perfil" options={{ headerShown: false }} />
+            <Tabs.Screen name="chat" options={{headerShown: false,  headerStyle: { backgroundColor: '#4CAF50' }}} />
+          </Tabs>
+      </GestureHandlerRootView>
     </AuthProvider>
   );
 }
