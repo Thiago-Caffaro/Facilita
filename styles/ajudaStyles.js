@@ -3,13 +3,10 @@ import { StyleSheet } from "react-native";
 const ajudaStyles = StyleSheet.create({
 
     container: {
-     
         flex: 1,
         backgroundColor: '#fff',
     },
     h1:{
-        marginTop:40,
-        marginBottom:40,
         width: '100%',
         textAlign: 'center',
         color:"#008000",

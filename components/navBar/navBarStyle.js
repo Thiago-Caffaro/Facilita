@@ -8,18 +8,17 @@ const navBarStyle = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: "space-around",
         alignItems: 'center',
-        marginTop: '10%',
-        
-        marginRight:"100px"
+
+        marginTop: '10%'
     },
     button:{
-        
         marginTop:15,
         color:'green',
         fontSize: 17,
-        
     },
-   
+    info: {
+        padding: 30
+    }
 })
 
 export default navBarStyle;
