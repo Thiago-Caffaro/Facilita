@@ -4,7 +4,7 @@ import mainScreenStyles from './mainWindow.js';
 import cardapioStyles from '@/styles/cardapioStyles.js';
 import getCardapio from '@/hooks/getCardapio.ts';
 
-function Cardapio({ navigation }) {
+function Cardapio({}) {
     if (!navigation) {
         console.error("Navigation prop is undefined!");
         return null;
