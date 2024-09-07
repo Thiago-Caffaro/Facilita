@@ -1,17 +1,15 @@
 import { TouchableOpacity, StyleSheet, Text, View, Image } from 'react-native';
-import gradeHorariaSyles from '@/styles/gradeHorariaStyles.js';
+import gradeHorariaStyles from '@/styles/gradeHorariaStyles.js';
 
 
-function gradeHoraria({ navigation }) {
+function gradeHoraria() {
     return (
         <View id='container'>
-            <View id='content' style={gradeHorariaSyles.content}>
-                <View style={gradeHorariaSyles.backGround}>
+            <View id='content' style={gradeHorariaStyles.content}>
+                <View style={gradeHorariaStyles.backGround}>
                 
                    <Text style={gradeHorariaStyles.title}></Text>
-                   
-                  
-                
+
                 </View>  
             </View>
         </View>

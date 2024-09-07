@@ -4,6 +4,7 @@ import { AuthContext } from '@/context/auth';
 import { StyleSheet } from "react-native";
 
 import NavBar from "@/components/navBar/navBar.jsx";
+import Cardapio from "@/components/navBar/navContent/cardapio";
 
 function MainScreen(){
     const { content } = useContext(AuthContext);
@@ -12,7 +13,7 @@ function MainScreen(){
         <View id="container" style={mainScreenStyles.container} >
             <NavBar />
             <View id="mainContentBox" style={mainScreenStyles.mainContentBoxStyle}>
-                <Text>{content}</Text>
+                <Cardapio/>
             </View>
         </View>
     );

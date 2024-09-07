@@ -1,7 +1,7 @@
 import { BackHandler, StyleSheet } from "react-native";
 
 
-const gradeHorariaSyles = StyleSheet.create({
+const gradeHorariaStyles = StyleSheet.create({
 
     content:{
         alignItems:"left",
@@ -23,4 +23,4 @@ const gradeHorariaSyles = StyleSheet.create({
 
 })
 
-export default gradeHorariaSyles;
+export default gradeHorariaStyles;
