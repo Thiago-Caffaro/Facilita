@@ -1,5 +1,9 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
+import SetaSuperior from '@/components/setaSuperior/setaSuperior';
+import { Ionicons } from '@expo/vector-icons';
+
+import BarraSuperior from '@/components/barraSuperior/barraSuperior.jsx';
 
 import Coruja from '@/assets/Coruja.png'
 import { useState } from 'react';
@@ -8,7 +12,9 @@ const chat = () => {
   const otherUserId2 = "chats/34d89468-40f1-70dd-78ed-f35475a1ae0b"//id do pedro
 
   return (
-    <View style={estilos.container}>      
+    <View style={estilos.container}>  
+      <BarraSuperior>SOE/SOP</BarraSuperior>
+      <SetaSuperior/>
       <View style={estilos.conteudo}>
         <Link href={otherUserId1} style={[estilos.caixaImagem, {textAlign: 'center'}]}>
           <View>
@@ -93,11 +99,13 @@ const estilos = StyleSheet.create({
     height: 100,
     resizeMode: 'contain',
     marginBottom: 10,
+   
   },
   textoCaixa: {
     fontSize: 16,
     textAlign: 'center',
     fontWeight: 'bold',
+   
   },
 });
 

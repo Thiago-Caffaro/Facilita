@@ -13,11 +13,10 @@ const navBarStyle = StyleSheet.create({
         marginRight:"100px"
     },
     button:{
-        
         marginTop:15,
         color:'green',
         fontSize: 17,
-        
+        fontWeight:"bold",
     },
    
 })

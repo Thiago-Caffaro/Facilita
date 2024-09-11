@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const barraSuperiorStyles = StyleSheet.create({
     topBar:{
         height: 90,
-
+        textAlign:"center",
         backgroundColor: '#4CAF50',
         paddingVertical: "4%",
         display: 'flex',
@@ -12,10 +12,10 @@ const barraSuperiorStyles = StyleSheet.create({
     },
     topBarText:{
         color: '#fff',
-        fontSize: 27,
+        fontSize: 36,
         fontWeight: 'bold',
-        marginTop: "5%",
-        marginLeft: "18%",
+        marginTop: "2%",
+        marginHorizontal:"33%",
         textAlign: 'center',
     },
     returnArrow:{
