@@ -1,5 +1,5 @@
 import { BackHandler, StyleSheet } from "react-native";
-
+// Por favor, fazer um estilo responsivo aqui 🙇‍♂️🙇‍♂️
 const marginLeftHorario = 105;
 const gradeHorariaStyles = StyleSheet.create({
 
