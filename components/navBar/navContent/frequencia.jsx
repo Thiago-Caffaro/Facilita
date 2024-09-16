@@ -3,7 +3,7 @@ import mainWindowStyles from './mainWindow.js'
 import frequenciaStyles from '@/styles/frequenciaStyles.js';
 
 
-function frequencia({navigation}){
+function frequencia({}){
     return(
         <View id='container'>
             <View id='content'style={frequenciaStyles.content}>
