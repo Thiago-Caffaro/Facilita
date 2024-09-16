@@ -4,8 +4,6 @@ const marginLeftHorario = 105;
 const gradeHorariaStyles = StyleSheet.create({
 
     content:{
-
-
         alignItems:"left",
         display:"flex",
         widht:"100%",
@@ -124,5 +122,5 @@ const gradeHorariaStyles = StyleSheet.create({
     
 })
 
-export default gradeHorariaStyles;
+
 export default gradeHorariaStyles;

@@ -2,52 +2,56 @@ import { Text, View } from 'react-native';
 import { useState, useEffect } from 'react';
 import mainScreenStyles from './mainWindow.js';
 import cardapioStyles from '@/styles/cardapioStyles.js';
-import getCardapio from '@/hooks/getCardapio.ts';
+import useGetCardapio from '@/hooks/getCardapio.ts';
 
-function Cardapio({}) {
-    if (!navigation) {
-        console.error("Navigation prop is undefined!");
-        return null;
-    }
-  const [cardapioData, setCardapioData] = useState(null);
-
+function Cardapio() {
+  const [cardapio, setCardapio] = useState(null);
+  const getCardapio = useGetCardapio();
   useEffect(() => {
-    const loadCardapio = async () => {
-      const cardapio = await getCardapio();
-      const cardapioPoggers = {
-        Dia1: cardapio.Dia1,
-        Dia2: cardapio.Dia2,
-        Dia3: cardapio.Dia3,
-        Dia4: cardapio.Dia4,
-        Dia5: cardapio.Dia5,
-      };
-      setCardapioData(cardapioPoggers);
+
+    const fetchData = async () => {
+      try {
+        const response = await getCardapio();
+        setCardapio(response);
+      } catch (error) {
+        console.error('Erro ao obter o cardápio:', error);
+      }
     };
-    loadCardapio();
+
+    fetchData();
   }, []);
+
+  if (!cardapio) {
+    return <Text>Loading...</Text>;
+  }
+
+  const cardapioData = {
+    Dia1: cardapio.Dia1,
+    Dia2: cardapio.Dia2,
+    Dia3: cardapio.Dia3,
+    Dia4: cardapio.Dia4,
+    Dia5: cardapio.Dia5,
+  };
 
   return (
     <View id="container">
-      {cardapioData ? (
-        <View id="content" style={cardapioStyles.content}>
-          {Object.keys(cardapioData).map((key) => {
-            return (
-              <View style={[cardapioStyles.line]} key={key}>
-                <Text style={cardapioStyles.title}>{cardapioData[key].title}</Text>
-                <Text style={cardapioStyles.infos}>
-                  {cardapioData[key].base}
-                  {'\n'}
-                  {cardapioData[key].main}
-                  {'\n'}
-                  {cardapioData[key].acompanhamento}
-                </Text>
-              </View>
-            );
-          })}
-        </View>
-      ) : (
-        <Text>Loading...</Text>
-      )}
+      <View id="content" style={cardapioStyles.content}>
+        {Object.keys(cardapioData).map((key) => {
+          return (
+            <View key={key}>
+              <View  style={[cardapioStyles.line]} />
+              <Text style={cardapioStyles.title}>{cardapioData[key].diaSemana}</Text>
+              <Text style={cardapioStyles.infos}>
+                {cardapioData[key].base}
+                {'\n'}
+                {cardapioData[key].main}
+                {'\n'}
+                {cardapioData[key].acompanhamento}
+              </Text>
+            </View>
+          );
+        })}
+      </View>
     </View>
   );
 }
