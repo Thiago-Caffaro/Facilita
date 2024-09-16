@@ -8,7 +8,7 @@ const ajudaStyles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     h1:{
-        marginTop:40,
+        marginTop:20,
         marginBottom:40,
         width: '100%',
         textAlign: 'center',

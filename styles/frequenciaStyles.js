@@ -1,4 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const screenWidth = Dimensions.get('window').width;
 
 const frequenciaStyles = StyleSheet.create({
 
@@ -9,28 +11,25 @@ const frequenciaStyles = StyleSheet.create({
         flex:1,
         widht:"100%",
         height:"100%",
-        marginTop:100,
+        marginTop:50,
     
     },
 
     title:{
         fontSize:25,
-        fontFamily:"Arial",
         fontWeight:"bold",
         color:"green"
     },
 
     line:{
-        width:480,
+        width:screenWidth,
         height:1,
         marginBottom:20,
         marginVertical:30,
         backgroundColor: "gray",
-        marginLeft:40
     },
 
     infos:{
-        fontFamily:"Arial",
         fontWeight:"bold",
         fontSize:25,
         marginTop:20,

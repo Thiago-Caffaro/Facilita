@@ -14,7 +14,7 @@ export default function SetaSuperior(){
     };
     return(
         <TouchableOpacity onPress={() => handleReturn()} style={localStyles.container}>
-            <Ionicons name="arrow-back" size={24} color="white" />
+            <Ionicons name="arrow-back" size={40} color="white" />
         </TouchableOpacity>
     );
 }
@@ -22,8 +22,9 @@ const localStyles = StyleSheet.create({
     container: {
       position: 'absolute',
       padding: 20,
-      top: 40,
-      left: 20,
+      top: 10,
+      left: 10,
+      
     },
   });
 

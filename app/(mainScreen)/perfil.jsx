@@ -6,10 +6,14 @@ import perfilStyle from '@/styles/perfilStyle.js';
 import requerirAlunoData from '@/hooks/requerirDados';
 import getUserData from '@/hooks/setUserData';
 
+import SetaSuperior from '@/components/setaSuperior/setaSuperior';
+import { Ionicons } from '@expo/vector-icons';
+
 import BarraSuperior from '@/components/barraSuperior/barraSuperior.jsx';
 import loadingGif from '@/assets/loading.gif'
 import barras from '@/assets/perfil/barras.png'
 import useSignOut from '@/hooks/useSignOut';
+import { MariaDbEngineVersion } from 'aws-cdk-lib/aws-rds';
 
 
 function Perfil(){
@@ -35,7 +39,9 @@ function Perfil(){
     
     return(
         <View id='container' style={perfilStyle.container}>
+            
             <BarraSuperior>Perfil</BarraSuperior>
+            <SetaSuperior/>
             <View  id='content' style={perfilStyle.perfilArea}>
                 {/* Se os dados carregarem, renderiza o perfil, se não, fica com gif de carregamento */}
                 {perfilData ? (
