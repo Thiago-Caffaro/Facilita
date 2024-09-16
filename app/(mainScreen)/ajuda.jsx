@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
+import SetaSuperior from '@/components/setaSuperior/setaSuperior';
+import { Ionicons } from '@expo/vector-icons';
 
+import BarraSuperior from '@/components/barraSuperior/barraSuperior.jsx';
 import ajudaStyles from '@/styles/ajudaStyles.js';
 
 // Importe imagens usando um caminho relativo ou um pacote como `react-native-svg`
@@ -54,6 +57,8 @@ export default Ajuda = () => {
 
   return (
     <View style={ajudaStyles.container}>
+      <BarraSuperior>  Ajuda</BarraSuperior>
+      <SetaSuperior/>
       {/* Conteúdo rolável com itens de FAQ */}
       <ScrollView style={ajudaStyles.content}>
       <Text style={ajudaStyles.h1}>Como Podemos Ajudar?</Text>

@@ -12,7 +12,7 @@ function MainScreen(){
         <View id="container" style={mainScreenStyles.container} >
             <NavBar />
             <View id="mainContentBox" style={mainScreenStyles.mainContentBoxStyle}>
-                <Text>{content}</Text>
+                {content}
             </View>
         </View>
     );
@@ -22,11 +22,12 @@ const mainScreenStyles = StyleSheet.create({
     container: {
         height: '100%',
         width: '100%',
-        alignItems: 'center'
+    
     },
     
     mainContentBoxStyle:{
         maxHeight: '80%',
+        maxWidth: "100%",
     },
 
     

@@ -8,7 +8,8 @@ const chat = () => {
   const otherUserId2 = "chats/34d89468-40f1-70dd-78ed-f35475a1ae0b"//id do pedro
 
   return (
-    <View style={estilos.container}>      
+    <View style={estilos.container}>  
+
       <View style={estilos.conteudo}>
         <Link href={otherUserId1} style={[estilos.caixaImagem, {textAlign: 'center'}]}>
           <View>
@@ -93,11 +94,13 @@ const estilos = StyleSheet.create({
     height: 100,
     resizeMode: 'contain',
     marginBottom: 10,
+   
   },
   textoCaixa: {
     fontSize: 16,
     textAlign: 'center',
     fontWeight: 'bold',
+   
   },
 });
 
