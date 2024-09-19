@@ -1,10 +1,9 @@
 import { BackHandler, StyleSheet } from "react-native";
-// Por favor, fazer um estilo responsivo aqui 🙇‍♂️🙇‍♂️
-const marginLeftHorario = 105;
+
+
 const gradeHorariaStyles = StyleSheet.create({
 
     content:{
-
 
         alignItems:"left",
         display:"flex",
@@ -12,12 +11,9 @@ const gradeHorariaStyles = StyleSheet.create({
         height:"100%",
         marginTop: 40,
         
-        marginTop: 40,
-        
     },
 
     backGround:{
-
 
         backgroundColor:"green",
         width:350,
@@ -46,37 +42,37 @@ const gradeHorariaStyles = StyleSheet.create({
 
     primeiroTempo:{
         position:"absolute",
-        marginLeft: marginLeftHorario, 
+        marginLeft: 163, 
         marginTop: 1,
     },
 
     segundoTempo:{
         position:"absolute",
-        marginLeft: marginLeftHorario, 
+        marginLeft: 163, 
         marginTop: 63,
     },
 
     terceiroTempo:{
         position:"absolute",
-        marginLeft: marginLeftHorario, 
+        marginLeft: 163, 
         marginTop: 105,
     },
 
     quartoTempo:{
         position:"absolute",
-        marginLeft: marginLeftHorario, 
+        marginLeft: 163, 
         marginTop: 167,
     },
 
     quintoTempo:{
         position:"absolute",
-        marginLeft: marginLeftHorario, 
+        marginLeft: 163, 
         marginTop: 209,
     },
 
     sextoTempo:{
         position:"absolute",
-        marginLeft: marginLeftHorario, 
+        marginLeft: 163, 
         marginTop: 271,
     },
 
@@ -115,8 +111,7 @@ const gradeHorariaStyles = StyleSheet.create({
         borderRadius: 15,
         backgroundColor: "green",
         paddingHorizontal: 10,
-        marginTop: 50,
-        marginBottom: 100,
+        marginBottom: 150,
         
     },
    
@@ -124,5 +119,4 @@ const gradeHorariaStyles = StyleSheet.create({
     
 })
 
-export default gradeHorariaStyles;
 export default gradeHorariaStyles;
