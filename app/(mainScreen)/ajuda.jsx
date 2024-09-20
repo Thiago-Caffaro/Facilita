@@ -19,28 +19,16 @@ export default Ajuda = () => {
       answer: 'Na página de login, clique em "Esqueci Minha Senha" e siga todas as estapas necessárias e solicitadas.',
     },
     {
-      question: 'Aonde vejo minhas faltas?',
+      question: 'Onde vejo minhas faltas?',
       answer: 'Acesse a aba "Frequência" e lá terá as suas faltasatualizadas.',
     },
     {
       question: 'É possível trocar a foto de perfil?',
-      answer: 'Sim! Primeiro acesse o menu perfil e clique no ícone com um formato de um lápis, e escolha a imagem da sua galeria.',
+      answer: 'Não, ainda não temos essa opção, mas esperamos implementar no futuro!',
     },
     {
       question: 'Como vejo o horário da minha turma?',
-      answer: 'Na aba "Grade-Horária" utilize o filtro de turmas e selecione a sua respectiva turma.',
-    },
-    {
-      question: 'Consigo trocar o tema do app?',
-      answer: 'Sim! Acesse o menu configurações cujo ícone é uma engrenagem, clique em tema e depois escolha o tema de sua preferência.',
-    },
-    {
-      question: 'Como funciona o chat do SOE e SOP?',
-      answer: 'É um chat no qual apenas os representantes de turma tem acesso, e lá eles podem relatar algo que aconteceu com a turma ou dar sugestões de melhorias.',
-    },
-    {
-      question: 'Como vejo meu horário nos outros dias? ',
-      answer: 'Arraste sua tela para o lado esquerdo caso queira avançar um dia, e para voltar um dia arraste sua tela para o lado direito.',
+      answer: 'Na aba "Grade-Horária", o app irá filtrar pela grade da sua turma.',
     },
   ];
 

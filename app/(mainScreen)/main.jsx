@@ -5,6 +5,8 @@ import { StyleSheet } from "react-native";
 
 import NavBar from "@/components/navBar/navBar.jsx";
 import Cardapio from "@/components/navBar/navContent/cardapio";
+import Frequencia from "@/components/navBar/navContent/frequencia";
+import GradeHoraria from "@/components/navBar/navContent/gradeHoraria";
 
 function MainScreen(){
     const { content } = useContext(AuthContext);
@@ -14,7 +16,7 @@ function MainScreen(){
             <NavBar />
             <View id="mainContentBox" style={mainScreenStyles.mainContentBoxStyle}>
               
-              {content == "cardapio" ? <Cardapio/>: <Text>{content}</Text>}
+              {content == "cardapio" ? <Cardapio/> : content == "frequencia" ? <Frequencia/> : content == "gradeHoraria" ? <GradeHoraria/> : null}
 
             </View>
         </View>
@@ -29,7 +31,7 @@ const mainScreenStyles = StyleSheet.create({
     },
     
     mainContentBoxStyle:{
-        maxHeight: '80%',
+        maxHeight: '100%',
         maxWidth: "100%",
     },
 

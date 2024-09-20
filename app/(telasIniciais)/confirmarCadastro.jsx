@@ -28,7 +28,7 @@ export default function confirmarCadastro() {
         try {
             // Confirma o registro do usuário
             const { isSignUpComplete } = await confirmSignUp({
-                username: "thiago.2210134300008@aluno.etejk.faetec.rj.gov.br",
+                username: email,
                 confirmationCode: awsCode,
             });
             // Verifique se o signup foi completado com sucesso
@@ -50,7 +50,7 @@ export default function confirmarCadastro() {
             }
         } catch (error) {
             setHasAlert(true);
-            console.log(error, email, senha);
+            console.log(error, email, senha, awsCode);
             setAlertType(infoBox(error.name));
         }
     };

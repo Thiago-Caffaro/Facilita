@@ -1,126 +1,78 @@
-import { BackHandler, StyleSheet } from "react-native";
-// Por favor, fazer um estilo responsivo aqui 🙇‍♂️🙇‍♂️
-const marginLeftHorario = 105;
+import { Dimensions, StyleSheet } from "react-native";
+
+const screenHeight = Dimensions.get('window').height;
+
 const gradeHorariaStyles = StyleSheet.create({
-
-    content:{
-        alignItems:"left",
-        display:"flex",
-        widht:"100%",
-        height:"100%",
+    
+    content: {
+        width: "100%",
+        height: "100%",
         marginTop: 40,
-        
-        marginTop: 40,
-        
+        paddingHorizontal: 10,
     },
 
-    backGround:{
-
-
-        backgroundColor:"green",
-        width:350,
-        height:500,
-        marginTop:200,
-        borderRadius:4,
+    backGround: {
+        backgroundColor: "green",
+        borderRadius: 4,
     },
 
-    tempos:{
-
-       marginTop:1,
-       marginLeft:0,
-       marginRight: 250,
-       backgroundColor:"green",
-       textAlign:"center",
-       color:"white",
-       padding: 2,
-       paddingVertical: 10,
-       widht: 50,
-       fontSize: 16,
-       borderRightWidth:1,
-       borderRightColor:"white",
+    tempos: {
+        backgroundColor: "green",
+        textAlign: "center",
+        color: "white",
+        paddingVertical: 10,
+        fontSize: 16,
+        borderRightWidth: 1,
+        borderRightColor: "white",
+        width: "100%", // largura total para garantir que o tempo ocupe toda a linha
     },
 
-   
-
-    primeiroTempo:{
-        position:"absolute",
-        marginLeft: marginLeftHorario, 
-        marginTop: 1,
+    box: {
+        width: "100%",
+        flexDirection: "row",
+        justifyContent: "space-between", // Distribui os elementos uniformemente
+        alignItems: "center",
+        paddingVertical: 5,
     },
 
-    segundoTempo:{
-        position:"absolute",
-        marginLeft: marginLeftHorario, 
-        marginTop: 63,
+    materias: {
+        backgroundColor: "green",
+        textAlign: "center",
+        color: "white",
+        flex: 1, // permite que a matéria ocupe o espaço disponível
+        paddingVertical: 5,
     },
 
-    terceiroTempo:{
-        position:"absolute",
-        marginLeft: marginLeftHorario, 
-        marginTop: 105,
-    },
-
-    quartoTempo:{
-        position:"absolute",
-        marginLeft: marginLeftHorario, 
-        marginTop: 167,
-    },
-
-    quintoTempo:{
-        position:"absolute",
-        marginLeft: marginLeftHorario, 
-        marginTop: 209,
-    },
-
-    sextoTempo:{
-        position:"absolute",
-        marginLeft: marginLeftHorario, 
-        marginTop: 271,
-    },
-
-    materias:{
-       marginBottom:1,  
-       backgroundColor:"green",
-       width: 280, 
-       textAlign:"center",
-       color:"white",
-    },
-
-    professor:{
-        width: 280, 
-        textAlign:"center",
-        backgroundColor:"white",
-        paddingBottom: 2,
+    professor: {
+        textAlign: "center",
+        backgroundColor: "white",
+        paddingVertical: 5,
         fontWeight: "bold",
+        flex: 1, // permite que o nome do professor ocupe o espaço restante
     },
 
-    intervalo:{
-
-        width:"100%",
-        backgroundColor:"#808080",
-        height: 20,
-        color:"white",
-        textAlign:"center",
-
+    intervalo: {
+        backgroundColor: "#808080",
+        height: 30,
+        color: "white",
+        textAlign: "center",
+        justifyContent: "center",
+        alignItems: "center",
+        lineHeight: 30, // centraliza verticalmente o texto
+        fontWeight: "bold",
+        marginVertical: 5,
     },
-    title:{
 
+    title: {
         fontSize: 24,
         textAlign: "center",
-        fontWeight:"bold",
+        fontWeight: "bold",
         color: "white",
-        padding: 6,
+        padding: 10,
         borderRadius: 15,
         backgroundColor: "green",
-        paddingHorizontal: 10,
-        marginTop: 50,
-        marginBottom: 100,
-        
+        marginBottom: 20,
     },
-   
-
-    
-})
-
+});
 
 export default gradeHorariaStyles;

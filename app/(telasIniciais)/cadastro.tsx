@@ -102,15 +102,7 @@ function Cadastro(){
 						Cadastrar
 					</Botao>
 					<View>
-						<Botao 
-						onPress={() => {
-							setSenha("Senhateste1!");
-							setCSenha("Senhateste1!");
-							setMatricula("2210134300008");
-						} }
-					>
-						Cadastrar DEV
-					</Botao>
+
 					</View>
 					
 				</View>

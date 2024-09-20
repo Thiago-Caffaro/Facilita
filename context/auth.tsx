@@ -34,7 +34,7 @@ interface AuthProviderProps {
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [matricula, setMatricula] = useState('');
   const [email, setEmail] = useState('');
-  const [content, setContent] = useState('Initial Content');
+  const [content, setContent] = useState('');
   const [sentCode, setSentCode] = useState('');
   const [user, setUser] = useState<any | undefined>();
   const [senha, setSenha] = useState('');

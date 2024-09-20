@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import mainScreenStyles from './mainWindow.js';
 import cardapioStyles from '@/styles/cardapioStyles.js';
 import useGetCardapio from '@/hooks/getCardapio.ts';
+import Carregamento from '@/components/carregamento/carregamento';
 
 function Cardapio() {
   const [cardapio, setCardapio] = useState(null);
@@ -22,7 +23,7 @@ function Cardapio() {
   }, []);
 
   if (!cardapio) {
-    return <Text>Loading...</Text>;
+    return <Carregamento />;
   }
 
   const cardapioData = {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { fetchUserAttributes } from "aws-amplify/auth"
-async function requerirAlunoData(requestType: string) {
+async function requerirAlunoData(requestType: string = 'all') {
     const atributes = await fetchUserAttributes();
     //const user = await getCurrentUser();
     if (requestType == 'id'){

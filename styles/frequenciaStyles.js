@@ -8,7 +8,6 @@ const frequenciaStyles = StyleSheet.create({
         alignItems:"center",
         textAlign:"center",
         display:"flex",
-        flex:1,
         widht:"100%",
         height:"100%",
         marginTop:100,
