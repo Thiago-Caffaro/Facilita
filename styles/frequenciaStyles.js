@@ -11,7 +11,7 @@ const frequenciaStyles = StyleSheet.create({
         flex:1,
         widht:"100%",
         height:"100%",
-        marginTop:50,
+        marginTop:100,
     
     },
 

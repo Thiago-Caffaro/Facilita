@@ -14,7 +14,7 @@ function NavBar(){
     return (
         <View id='navBar'>
             <View id='links' style={navBarStyle.viewNav}>
-                <TouchableOpacity onPress={() => setContent(Cardapio)}>
+                <TouchableOpacity onPress={() => setContent("cardapio")}>
                     <Text style={navBarStyle.button}>
                         Cardápio
                     </Text>

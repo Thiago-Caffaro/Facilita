@@ -14,14 +14,6 @@ function frequencia(){
                 <View style={frequenciaStyles.line}/>
                 <Text style={frequenciaStyles.title}>Presenças</Text>
                 <Text style={frequenciaStyles.infos}>24</Text>
-
-                <View style={frequenciaStyles.line}/>
-                <Text style={frequenciaStyles.title}>Média Hora de Entrada</Text>
-                <Text style={frequenciaStyles.infos}>12:50</Text>
-
-                <View style={frequenciaStyles.line}/>
-                <Text style={frequenciaStyles.title}>Média Hora de Saída</Text>
-                <Text style={frequenciaStyles.infos}>18:00</Text>
                 <View style={frequenciaStyles.line}/>
             </View>
         </View>
