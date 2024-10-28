@@ -1,15 +1,6 @@
 import { type ClientSchema, a, defineData } from '@aws-amplify/backend';
 
 const schema = a.schema({
-  Chat: a
-    .model({
-        content: a.string(),
-        senderId: a.string(),
-        receiverId: a.string(),
-        senderName: a.string(),
-        receiverName: a.string()
-    })
-    .authorization((allow) => [allow.authenticated()]),
     Post : a
     .model({
       id: a.id(),

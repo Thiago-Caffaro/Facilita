@@ -38,6 +38,14 @@ export default function MainScreenLayout() {
                   <Image source={require("@/assets/icons/AjudaIcon.png")} style={{ width: 40, height: 40, tintColor: "white" }} />
                 )  
               }}/>
+              <Tabs.Screen name="(rede)"
+              options={{ 
+                headerShown: false,
+                tabBarIcon: ({ color, size }) => (
+                  <Image source={require("@/assets/icons/AjudaIcon.png")} style={{ width: 40, height: 40, tintColor: "white" }} />
+                )  
+              }}/>
+            
             
           </Tabs>
       </GestureHandlerRootView>
