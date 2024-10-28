@@ -1,50 +1,26 @@
-# Welcome to your Expo app 👋
+# App Facilita
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## De onde surgiu a ideia?
+Nós percebemos que várias escolas, inclusive a nossa, ainda utilizava meios não tão práticos para compartilhar informações para o aluno como o cardápio e grade horária, juntamente com a contabilidade de faltas e presenças na escola que não era feita, então decidimos criar esse sistema que inclui este app para facilitar o dia a dia do aluno.
 
-## Get started
+## Quais são suas funcionalidades?
+O app conta com as seguintes funcionalidades:
+- Cardápio da semana
+- Grade horária do curso do aluno
+- Infromações gerais do aluno
+- Frequência com faltas e presenças na escola
+- Tela de perguntas frequentes
+- Rede social para reclamações e sugestões em relação a escola
 
-1. Install dependencies
+## Sobre o sistema
+Nosso sistema por completo inclui:
+- App com diversas funcionalidades em React-native + Expo com os serviços da AWS Amplify gen 2 para cadastro e login dos usuários
+- Site em PHP para adicionar ou atualizar a grade horária e cardápio
+- Programa em Python para capturar a entrada de um leitor de código de barras e enviar ao banco de dados Atlas MongoDb
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Tecnologias utilizadas
+- Serviços AWS: Lambda; AWS Amplify; Cognito; DynamoDb.
+- React-Native + Expo
+- PHP + Laragon
+- Python
+- MongoDb Atlas
