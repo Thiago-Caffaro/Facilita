@@ -3,6 +3,7 @@ import { getCurrentUser,fetchAuthSession, fetchUserAttributes  } from 'aws-ampli
 import { useEffect } from "react";
 import { Amplify } from "aws-amplify";
 import amplifyOutputs from '@/amplify_outputs.json';
+// import useSetUserData from '@/hooks/setUserData';
 try {
   Amplify.configure(amplifyOutputs, {
     API: {
@@ -18,7 +19,7 @@ try {
 }
 
 export default function loadAndCheckUser() {
-
+  // const setUserData = useSetUserData();
   const checkUser = async () =>{
     // Checa se o usuário está logado, caso esteja, redireciona para a tela principal
     try {

@@ -1,10 +1,8 @@
 import { Text, View, Image, Button } from 'react-native';
-import { useEffect, useState, useContext } from 'react';
-import { AuthContext } from '@/context/auth';
+import { useEffect, useState } from 'react';
 
 import perfilStyle from '@/styles/perfilStyle.js';
 import requerirAlunoData from '@/hooks/requerirDados';
-import getUserData from '@/hooks/setUserData';
 
 import BarraSuperior from '@/components/barraSuperior/barraSuperior.jsx';
 import loadingGif from '@/assets/loading.gif'

@@ -7,7 +7,7 @@ export default function useGetGrade() {
     const turma = (userData as {turmaAluno: any;}).turmaAluno;
     try {
       const response = await axios.post('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/getGradeHoraria', {
-        turma: `${turma}`
+        Turma: `${turma}`
       });
       const data = response.data;
 

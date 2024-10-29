@@ -4,13 +4,14 @@ import AuthProvider from "@/context/auth";
 
 export default function RedesLayout() {
   return (
+    <AuthProvider>
     <GestureHandlerRootView>
-      <AuthProvider>
         <Stack initialRouteName="index">
           <Stack.Screen name="posts" options={{ headerShown: false }} />
           <Stack.Screen name="createPost" options={{ headerShown: false }} />
         </Stack>
-      </AuthProvider>
     </GestureHandlerRootView>
+    </AuthProvider>
+
   );
 }

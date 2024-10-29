@@ -1,42 +1,74 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView, RefreshControl  } from 'react-native'; 
 import { useFocusEffect } from '@react-navigation/native'; 
 import { router } from 'expo-router'; 
 import { getAllPosts, updateVotes } from '@/api'; 
+import { AuthContext } from '@/context/auth';
+import { fetchUserAttributes } from 'aws-amplify/auth';
 import axios from 'axios'; 
+import { Loading } from '@/components/loadingComponent/loading';
 
 // Componente funcional Posts
 export default Posts = () => {
 // Declaração de estado para armazenar posts e IDs dos posts curtidos
-const [posts, setPosts] = useState([]);
+const [posts, setPosts] = useState();
 const [likedPostsIds, setLikedPostsIds] = useState({ upVotes: [], downVotes: [] });
 const [refreshing, setRefreshing] = useState(false);
-// useEffect para buscar os posts curtidos quando o componente é montado
+const [localMatricula, setLocalMatricula] = useState('');
+const [isRepresentante, setIsRepresentante] = useState(false);
+// useEffect para buscar os posts curtidos quando o componente é montado com base na matricula do usuário
 useEffect(() => {
-  axios.post('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/getLikedPosts', {
-    "matricula": "2210134300008" // Envia matrícula para obter os posts curtidos
-  }).then(response => {
-    if (!response.data.likedPostsIds) {
-      console.log("Nenhum post curtido encontrado.");
-    } else {
-      setLikedPostsIds(response.data.likedPostsIds); // Atualiza o estado com os IDs dos posts curtidos
-      console.log("likedPostsIds:", response.data.likedPostsIds); // Exibe os IDs no console
-    }
-  });
-}, []); // Array vazio para garantir que seja chamado apenas uma vez na montagem
+  // Função para buscar posts curtidos com verificação
+  const fetchLikedPostsIds = async () => {
+    try {
+      const attributes = await fetchUserAttributes();
+      const matricula = attributes['custom:matricula'];
 
-// Função para buscar todos os posts
-const fetchPosts = async () => {
-  const postsResponse = await getAllPosts(); // Chama a API para obter os posts
-  setPosts(postsResponse.data.listPosts.items); // Atualiza o estado com a lista de posts
-  console.log("Posts atualizados!"); // Log para confirmar que os posts foram atualizados
-};
-// useFocusEffect para buscar os posts quando o foco do componente
+      // Seta as variáveis locais dos dados do aluno
+      setLocalMatricula(matricula);
+      if (attributes['custom:position'] == "representante") {
+        setIsRepresentante(true);
+      } else if (attributes['custom:position'] == "aluno") {
+        setIsRepresentante(false);
+      }
+      
+      const response = await axios.post('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/getLikedPosts', {
+        matricula: matricula,
+      });
+      console.log(attributes);
+      if (response.data.likedPostsIds) {
+        setLikedPostsIds(response.data.likedPostsIds);
+        console.log("likedPostsIds:", response.data.likedPostsIds);
+      } else {
+        console.log("Nenhum post curtido encontrado.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // Chama a função ao montar o componente
+  fetchLikedPostsIds();
+}, []);
+
+const fetchPosts = useCallback(async () => {
+  try {
+    const postsResponse = await getAllPosts();
+    setPosts(postsResponse?.data?.listPosts?.items || []);
+  } catch (error) {
+    console.error("Erro ao buscar posts:", error);
+  }
+}, []);
+
 useFocusEffect(
   useCallback(() => {
     fetchPosts();
-  }, [])
+  }, [fetchPosts])
 );
+
+useEffect(() => {
+  setIsRepresentante(true);
+}, []);
 
 const onRefresh = useCallback(async () => {
   setRefreshing(true);
@@ -51,126 +83,74 @@ useEffect(() => {
 
 // Função para lidar com a votação em posts
 const handleVote = async (postId, type) => {
-  if (likedPostsIds.upVotes.length > 0 || likedPostsIds.downVotes.length > 0) {// Se o array de IDs de posts curtidos não estiver vazio
-    const alreadyLiked = likedPostsIds.upVotes.includes(postId);
-    const alreadyDisliked = likedPostsIds.downVotes.includes(postId);
-    try {
-    // 1. Lógica para gerenciar os votos
+  const alreadyLiked = likedPostsIds.upVotes.includes(postId);
+  const alreadyDisliked = likedPostsIds.downVotes.includes(postId);
+  
+  try {
     if (type === 0) { // Upvote
       if (alreadyLiked) {
-        // Se já tiver upvotado, remover upvote
-        await updateVotes(postId, 'REMOVE_upvote'); // Atualiza os votos no banco de dados
-        setPosts(posts.map(post => {
-          if (post.id === postId) {
-            return { ...post, upvotes: post.upvotes - 1 };
-          }
-          return post;
-        }));
-        // Atualiza likedPostsIds localmente
-        setLikedPostsIds(prev => ({
-          ...prev,
-          upVotes: prev.upVotes.filter(id => id !== postId)
-        }));
-      } else if (alreadyDisliked) {
-        // Se tiver downvotado, remover downvote e adicionar upvote
-        await updateVotes(postId, 'REMOVE_downvote');
-        await updateVotes(postId, 'ADD_upvote');
-        setPosts(posts.map(post => {
-          if (post.id === postId) {
-            return { 
-              ...post, 
-              upvotes: post.upvotes + 1, 
-              downvotes: post.downvotes - 1 
-            };
-          }
-          return post;
-        }));
-        // Atualiza likedPostsIds localmente
-        setLikedPostsIds(prev => ({
-          ...prev,
-          upVotes: [...prev.upVotes, postId],
-          downVotes: prev.downVotes.filter(id => id !== postId)
-        }));
-      }
-    } else { // Downvote
-      if (alreadyDisliked) {
-        // Se já tiver downvotado, remover downvote
-        await updateVotes(postId, 'REMOVE_downvote');
-        setPosts(posts.map(post => {
-          if (post.id === postId) {
-            return { ...post, downvotes: post.downvotes - 1 };
-          }
-          return post;
-        }));
-        // Atualiza likedPostsIds localmente
-        setLikedPostsIds(prev => ({
-          ...prev,
-          downVotes: prev.downVotes.filter(id => id !== postId)
-        }));
-      } else if (alreadyLiked) {
-        // Se tiver upvotado, remover upvote e adicionar downvote
+        // Remover upvote
         await updateVotes(postId, 'REMOVE_upvote');
-        await updateVotes(postId, 'ADD_downvote');
-        setPosts(posts.map(post => {
-          if (post.id === postId) {
-            return { 
-              ...post, 
-              upvotes: post.upvotes - 1, 
-              downvotes: post.downvotes + 1 
-            };
-          }
-          return post;
-        }));
-        // Atualiza likedPostsIds localmente
+        setPosts(posts.map(post => post.id === postId ? { ...post, upvotes: post.upvotes - 1 } : post));
         setLikedPostsIds(prev => ({
           ...prev,
-          downVotes: [...prev.downVotes, postId],
           upVotes: prev.upVotes.filter(id => id !== postId)
         }));
       } else {
-        // Adicionar downvote se não tiver votado antes
-        await updateVotes(postId, 'ADD_downvote');
-        setPosts(posts.map(post => {
-          if (post.id === postId) {
-            return { ...post, downvotes: post.downvotes + 1 };
-          }
-          return post;
+        // Adicionar upvote e remover downvote se necessário
+        if (alreadyDisliked) {
+          await updateVotes(postId, 'REMOVE_downvote');
+          setLikedPostsIds(prev => ({
+            ...prev,
+            downVotes: prev.downVotes.filter(id => id !== postId)
+          }));
+        }
+        await updateVotes(postId, 'ADD_upvote');
+        setPosts(posts.map(post => post.id === postId ? { ...post, upvotes: post.upvotes + 1, downvotes: post.downvotes - (alreadyDisliked ? 1 : 0) } : post));
+        setLikedPostsIds(prev => ({
+          ...prev,
+          upVotes: [...prev.upVotes, postId]
         }));
-        // Atualiza likedPostsIds localmente
+      }
+    } else if (type === 1) { // Downvote
+      if (alreadyDisliked) {
+        // Remover downvote
+        await updateVotes(postId, 'REMOVE_downvote');
+        setPosts(posts.map(post => post.id === postId ? { ...post, downvotes: post.downvotes - 1 } : post));
+        setLikedPostsIds(prev => ({
+          ...prev,
+          downVotes: prev.downVotes.filter(id => id !== postId)
+        }));
+      } else {
+        // Adicionar downvote e remover upvote se necessário
+        if (alreadyLiked) {
+          await updateVotes(postId, 'REMOVE_upvote');
+          setLikedPostsIds(prev => ({
+            ...prev,
+            upVotes: prev.upVotes.filter(id => id !== postId)
+          }));
+        }
+        await updateVotes(postId, 'ADD_downvote');
+        setPosts(posts.map(post => post.id === postId ? { ...post, upvotes: post.upvotes - (alreadyLiked ? 1 : 0), downvotes: post.downvotes + 1 } : post));
         setLikedPostsIds(prev => ({
           ...prev,
           downVotes: [...prev.downVotes, postId]
         }));
       }
     }
-
-    } catch (error) {
-    console.error("Error processing votes:", error);
-    }
-  } else { // Se o array de IDs de posts curtidos estiver vazio
-    // Adicionar upvote se não tiver votado antes
-    await updateVotes(postId, 'ADD_upvote');
-    setPosts(posts.map(post => {
-      if (post.id === postId) {
-        return { ...post, upvotes: post.upvotes + 1 };
-      }
-      return post;
-    }));
-    // Atualiza likedPostsIds localmente
-    setLikedPostsIds(prev => ({
-      ...prev,
-      upVotes: [...prev.upVotes, postId]
-    }));
+    
+    // Atualiza a coleção no MongoDB
+    await axios.post('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/addRemoveLikedPosts', {
+      matricula: localMatricula || null,
+      postId,
+      type: type === 0 ? "upVote" : "downVote"
+    });
+    console.log("Atualizado com sucesso. PostId:", postId);
+  } catch (error) {
+    console.error("Erro ao processar votos:", error);
   }
-
-  // 2. Atualiza a coleção no MongoDB através da API
-  await axios.post('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/addRemoveLikedPosts', {
-    matricula: "2210134300008",
-    postId: postId,
-    type: type === 0 ? "upVote" : "downVote"
-  });
-  
 };
+
 
 
 // Renderização do componente
@@ -180,12 +160,12 @@ return (
     refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
   >
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <TouchableOpacity onPress={() => router.push('createPost')}>
+      {isRepresentante ? <TouchableOpacity onPress={() => router.push('createPost')}>
         <Text>
           Área de postagem (Click)
         </Text>
-      </TouchableOpacity>
-      {posts && posts.map(post => ( // Mapeia os posts para exibir cada um
+      </TouchableOpacity> : null}
+      {posts ? posts.map(post => ( // Mapeia os posts para exibir cada um
         <View key={post.id} style={[localStyles.postBoxStyle, likedPostsIds.upVotes.includes(post.id) ? styles.upvoted : likedPostsIds.downVotes.includes(post.id) ? styles.downvoted : null]}>
           <Text>{post.title}</Text>
           <Text>{post.content}</Text>
@@ -198,7 +178,7 @@ return (
             <Text style={styles.voteButton}>👎 Downvote</Text>
           </TouchableOpacity>
         </View>
-      ))}
+      )) : <Loading />}
     </View>
   </ScrollView>
 );

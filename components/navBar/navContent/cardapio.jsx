@@ -38,20 +38,17 @@ function Cardapio() {
     <View id="container">
       <View id="content" style={cardapioStyles.content}>
         {Object.keys(cardapioData).map((key) => {
-          console.log(
-            cardapioData[key].base
-              
-          )
+          
           return (
             <View key={key}>
               <View  style={[cardapioStyles.line]} />
               <Text style={cardapioStyles.title}>{cardapioData[key].diaSemana}</Text>
               <Text style={cardapioStyles.infos}>
-                {cardapioData[key].base}
+                {cardapioData[key].base == null ? 'Não informado' : cardapioData[key].base}
                 {'\n'}
-                {cardapioData[key].main}
+                {cardapioData[key].main == null ? 'Não informado' : cardapioData[key].main}
                 {'\n'}
-                {cardapioData[key].acompanhamento}
+                {cardapioData[key].acompanhamento == null ? 'Não informado' : cardapioData[key].acompanhamento}
               </Text>
             </View>
           );

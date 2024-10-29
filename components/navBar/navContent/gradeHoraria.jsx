@@ -28,7 +28,7 @@ function GradeHoraria() {
         return <Carregamento />;
     }
 
-    const diasDaSemana = ["Segunda", "Terca", "Quarta", "Quinta", "Sexta", "Sabado"];
+    const diasDaSemana = ["segunda", "terca", "quarta", "quinta", "sexta", "sabado"];
     const temposMapeados = ["primeiroTempo", "segundoTempo", "terceiroTempo", "quartoTempo", "quintoTempo", "sextoTempo"];
     const professoresMapeados = ["primeiroProfessor", "segundoProfessor", "terceiroProfessor", "quartoProfessor", "quintoProfessor", "sextoProfessor"];
 
