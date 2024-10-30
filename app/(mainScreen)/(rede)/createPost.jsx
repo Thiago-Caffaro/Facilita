@@ -3,6 +3,8 @@ import { useFocusEffect } from '@react-navigation/native';
 import { router } from 'expo-router';
 import { useState } from 'react';
 
+import requerirAlunoData from '@/hooks/requerirDados';
+
 import SendPost from '@/api';
 
 export default CreatePosts = () => {
@@ -10,9 +12,13 @@ export default CreatePosts = () => {
     const [content, setContent] = useState('');
 
     const handleSubmitPost = async () => {
+        const userData = await requerirAlunoData();
+
         await SendPost({
             title: title,
             content: content,
+            userName: userData.nomeAluno,
+            turma: userData.turmaAluno
         })
         router.back();
     }

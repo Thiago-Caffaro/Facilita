@@ -19,12 +19,16 @@ export { client };
 export default async function SendPost(postData: {
   title: string,
   content: string,
+  userName: string,
+  turma: string,
   upvotes?: number,
   downvotes?: number,
 }) {
   const input = {
     title: postData.title,
     content: postData.content,
+    userName: postData.userName,
+    turma: postData.turma,
     upvotes: postData.upvotes || 0,
     downvotes: postData.downvotes || 0
   };
@@ -35,6 +39,8 @@ export default async function SendPost(postData: {
           id,
           title,
           content,
+          userName,
+          turma,
           upvotes,
           downvotes,
           createdAt
@@ -60,6 +66,8 @@ export async function getAllPosts() {
             id,
             title,
             content,
+            userName,
+            turma,
             upvotes,
             downvotes,
             createdAt
@@ -136,6 +144,8 @@ export async function updateVotes(postId: string, type: string) {
           id
           title
           content
+          userName
+          turma
           upvotes
           downvotes
           createdAt

@@ -44,8 +44,15 @@
               "isRequired": true,
               "attributes": []
             },
-            "user": {
-              "name": "user",
+            "userName": {
+              "name": "userName",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false,
+              "attributes": []
+            },
+            "turma": {
+              "name": "turma",
               "isArray": false,
               "type": "String",
               "isRequired": false,

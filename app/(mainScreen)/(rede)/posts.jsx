@@ -177,6 +177,12 @@ return (
 
     {posts ? posts.map(post => ( // Mapeia os posts para exibir cada um
       <View key={post.id} style={[localStyles.postBoxStyle]}>
+        <View style={localStyles.usernameBox}>
+          <Image style={localStyles.userImage} source={require('@/assets/icons/icons8-user-48.png')} />
+          <Text style={localStyles.username}>{post.userName}</Text>
+          <Text style={localStyles.turma}>{post.turma}</Text>
+        </View>
+        
         <View style={localStyles.innerPostBoxStyle}>
           <Text style={localStyles.title}>{post.title}</Text>
           <Text style={localStyles.postText}>{post.content}</Text>
@@ -219,6 +225,34 @@ const localStyles = StyleSheet.create({
   postBoxStyle: {
     width: '90%',
     marginBottom: 30,
+  },
+  username: {
+    color: 'green',
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginBottom: 10,
+    marginRight: 10,
+
+  },
+  turma: {
+    color: 'white',
+    backgroundColor: 'green',
+    padding: 5,
+    borderRadius: 5,
+    fontWeight: 'bold',
+    fontSize: 25,
+    marginBottom: 10,
+  },
+  usernameBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+
+    marginBottom: 10,
+  },
+  userImage: {
+    width: 40,
+    height: 40,
+    marginRight: 10,
   },
   innerPostBoxStyle: {
     padding: 15,

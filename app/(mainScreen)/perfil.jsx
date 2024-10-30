@@ -68,7 +68,8 @@ function Perfil(){
                         }
                         <Button 
                             title='Sair da conta' 
-                            onPress={() => signOut()} >
+                            onPress={() => signOut()} color={"#429D1E"}
+                             >
                         </Button>
                         <View id='barCodeBox' style={[perfilStyle.barCodeBox]}>
                             <Image style={perfilStyle.codeImage}  source={barras}></Image>

@@ -4,7 +4,8 @@ const schema = a.schema({
     Post : a
     .model({
       id: a.id(),
-      user: a.string(),
+      userName: a.string(),
+      turma: a.string(), 
       title: a.string(),
       content: a.string(),
       upvotes: a.integer(),
