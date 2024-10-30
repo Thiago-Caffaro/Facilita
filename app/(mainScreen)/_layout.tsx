@@ -42,7 +42,7 @@ export default function MainScreenLayout() {
               options={{ 
                 headerShown: false,
                 tabBarIcon: ({ color, size }) => (
-                  <Image source={require("@/assets/icons/AjudaIcon.png")} style={{ width: 40, height: 40, tintColor: "white" }} />
+                  <Image source={require("@/assets/icons/ChatIcon.png")} style={{ width: 40, height: 40, tintColor: "white" }} />
                 )  
               }}/>
             

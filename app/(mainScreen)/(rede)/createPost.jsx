@@ -20,8 +20,8 @@ export default CreatePosts = () => {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             
-            <TextInput style={localStyles.input} placeholder="title"  value={title} onChangeText={setTitle}></TextInput>
-            <TextInput style={localStyles.input} placeholder="content"  value={content} onChangeText={setContent}></TextInput>
+            <TextInput style={localStyles.input} placeholder="Título"  value={title} onChangeText={setTitle}></TextInput>
+            <TextInput style={localStyles.input} placeholder="Conteúdo"  value={content} onChangeText={setContent}></TextInput>
 
             <TouchableOpacity style={localStyles.button} onPress={() => handleSubmitPost()}>
                 <Text style={{color: '#fff'}}>Criar post</Text>
@@ -38,6 +38,7 @@ const localStyles = StyleSheet.create({
 
     input: {
         height: 40,
+        width: 250,
         margin: 12,
         borderWidth: 1,
         padding: 10,
@@ -47,7 +48,7 @@ const localStyles = StyleSheet.create({
         height: 40,
         width: 100,
         marginBottom: 10,
-        backgroundColor: '#000',
+        backgroundColor: 'green',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 5

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, useContext } from 'react';
-import { Text, View, TouchableOpacity, StyleSheet, ScrollView, RefreshControl  } from 'react-native'; 
+import { Text, View, TouchableOpacity, StyleSheet, ScrollView, RefreshControl, Image  } from 'react-native'; 
 import { useFocusEffect } from '@react-navigation/native'; 
 import { router } from 'expo-router'; 
 import { getAllPosts, updateVotes } from '@/api'; 
@@ -155,63 +155,125 @@ const handleVote = async (postId, type) => {
 
 // Renderização do componente
 return (
-  <ScrollView 
-    contentContainerStyle={{ flexGrow: 1 }} style={localStyles.scrollViewStyle}
-    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-  >
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      {isRepresentante ? <TouchableOpacity onPress={() => router.push('createPost')}>
-        <Text>
-          Área de postagem (Click)
-        </Text>
-      </TouchableOpacity> : null}
-      {posts ? posts.map(post => ( // Mapeia os posts para exibir cada um
-        <View key={post.id} style={[localStyles.postBoxStyle, likedPostsIds.upVotes.includes(post.id) ? styles.upvoted : likedPostsIds.downVotes.includes(post.id) ? styles.downvoted : null]}>
-          <Text>{post.title}</Text>
-          <Text>{post.content}</Text>
-          <Text>Upvotes: {post.upvotes}</Text> 
-          <Text>Downvotes: {post.downvotes}</Text>
-          <TouchableOpacity onPress={() => handleVote(post.id, 0)}> 
-            <Text style={styles.voteButton}>👍 Upvote</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleVote(post.id, 1)}> 
-            <Text style={styles.voteButton}>👎 Downvote</Text>
-          </TouchableOpacity>
+  <View style={localStyles.container}>
+    {isRepresentante ? 
+    <View>
+      <Text style={localStyles.repTitle}>{isRepresentante ? "Representante" : "Aluno"} </Text> 
+      <TouchableOpacity 
+        style={localStyles.postButton} 
+        onPress={() => router.push('createPost')}
+      >
+        <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 20 }}>+</Text>
+      </TouchableOpacity>
+      </View> 
+    : null}
+    <ScrollView 
+  contentContainerStyle={{ flexGrow: 1 }} 
+  style={[localStyles.scrollViewStyle, { position: 'relative' }]} // Adicione position: 'relative' aqui
+  refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+>
+  <View style={[{ flex: 1, alignItems: 'center', justifyContent: 'center' }]}>
+    
+
+    {posts ? posts.map(post => ( // Mapeia os posts para exibir cada um
+      <View key={post.id} style={[localStyles.postBoxStyle]}>
+        <View style={localStyles.innerPostBoxStyle}>
+          <Text style={localStyles.title}>{post.title}</Text>
+          <Text style={localStyles.postText}>{post.content}</Text>
         </View>
-      )) : <Loading />}
-    </View>
-  </ScrollView>
+        <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+          <View style={[localStyles.voteButton, likedPostsIds.upVotes.includes(post.id) ? localStyles.upVoted : null]}>
+            <TouchableOpacity onPress={() => handleVote(post.id, 0)}> 
+              <Image style={{ height: 25, width: 25 }} source={require('@/assets/icons/like.png')} />
+            </TouchableOpacity>
+          </View>
+          <Text style={localStyles.voteText}>{post.upvotes - post.downvotes}</Text> 
+          <View style={[localStyles.voteButton, likedPostsIds.downVotes.includes(post.id) ? localStyles.downVoted : null]}>
+            <TouchableOpacity onPress={() => handleVote(post.id, 1)}> 
+              <Image style={{ height: 25, width: 25 }} source={require('@/assets/icons/dislike.png')} />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    )) : <Loading />}
+  </View>
+</ScrollView>
+  </View>
+  
 );
 };
 
 // Estilos locais para o componente
 const localStyles = StyleSheet.create({
-postBoxStyle: {
-  margin: 10,
-  padding: 10,
-  borderStyle: 'solid',
-  borderWidth: 1,
-  borderRadius: 5,
-  borderColor: '#000', // Cor da borda dos posts
-},
-scrollViewStyle:{
-  marginTop: 50 // Margem superior para a ScrollView
-}
-});
+  container: {
+    marginTop: 40,
+  },
+  repTitle: {
+    width: '100%',
+    textAlign: 'center',
+    color: 'green',
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginBottom: 10,
+  },
+  postBoxStyle: {
+    width: '90%',
+    marginBottom: 30,
+  },
+  innerPostBoxStyle: {
+    padding: 15,
 
-// Estilos gerais
-const styles = StyleSheet.create({
-voteButton: {
-  marginTop: 5, // Margem superior para os botões de voto
-  color: '#007BFF', // Cor do texto do botão
-  textDecorationLine: 'underline', // Texto sublinhado para indicar que é clicável
-},
-upvoted: {
-  backgroundColor: 'green', // Cor de fundo para os posts curtidos
-  color: 'white', // Cor do texto para os posts curtidos
-},
-downvoted: {
-  backgroundColor: 'red', // Cor de fundo para os posts descurtidos
-  color: 'white', // Cor do texto para os posts descurtidos
-}}
-);
+    borderRadius: 10,
+    backgroundColor: 'green',
+  },
+  postButton: {
+    position: 'absolute', 
+    zIndex: 1, 
+    top: 5, 
+    right: 10, 
+    backgroundColor: 'green', 
+    padding: 10, 
+    borderRadius: 50, 
+    elevation: 5,
+  },  
+  title: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginBottom: 10,
+  },
+  postText: {
+    color: 'white',
+  },
+  scrollViewStyle:{
+    marginTop: 30
+  },
+  voteButton: {
+    marginTop: 5,
+    
+    color: '#007BFF',
+    borderRadius: 50,
+    borderBlockColor: 'green',
+    borderWidth: 2,
+    textAlign: 'center',
+    padding: 8,
+    textDecorationLine: 'underline',
+  },
+  voteText: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    alignContent: 'center',
+    textAlign: 'center',
+    marginTop: 5,
+    marginLeft: 10,
+    marginRight: 10
+  },
+  upVoted: {
+    backgroundColor: '#90EE90', 
+    color: 'white',
+  },
+  downVoted: {
+    backgroundColor: '#FF474C', 
+    color: 'white',
+  },
+});
