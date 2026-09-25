@@ -1,4 +1,4 @@
-import { resendSignUpCode } from '@aws-amplify/auth';
+import { resendSignUpCode } from '@/services/auth';
 export default async function resendConfirmationCode(username: string) {
     try {
         const result = await resendSignUpCode({

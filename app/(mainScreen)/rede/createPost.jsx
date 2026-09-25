@@ -1,5 +1,4 @@
-import { Text, View, StyleSheet, TouchableOpacity, TextInput, useCallback } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native'; 
+import { Text, View, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { router } from 'expo-router';
 import { useState } from 'react';
 
@@ -7,11 +6,15 @@ import requerirAlunoData from '@/hooks/requerirDados';
 
 import SendPost from '@/api';
 
-export default CreatePosts = () => {
+export default function CreatePosts() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
     const handleSubmitPost = async () => {
+        if (title.trim() == '' || content.trim() == '') {
+            alert('Preencha o título e o conteúdo do post');
+            return;
+        }
         const userData = await requerirAlunoData();
 
         await SendPost({

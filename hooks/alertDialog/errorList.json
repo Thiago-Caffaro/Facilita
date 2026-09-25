@@ -43,6 +43,18 @@
     "UserUnAuthenticatedException": {
       "id": "011",
       "message": "Por favor, confirme seu email novamente, saindo da conta..."
+    },
+    "UserNotConfirmedException": {
+      "id": "012",
+      "message": "Confirme seu email para entrar. Enviamos um novo código."
+    },
+    "UserNotFoundException": {
+      "id": "013",
+      "message": "Não existe conta com esse email"
+    },
+    "MatriculaNotFoundException": {
+      "id": "014",
+      "message": "Matrícula não encontrada na escola"
     }
   }
 }

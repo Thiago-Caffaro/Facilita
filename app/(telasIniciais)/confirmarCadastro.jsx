@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View, TextInput } from 'react-native';
 import { useState, useContext } from 'react';
-import { signIn as amplifySignIn, confirmSignUp } from '@aws-amplify/auth';
+import { signIn as amplifySignIn, confirmSignUp } from '@/services/auth';
 import { router } from 'expo-router';
 
 import globalStyles from '@/styles/globalStyles.js';
@@ -9,7 +9,9 @@ import recorveryStyles from '@/styles/recorveryStyles.js';
 
 import Botao from '@/components/botao/botao.jsx';
 import LogoFacilita from '@/components/logoFacilita/logoFacilita.jsx';
+import AvisoDemo from '@/components/avisoDemo/avisoDemo.jsx';
 import { AuthContext } from '@/context/auth';
+import { CODIGO_DEMO } from '@/services/demo/dados';
 
 import useInfoBox from '@/hooks/alertDialog/infoBox';
 
@@ -44,13 +46,13 @@ export default function confirmarCadastro() {
 
                 // Redireciona para a tela de cadastro completo
                 console.log("Redirecionando...");
-                router.push('redirectCadastro');
+                router.replace('/redirectCadastro');
             } else {
                 console.log('Signup não foi completado com sucesso.');
             }
         } catch (error) {
             setHasAlert(true);
-            console.log(error, email, senha, awsCode);
+            console.log(error);
             setAlertType(infoBox(error.name));
         }
     };
@@ -80,6 +82,7 @@ export default function confirmarCadastro() {
                         Enviar
                     </Botao>
                 </View>
+                <AvisoDemo>Nenhum email é enviado de verdade. O código é {CODIGO_DEMO}.</AvisoDemo>
             </View>
         </View>
     );

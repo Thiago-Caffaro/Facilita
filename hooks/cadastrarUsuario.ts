@@ -1,4 +1,4 @@
-import { signUp } from '@aws-amplify/auth';
+import { signUp } from '@/services/auth';
 import { router } from 'expo-router';
 
 import { AuthContext } from '@/context/auth'
@@ -25,7 +25,7 @@ export default function useCadastrar(){
                 // Envio dos dados do usuário
             })	
             console.log('Primeira etapa concluída com sucesso!');
-            router.push("(telasIniciais)/confirmarCadastro");
+            router.push("/confirmarCadastro");
         } catch (error: any) {
             setHasAlert(true);
             console.log(error);

@@ -7,6 +7,7 @@ import Checkbox from 'expo-checkbox';
 import globalStyles from '@/styles/globalStyles.js'
 import LogoFacilita from '@/components/logoFacilita/logoFacilita.jsx';
 import SetaSuperior from '@/components/setaSuperior/setaSuperior';
+import AvisoDemo from '@/components/avisoDemo/avisoDemo.jsx';
 
 import useCadastrar from '@/hooks/cadastrarUsuario';
 
@@ -47,6 +48,7 @@ function Cadastro(){
 								placeholderTextColor="#f5f5f5"
 								value={matricula}
 								onChangeText={setMatricula}
+								keyboardType="numeric"
 						/>
 						<View style={globalStyles.inputBoxPass}>
 							<TextInput
@@ -55,11 +57,11 @@ function Cadastro(){
 								placeholderTextColor="#f5f5f5"
 								value={senha}
 								onChangeText={setSenha}
-								secureTextEntry={true ? isHidden : false}
+								secureTextEntry={isHidden}
 							/>
 							<TouchableOpacity style={globalStyles.eyeStyle} onPress={() => setIsHidden(!isHidden)}>
 								<Image style={globalStyles.eyeImageStyle} 
-								source={hiddenIcon ? isHidden ? hiddenIcon : visibleIcon : hiddenIcon}></Image>
+								source={isHidden ? hiddenIcon : visibleIcon}></Image>
 							</TouchableOpacity>
 						</View>
 						
@@ -70,7 +72,7 @@ function Cadastro(){
 									placeholderTextColor="#f5f5f5"
 									value={cSenha}
 									onChangeText={setCSenha}
-									secureTextEntry={true ? isHidden : false}
+									secureTextEntry={isHidden}
 							/>
 						</View>
 						<TextInput
@@ -79,6 +81,8 @@ function Cadastro(){
 								placeholderTextColor="#f5f5f5"
 								value={email}
 								onChangeText={setEmail}
+								autoCapitalize="none"
+								keyboardType="email-address"
 						/>
 
 					<View style={localStyles.viewCheck}>  
@@ -93,20 +97,17 @@ function Cadastro(){
 					</View>  
 		</View>
 		<View style={globalStyles.caixaBtn}>
-				<View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20 }} />
-				<View style={globalStyles.caixaBtn}>
-					<Botao 
-						onPress={() => matricula !== undefined && cadastrar(matricula, email, senha)} // Checa se a matricula existe e chama a função de cadastro
-						disabled={!verificarCamposPreenchidos()}
-					>
-						Cadastrar
-					</Botao>
-					<View>
-
-					</View>
-					
-				</View>
+				<Botao
+					onPress={() => matricula !== undefined && cadastrar(matricula, email, senha)} // Checa se a matricula existe e chama a função de cadastro
+					disabled={!verificarCamposPreenchidos()}
+				>
+					Cadastrar
+				</Botao>
 			</View>
+			<AvisoDemo>
+				Use uma das matrículas da escola fictícia: 2024002, 2024003 ou 2024004.
+				A senha precisa de 6 caracteres, uma letra maiúscula e um número.
+			</AvisoDemo>
 		</View>
 	</View>
 	);

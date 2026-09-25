@@ -1,37 +1,21 @@
-import { CognitoIdentityProviderClient, AdminUpdateUserAttributesCommand } from '@aws-sdk/client-cognito-identity-provider';
+import { adminUpdateUserAttributes } from '@/services/auth';
+
+// Altera um atributo do usuário com permissão de administrador.
+// Na versão original isso usava o AdminUpdateUserAttributesCommand do SDK da AWS direto
+// no app, com uma chave de acesso escrita no código, que qualquer pessoa conseguiria
+// extrair do aplicativo. O correto é essa chamada ficar em uma Lambda, com permissão
+// dada por uma role do IAM, e o app só chamar essa Lambda.
 function useChangeAttribute() {
-  const client = new CognitoIdentityProviderClient({
-     region: 'us-east-1',
-     credentials: {
-      accessKeyId: 'AKIAZQ3DOYSYXXUWQVSO',
-      secretAccessKey: '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',
-    },
-  });
-// Função para atualizar atributos
-    return function changeAttribute(email: string, attribute: string, value: string) {
-        const updateUserAttributeAdmin = async (username: string, attributes: Array<any>) => {
-            try {
-            const command = new AdminUpdateUserAttributesCommand({
-                UserPoolId: 'us-east-1_eoV39YcqI',
-                Username: username,
-                UserAttributes: attributes,
-            });
-            await client.send(command);
-            console.log('Atributos atualizados com sucesso!');
-            } catch (error) {
-            console.error('Erro ao atualizar atributos:', error);
-            }
-        };
+    return async function changeAttribute(email: string, attribute: string, value: string) {
         try {
-            updateUserAttributeAdmin(email, [
-            { Name: attribute, Value: value },
+            await adminUpdateUserAttributes(email, [
+                { Name: attribute, Value: value },
             ]);
-        } catch(error:any){
-            console.log(error);
+            console.log('Atributos atualizados com sucesso!');
+        } catch (error) {
+            console.error('Erro ao atualizar atributos:', error);
         }
     }
 }
-
-
 
 export default useChangeAttribute;

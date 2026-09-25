@@ -1,4 +1,4 @@
-import { updatePassword } from '@aws-amplify/auth';
+import { updatePassword } from '@/services/auth';
 
 import { AuthContext } from '@/context/auth'
 import { useContext } from 'react';

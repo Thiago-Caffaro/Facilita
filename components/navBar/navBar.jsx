@@ -1,12 +1,8 @@
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import {useContext, useEffect} from 'react';
 import { AuthContext } from '@/context/auth';
 
 import navBarStyle from './navBarStyle.js';
-import Cardapio from './navContent/cardapio.jsx';
-import gradeHoraria from './navContent/gradeHoraria.jsx';
-import frequencia from './navContent/frequencia.jsx';
 
 function NavBar(){
     const { setContent } = useContext(AuthContext);

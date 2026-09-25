@@ -1,8 +1,8 @@
-import axios from 'axios';
+import api from '@/services/api';
 export default function useGetCardapio() {
   const getCardapio = async () => {
       try {
-        const response = await axios.get('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/getCardapio');
+        const response = await api.get('/getCardapio');
         const data = response.data;
         // Verifica a resposta do servidor e realiza a validação do login.
         if (data.success) {

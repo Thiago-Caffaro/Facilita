@@ -1,13 +1,8 @@
 import { Image }from 'react-native';
 import { Tabs } from "expo-router";
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import AuthProvider from "@/context/auth";
-import navBarStyles from "@/styles/navBarStyles";
 
 export default function MainScreenLayout() {
   return (
-    <AuthProvider>
-      <GestureHandlerRootView>
           <Tabs initialRouteName="main" 
             screenOptions={{
               tabBarActiveBackgroundColor: "green",
@@ -20,14 +15,14 @@ export default function MainScreenLayout() {
               options={{
                 headerShown: false,
                 tabBarIcon: ({ color, size }) => (
-                  <Image source={require("@/assets/icons/PerfilIcon.png")} style={{ width: 30, height: 33, tintColor: "white" }} />
+                  <Image source={require("@/assets/icons/PerfilIcon.png")} tintColor="white" style={{ width: 30, height: 33 }} />
                 ) 
                }} />
             <Tabs.Screen name="main" 
             options={{ 
               headerShown: false, 
               tabBarIcon: ({ color, size }) => (
-                <Image source={require("@/assets/icons/HomeIcon.png")} style={{ width: 40, height: 40, tintColor: "white" }} />
+                <Image source={require("@/assets/icons/HomeIcon.png")} tintColor="white" style={{ width: 40, height: 40 }} />
               )  
             }} />
             
@@ -35,20 +30,18 @@ export default function MainScreenLayout() {
               options={{ 
                 headerShown: false,
                 tabBarIcon: ({ color, size }) => (
-                  <Image source={require("@/assets/icons/AjudaIcon.png")} style={{ width: 40, height: 40, tintColor: "white" }} />
+                  <Image source={require("@/assets/icons/AjudaIcon.png")} tintColor="white" style={{ width: 40, height: 40 }} />
                 )  
               }}/>
-              <Tabs.Screen name="(rede)"
+              <Tabs.Screen name="rede"
               options={{ 
                 headerShown: false,
                 tabBarIcon: ({ color, size }) => (
-                  <Image source={require("@/assets/icons/ChatIcon.png")} style={{ width: 40, height: 40, tintColor: "white" }} />
+                  <Image source={require("@/assets/icons/ChatIcon.png")} tintColor="white" style={{ width: 40, height: 40 }} />
                 )  
               }}/>
             
             
           </Tabs>
-      </GestureHandlerRootView>
-    </AuthProvider>
   );
 }

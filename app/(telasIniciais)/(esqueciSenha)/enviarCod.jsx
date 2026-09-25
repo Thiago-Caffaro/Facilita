@@ -7,9 +7,11 @@ import recorveryStyles from '@/styles/recorveryStyles.js';
 
 import Botao from '@/components/botao/botao.jsx';
 import LogoFacilita from '@/components/logoFacilita/logoFacilita.jsx';
-import useConfirmCode from '@/hooks/useConfirmCode.ts';
+import AvisoDemo from '@/components/avisoDemo/avisoDemo.jsx';
+import useConfirmCode from '@/hooks/useConfirmCode';
 
 import { AuthContext } from '@/context/auth'
+import { CODIGO_DEMO } from '@/services/demo/dados';
 import { router } from 'expo-router';
 
 function EnviarCod(){
@@ -26,7 +28,7 @@ function EnviarCod(){
     const result = await handleConfirmCode(userCode, email);
     if (result == "SUCCESS") {
       console.log("O código foi!");
-      router.push("novaSenha");
+      router.push("/novaSenha");
     }
   };
   
@@ -55,6 +57,7 @@ function EnviarCod(){
               >Confirmar</Botao>
           </View>
       </View>
+      <AvisoDemo>O código de recuperação na demonstração é {CODIGO_DEMO}.</AvisoDemo>
     </View>
   );
 }

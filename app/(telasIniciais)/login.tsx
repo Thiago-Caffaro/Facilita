@@ -1,12 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
-import { useContext, useEffect, useState } from 'react';
-import { router, useSegments  } from 'expo-router';
+import { useCallback, useContext, useState } from 'react';
+import { router, useFocusEffect } from 'expo-router';
 
 import globalStyles from '@/styles/globalStyles.js';
 
 import Botao from '@/components/botao/botao.jsx';
 import LogoFacilita from '@/components/logoFacilita/logoFacilita.jsx';
+import AvisoDemo from '@/components/avisoDemo/avisoDemo.jsx';
+import { contaDemo } from '@/services/demo/dados';
 
 import useSignIn from '@/hooks/signIn-up/signIn.js';
 import useLimparVariaveisGlobais from '@/hooks/useLimparVariaveisGlobais';
@@ -20,20 +22,14 @@ function Login() {
     const { email, setEmail, senha, setSenha, hasAlert, alertType, } = useContext(AuthContext);
 
     const signIn = useSignIn();
-    const segments = useSegments(); // pega o caminho da rota atual
     const limparVariaveisGlobais = useLimparVariaveisGlobais();
 
-    // UseEffect para limpar os campos de texto quando o componente é montado
-    useEffect(() => {
-      
-      const handleRouteChange = () => {
-        if (segments[0] === 'login') {
-          limparVariaveisGlobais();
-        }
-      };
-      // Chama a função handleRouteChange quando o componente é montado/mudado
-      handleRouteChange();
-    }, [segments]);
+    // Limpa os campos de texto sempre que a tela de login volta a ficar visível
+    useFocusEffect(
+      useCallback(() => {
+        limparVariaveisGlobais();
+      }, [])
+    );
     return (
       <View style={[globalStyles.container, {zIndex: 2}]}>
         <View id='errorDialog' style={{ zIndex: 10, position: 'absolute', bottom: 0, left: 0}}>
@@ -47,7 +43,10 @@ function Login() {
                   style={globalStyles.input}
                   placeholder="Email"
                   placeholderTextColor="#f5f5f5"
-									onChangeText={setEmail}
+                  value={email}
+                  onChangeText={setEmail}
+                  autoCapitalize="none"
+                  keyboardType="email-address"
                   />
                   <View style={globalStyles.inputBoxPass}>
                     <TextInput
@@ -56,15 +55,15 @@ function Login() {
                       placeholderTextColor="#f5f5f5"
                       value={senha}
                       onChangeText={setSenha}
-                      secureTextEntry={true ? isHidden : false}
+                      secureTextEntry={isHidden}
                     />
                     <TouchableOpacity style={globalStyles.eyeStyle} onPress={() => setIsHidden(!isHidden)}>
-                      <Image style={globalStyles.eyeImageStyle} 
-                      source={hiddenIcon ? isHidden ? hiddenIcon : visibleIcon : hiddenIcon}></Image>
+                      <Image style={globalStyles.eyeImageStyle}
+                      source={isHidden ? hiddenIcon : visibleIcon}></Image>
                     </TouchableOpacity>
                   </View>
                   <Text
-                    onPress={() => router.push('(esqueciSenha)/receberCod')}
+                    onPress={() => router.push('/receberCod')}
                     style={{ color: '#E8E8E8', fontSize: 12, padding: 5 }}
                   >Esqueci minha senha</Text>
             </View>
@@ -77,12 +76,18 @@ function Login() {
                   </Botao>
                   
                   <Botao 
-                    onPress={() => {router.push("(telasIniciais)/cadastro");}}
+                    onPress={() => {router.push("/cadastro");}}
                     disabled={false}
                   >
                     Cadastrar
                   </Botao>
           </View>
+          <AvisoDemo
+            acao="Preencher com a conta de demonstração"
+            onPress={() => { setEmail(contaDemo.email); setSenha(contaDemo.senha); }}
+          >
+            Nenhum dado sai do aparelho. Use {contaDemo.email} / {contaDemo.senha} ou crie uma conta nova.
+          </AvisoDemo>
           </View>
       </View>    
     );

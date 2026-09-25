@@ -34,7 +34,7 @@ function NovaSenha(){
   const handleAlterarSenha = async () =>{
     const result = await newPassword(tempPassword, senha);
     if (result == "SUCCESS") {
-      router.push("redirectSenha");
+      router.replace("/redirectSenha");
     }
   }
   return (
@@ -56,11 +56,11 @@ function NovaSenha(){
 								placeholderTextColor="#f5f5f5"
 								value={senha}
 								onChangeText={setSenha}
-								secureTextEntry={true ? isHidden : false}
+								secureTextEntry={isHidden}
 							/>
 							<TouchableOpacity style={globalStyles.eyeStyle} onPress={() => setIsHidden(!isHidden)}>
 								<Image style={globalStyles.eyeImageStyle} 
-								source={hiddenIcon ? isHidden ? hiddenIcon : visibleIcon : hiddenIcon}></Image>
+								source={isHidden ? hiddenIcon : visibleIcon}></Image>
 							</TouchableOpacity>
 						</View>
 						
@@ -71,7 +71,7 @@ function NovaSenha(){
 									placeholderTextColor="#f5f5f5"
 									value={cSenha}
 									onChangeText={setCSenha}
-									secureTextEntry={true ? isHidden : false}
+									secureTextEntry={isHidden}
 							/>
 						</View>
           </View>

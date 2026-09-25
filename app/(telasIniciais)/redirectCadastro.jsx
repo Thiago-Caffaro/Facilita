@@ -5,7 +5,7 @@ import globalStyles from '@/styles/globalStyles.js'
 import recorveryStyles from '@/styles/recorveryStyles.js';
 
 import LogoFacilita from '@/components/logoFacilita/logoFacilita.jsx';
-import { updateUserAttribute, getCurrentUser } from '@aws-amplify/auth';
+import { updateUserAttribute, getCurrentUser } from '@/services/auth';
 
 import { useEffect } from 'react';
 
@@ -24,7 +24,7 @@ function Redirect(){
           }
       })
       setTimeout(() => {
-        router.push("(mainScreen)/main");
+        router.replace("/main");
       }, 3000)
     }
     atualizarAtributo();

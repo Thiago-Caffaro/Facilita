@@ -1,4 +1,4 @@
-import { fetchUserAttributes, getCurrentUser } from "aws-amplify/auth";
+import { fetchUserAttributes, getCurrentUser } from "@/services/auth";
 import { AuthContext } from '@/context/auth';
 import { useContext, useEffect } from 'react';
 

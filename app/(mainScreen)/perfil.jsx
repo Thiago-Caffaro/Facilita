@@ -23,7 +23,7 @@ function Perfil(){
                 Matricula: userData.matriculaAluno,
                 Emails: [
                     userData.emailUsuario,
-                    `${userData.nomeAluno.split(' ')[0].toLowerCase()}.${userData.matriculaAluno}@aluno.etejk.faetec.rj.gov.br`
+                    `${userData.nomeAluno.split(' ')[0].toLowerCase()}.${userData.matriculaAluno}@aluno.escola.exemplo.br` // formato do email institucional da escola
                 ]
             }
             setPerfilData(userDataOrganized);

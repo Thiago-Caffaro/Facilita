@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { fetchUserAttributes } from "aws-amplify/auth"
+import api from '@/services/api';
+import { fetchUserAttributes } from "@/services/auth"
 async function requerirAlunoData(requestType: string = 'all') {
     const atributes = await fetchUserAttributes();
     //const user = await getCurrentUser();
@@ -7,7 +7,7 @@ async function requerirAlunoData(requestType: string = 'all') {
       console.log(JSON.stringify(atributes.sub))
         return atributes.sub;
     } else {
-      const response = await axios.post('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/getAluno', {
+      const response = await api.post('/getAluno', {
         matricula: atributes['custom:matricula']
       });
       const data = await response.data;

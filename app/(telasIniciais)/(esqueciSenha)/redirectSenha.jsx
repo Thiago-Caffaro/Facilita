@@ -9,7 +9,7 @@ import LogoFacilita from '@/components/logoFacilita/logoFacilita.jsx';
 import useChangeAttribute from '@/hooks/changeAtribute';
 
 import { AuthContext } from '@/context/auth'
-import { signOut } from 'aws-amplify/auth';
+import { signOut } from '@/services/auth';
 import { useEffect } from 'react';
 
 function Redirect(){
@@ -18,9 +18,9 @@ function Redirect(){
 
   useEffect(() => {
     changeAttribute(email, "custom:hasCompletedSingup", "completo"); // Atributo e valor que vai ser alterado
-    setTimeout(() => {
-      router.push("(telasIniciais)/login");
-      signOut();
+    setTimeout(async () => {
+      await signOut();
+      router.replace("/login");
     }, 3500)
   }, [])
   return (

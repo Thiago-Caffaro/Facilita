@@ -24,10 +24,13 @@ function useInfoBox(){
     const errorMessages = require('./errorList.json').errorMessages; // Aqui pego as mensagens de erros do arquivo JSON.
     
     return function InfoBox(errorName){
-        console.log(errorMessages[errorName]['message'])
+        // Erros que não estão na lista mostram a mensagem genérica em vez de quebrar o app
+        const erro = errorMessages[errorName] || errorMessages['Unknown'];
+        console.log(erro['message'])
         const handleConfirmationButton = () => {
             switch (errorName) {
-                case "UserAlreadyAuthenticatedException" || "UserUnAuthenticatedException":
+                case "UserAlreadyAuthenticatedException":
+                case "UserUnAuthenticatedException":
                     // Caso a conta já estiver logada, ou ela não estiver autenticada, ao clicar em "OK", a conta sairá e o alerta fechará
                     signOut();
                     setHasAlert(false);
@@ -42,10 +45,10 @@ function useInfoBox(){
             <View style={infoBoxStyles.backgroudCover}>
                 <View style={infoBoxStyles.container}>
                     <Text style={infoBoxStyles.text}>
-                        {errorMessages[errorName]['message']}
+                        {erro['message']}
                     </Text>
                     <Text style={infoBoxStyles.text}>
-                        Código do erro: {errorMessages[errorName]['id']}
+                        Código do erro: {erro['id']}
                     </Text>
                     <Botao onPress={() => {handleConfirmationButton()} } >
                         Ok

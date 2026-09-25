@@ -1,5 +1,4 @@
-import { confirmResetPassword } from 'aws-amplify/auth';
-import { signIn as amplifySignIn } from '@aws-amplify/auth';
+import { confirmResetPassword, signIn as amplifySignIn } from '@/services/auth';
 
 import { useContext } from 'react';
 import { AuthContext } from '@/context/auth'

@@ -1,12 +1,12 @@
-import axios from 'axios';
-import { fetchUserAttributes } from "aws-amplify/auth"
+import api from '@/services/api';
+import { fetchUserAttributes } from "@/services/auth"
 
 export default function useGetFreq() {
   const getFreq = async () => {
     const atributes = await fetchUserAttributes();
     const matricula = atributes['custom:matricula'];
       try {
-        const response = await axios.post('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/getFrequencia', {
+        const response = await api.post('/getFrequencia', {
           matricula: matricula
         });
         const data = response.data;

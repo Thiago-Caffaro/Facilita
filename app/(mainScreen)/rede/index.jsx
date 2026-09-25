@@ -1,15 +1,13 @@
-import React, { useEffect, useState, useCallback, useContext } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView, RefreshControl, Image  } from 'react-native'; 
-import { useFocusEffect } from '@react-navigation/native'; 
-import { router } from 'expo-router'; 
-import { getAllPosts, updateVotes } from '@/api'; 
-import { AuthContext } from '@/context/auth';
-import { fetchUserAttributes } from 'aws-amplify/auth';
-import axios from 'axios'; 
+import { router, useFocusEffect } from 'expo-router';
+import { getAllPosts, updateVotes } from '@/api';
+import { fetchUserAttributes } from '@/services/auth';
+import api from '@/services/api';
 import { Loading } from '@/components/loadingComponent/loading';
 
 // Componente funcional Posts
-export default Posts = () => {
+export default function Posts() {
 // Declaração de estado para armazenar posts e IDs dos posts curtidos
 const [posts, setPosts] = useState();
 const [likedPostsIds, setLikedPostsIds] = useState({ upVotes: [], downVotes: [] });
@@ -32,7 +30,7 @@ useEffect(() => {
         setIsRepresentante(false);
       }
       
-      const response = await axios.post('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/getLikedPosts', {
+      const response = await api.post('/getLikedPosts', {
         matricula: matricula,
       });
       console.log(attributes);
@@ -66,20 +64,11 @@ useFocusEffect(
   }, [fetchPosts])
 );
 
-useEffect(() => {
-  setIsRepresentante(true);
-}, []);
-
 const onRefresh = useCallback(async () => {
   setRefreshing(true);
   await fetchPosts();
   setRefreshing(false);
 }, []);
-
-// useEffect para buscar posts ao montar o componente
-useEffect(() => {
-  fetchPosts(); 
-}, []); // Array vazio para garantir que seja chamado apenas uma vez na montagem
 
 // Função para lidar com a votação em posts
 const handleVote = async (postId, type) => {
@@ -140,7 +129,7 @@ const handleVote = async (postId, type) => {
     }
     
     // Atualiza a coleção no MongoDB
-    await axios.post('https://ztuxhi3ry5.execute-api.us-east-1.amazonaws.com/app/addRemoveLikedPosts', {
+    await api.post('/addRemoveLikedPosts', {
       matricula: localMatricula || null,
       postId,
       type: type === 0 ? "upVote" : "downVote"
@@ -161,7 +150,7 @@ return (
       <Text style={localStyles.repTitle}>{isRepresentante ? "Representante" : "Aluno"} </Text> 
       <TouchableOpacity 
         style={localStyles.postButton} 
-        onPress={() => router.push('createPost')}
+        onPress={() => router.push('/rede/createPost')}
       >
         <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 20 }}>+</Text>
       </TouchableOpacity>

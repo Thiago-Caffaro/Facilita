@@ -1,9 +1,7 @@
 import { Stack } from "expo-router";
-import AuthProvider from "@/context/auth";
 
-export default function telasIniciaisLayout() {
+export default function TelasIniciaisLayout() {
   return (
-    <AuthProvider>
       <Stack initialRouteName="login" screenOptions={{headerShown: false}}>
           <Stack.Screen name="login"/>
           <Stack.Screen name="cadastro"  />
@@ -11,6 +9,5 @@ export default function telasIniciaisLayout() {
           <Stack.Screen name="redirectCadastro"/>
           <Stack.Screen name="(esqueciSenha)"  />
       </Stack>
-    </AuthProvider>
   );
 }
