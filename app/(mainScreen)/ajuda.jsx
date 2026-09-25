@@ -6,7 +6,7 @@ import ajudaStyles from '@/styles/ajudaStyles.js';
 // Importe imagens usando um caminho relativo ou um pacote como `react-native-svg`
 import setabaixo from '@/assets/icons/setabaixo.png';
 
-export default Ajuda = () => {
+export default function Ajuda() {
 
   // Defina um array de perguntas e respostas
   const perguntas = [
@@ -16,11 +16,11 @@ export default Ajuda = () => {
     },
     {
       question: 'Como recupero minha senha?',
-      answer: 'Na página de login, clique em "Esqueci Minha Senha" e siga todas as estapas necessárias e solicitadas.',
+      answer: 'Na página de login, clique em "Esqueci Minha Senha" e siga todas as etapas necessárias e solicitadas.',
     },
     {
       question: 'Onde vejo minhas faltas?',
-      answer: 'Acesse a aba "Frequência" e lá terá as suas faltasatualizadas.',
+      answer: 'Acesse a aba "Frequência" e lá terá as suas faltas atualizadas.',
     },
     {
       question: 'É possível trocar a foto de perfil?',
@@ -53,6 +53,7 @@ export default Ajuda = () => {
                 <Text style={ajudaStyles.question}>{item.question}</Text>
                 <Image
                   source={setabaixo}
+                  tintColor="#4CAF50"
                   style={[ajudaStyles.arrow, expanded[index] && ajudaStyles.arrowRotated]}
                 />
               </View>

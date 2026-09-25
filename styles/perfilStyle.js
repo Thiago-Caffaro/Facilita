@@ -6,6 +6,7 @@ const perfilStyle = StyleSheet.create({
         width: '100%',
         position: 'absolute',
         display: 'flex',
+        backgroundColor: '#f2f2f2', // sem fundo, a aba anterior aparecia por trás do perfil
     },
     loadingGif:{
         width: 100,

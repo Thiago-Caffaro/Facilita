@@ -28,7 +28,9 @@ function GradeHoraria() {
         return <Carregamento />;
     }
 
-    const diasDaSemana = ["segunda", "terca", "quarta", "quinta", "sexta", "sabado"];
+    const diasDaSemana = ["Segunda", "Terca", "Quarta", "Quinta", "Sexta", "Sabado"];
+    // As chaves do banco não têm acento, então o nome exibido fica separado
+    const nomesDosDias = { Segunda: "Segunda-Feira", Terca: "Terça-Feira", Quarta: "Quarta-Feira", Quinta: "Quinta-Feira", Sexta: "Sexta-Feira", Sabado: "Sábado" };
     const temposMapeados = ["primeiroTempo", "segundoTempo", "terceiroTempo", "quartoTempo", "quintoTempo", "sextoTempo"];
     const professoresMapeados = ["primeiroProfessor", "segundoProfessor", "terceiroProfessor", "quartoProfessor", "quintoProfessor", "sextoProfessor"];
 
@@ -37,7 +39,7 @@ function GradeHoraria() {
             <View id="content" style={gradeHorariaStyles.content}>
                 {diasDaSemana.map((dia, index) => (
                     <View key={index}>
-                        {dia === "Sabado" ? <Text style={gradeHorariaStyles.title}>{dia}</Text> : <Text style={gradeHorariaStyles.title}>{dia}-Feira</Text> }
+                        <Text style={gradeHorariaStyles.title}>{nomesDosDias[dia]}</Text>
                         <View style={gradeHorariaStyles.horarios}>
                             {tempos.map((tempo, tempoIndex) => {
                                 if (dia == "Sabado" && tempo == "14:30 - 16:10" || dia == "Sabado" && tempo == "16:20 - 18:10"){

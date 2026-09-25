@@ -42,12 +42,7 @@ const ajudaStyles = StyleSheet.create({
         borderRadius:3, // Alterado para número
         width:"96%",
         marginLeft:"2%",
-        shadowColor:"#010101",
-        shadowOffset:{
-            width:"0%",
-            height:"5%"},
-        shadowOpacity: 0.4,
-        shadowRadius: 3,
+        boxShadow: "0px 2px 3px rgba(1, 1, 1, 0.4)",
     },
     
     questionContainer: {
@@ -62,12 +57,7 @@ const ajudaStyles = StyleSheet.create({
         borderLeftWidth:9, // Alterado para número
         borderTopLeftRadius:6, // Alterado para número
         borderBottomLeftRadius:6, // Alterado para número
-        shadowColor:"fff",
-        shadowOffset:{
-            width:"0%",
-            height:"5%"},
-        shadowOpacity: 0.4,
-        shadowRadius: 3,
+        boxShadow: "0px 2px 3px rgba(1, 1, 1, 0.4)",
     },
     arrow: {
         width: 16,
@@ -83,7 +73,6 @@ const ajudaStyles = StyleSheet.create({
         width: 16,
         height: 10,
         marginRight: 10,
-        tintColor: '#4CAF50',
     },
     arrowRotated: {
         transform: [{ rotate: '180deg' }],
