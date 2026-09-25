@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "facilita",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -41,12 +41,7 @@
         "projectId": "752c403d-8392-4068-b6ca-ff77af4e8aab"
       }
     },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/752c403d-8392-4068-b6ca-ff77af4e8aab"
-    },
-    "owner": "facilita-corp"
+    "owner": "facilita-corp",
+    "description": "App escolar com cardápio, grade horária, frequência e rede social dos alunos (versão de demonstração)."
   }
 }
