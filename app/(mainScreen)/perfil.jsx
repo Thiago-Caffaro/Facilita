@@ -1,10 +1,8 @@
 import { Text, View, Image, Button } from 'react-native';
-import { useEffect, useState, useContext } from 'react';
-import { AuthContext } from '@/context/auth';
+import { useEffect, useState } from 'react';
 
 import perfilStyle from '@/styles/perfilStyle.js';
 import requerirAlunoData from '@/hooks/requerirDados';
-import getUserData from '@/hooks/setUserData';
 
 import BarraSuperior from '@/components/barraSuperior/barraSuperior.jsx';
 import loadingGif from '@/assets/loading.gif'
@@ -70,7 +68,8 @@ function Perfil(){
                         }
                         <Button 
                             title='Sair da conta' 
-                            onPress={() => signOut()} >
+                            onPress={() => signOut()} color={"#429D1E"}
+                             >
                         </Button>
                         <View id='barCodeBox' style={[perfilStyle.barCodeBox]}>
                             <Image style={perfilStyle.codeImage}  source={barras}></Image>
