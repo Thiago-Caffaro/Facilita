@@ -9,9 +9,8 @@ import recorveryStyles from '@/styles/recorveryStyles.js';
 
 import Botao from '@/components/botao/botao.jsx';
 import LogoFacilita from '@/components/logoFacilita/logoFacilita.jsx';
-import AvisoDemo from '@/components/avisoDemo/avisoDemo.jsx';
+import AvisoCodigo from '@/components/avisoDemo/avisoCodigo.jsx';
 import { AuthContext } from '@/context/auth';
-import { CODIGO_DEMO } from '@/services/demo/dados';
 
 import useInfoBox from '@/hooks/alertDialog/infoBox';
 
@@ -82,7 +81,7 @@ export default function confirmarCadastro() {
                         Enviar
                     </Botao>
                 </View>
-                <AvisoDemo>Nenhum email é enviado de verdade. O código é {CODIGO_DEMO}.</AvisoDemo>
+                <AvisoCodigo email={email} tipo="codigoConfirmacao" />
             </View>
         </View>
     );

@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "build:web": "expo export --platform web",
     "typecheck": "tsc --noEmit",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "build:pages": "expo export --platform web --output-dir site/app && node scripts/montar-vitrine.mjs"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",

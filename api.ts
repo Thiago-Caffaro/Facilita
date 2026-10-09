@@ -1,7 +1,7 @@
 // Funções da rede social. Na versão original elas enviavam queries e mutations GraphQL
 // para o AppSync (modelo Post em backend/amplify/data/resource.ts); no modo demonstração
 // os posts ficam em memória, mas as respostas mantêm o mesmo formato do AppSync.
-import { posts, type Post } from '@/services/demo/dados';
+import { posts, salvarEstado, type Post } from '@/services/demo/dados';
 import { espera } from '@/services/demo/espera';
 
 /**
@@ -35,6 +35,7 @@ export default async function SendPost(postData: {
     createdAt: new Date().toISOString(),
   };
   posts.push(post);
+  salvarEstado();
   return { data: { createPost: { ...post } } };
 }
 
@@ -72,5 +73,6 @@ export async function updateVotes(postId: string, type: string) {
     post.downvotes = Math.max(0, post.downvotes - 1);
   }
 
+  salvarEstado();
   return { data: { updatePost: { ...post } } };
 }

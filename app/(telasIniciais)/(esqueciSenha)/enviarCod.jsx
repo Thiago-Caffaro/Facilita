@@ -7,11 +7,10 @@ import recorveryStyles from '@/styles/recorveryStyles.js';
 
 import Botao from '@/components/botao/botao.jsx';
 import LogoFacilita from '@/components/logoFacilita/logoFacilita.jsx';
-import AvisoDemo from '@/components/avisoDemo/avisoDemo.jsx';
+import AvisoCodigo from '@/components/avisoDemo/avisoCodigo.jsx';
 import useConfirmCode from '@/hooks/useConfirmCode';
 
 import { AuthContext } from '@/context/auth'
-import { CODIGO_DEMO } from '@/services/demo/dados';
 import { router } from 'expo-router';
 
 function EnviarCod(){
@@ -57,7 +56,7 @@ function EnviarCod(){
               >Confirmar</Botao>
           </View>
       </View>
-      <AvisoDemo>O código de recuperação na demonstração é {CODIGO_DEMO}.</AvisoDemo>
+      <AvisoCodigo email={email} tipo="codigoRecuperacao" />
     </View>
   );
 }

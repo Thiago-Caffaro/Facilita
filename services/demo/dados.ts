@@ -1,8 +1,7 @@
 // Dados fictícios usados no modo demonstração.
 // Os formatos seguem os documentos que ficavam nas coleções do MongoDB Atlas
 // (alunos, cardapio, gradeHoraria, frequencia, likedPosts) e o modelo Post do AppSync.
-
-export const CODIGO_DEMO = '123456';
+// Usuários, posts, votos e a sessão ficam salvos no localStorage (veja o fim do arquivo).
 
 export const contaDemo = {
   email: 'demo@facilita.app',
@@ -23,6 +22,9 @@ export type UsuarioDemo = {
   sub: string;
   confirmado: boolean;
   atributos: Record<string, string>;
+  // Últimos códigos enviados por email (no Cognito eles ficam guardados no servidor)
+  codigoConfirmacao?: string;
+  codigoRecuperacao?: string;
 };
 
 export const usuarios: UsuarioDemo[] = [
@@ -163,3 +165,43 @@ export const posts: Post[] = [
 export const likedPosts: Record<number, { upVotes: string[]; downVotes: string[] }> = {
   2024001: { upVotes: ['post-1'], downVotes: [] },
 };
+
+// Persistência: na versão web o estado da demonstração sobrevive a recarregar a página.
+// No celular (Expo Go) não existe localStorage, então tudo fica só na memória.
+export const CHAVE_ARMAZENAMENTO = 'facilita-demo-v1';
+
+// Email do usuário logado; no app real a sessão ficava guardada pelo Amplify
+export const sessao: { email: string | null } = { email: null };
+
+function armazenamento(): Storage | null {
+  try {
+    return typeof localStorage === 'undefined' ? null : localStorage;
+  } catch {
+    return null; // navegação anônima ou armazenamento bloqueado
+  }
+}
+
+export function salvarEstado() {
+  try {
+    armazenamento()?.setItem(CHAVE_ARMAZENAMENTO, JSON.stringify({ usuarios, posts, likedPosts, sessao }));
+  } catch {
+    // sem espaço ou bloqueado: a demonstração continua funcionando só em memória
+  }
+}
+
+function carregarEstado() {
+  try {
+    const salvo = armazenamento()?.getItem(CHAVE_ARMAZENAMENTO);
+    if (!salvo) return;
+    const estado = JSON.parse(salvo);
+    usuarios.splice(0, usuarios.length, ...estado.usuarios);
+    posts.splice(0, posts.length, ...estado.posts);
+    for (const chave of Object.keys(likedPosts)) delete likedPosts[Number(chave)];
+    Object.assign(likedPosts, estado.likedPosts);
+    sessao.email = estado.sessao?.email ?? null;
+  } catch {
+    // estado salvo inválido: começa do zero
+  }
+}
+
+carregarEstado();

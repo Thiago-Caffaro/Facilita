@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facilita · Demonstração</title>
+  <meta name="description" content="Demonstração do Facilita, app escolar com cardápio, grade horária, frequência e rede social dos alunos.">
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="topo-conteudo">
+      <img class="topo-logo" src="logo.png" alt="Facilita">
+      <a class="topo-link" href="https://github.com/Thiago-Caffaro/Facilita">Código no GitHub</a>
+    </div>
+  </header>
+
+  <main class="pagina">
+    <section class="sobre" aria-labelledby="titulo">
+      <h1 id="titulo">App escolar Facilita</h1>
+      <p>
+        Projeto feito por uma equipe de alunos no último ano do ensino médio técnico, em 2024.
+        Ele reúne o cardápio da semana, a grade horária, a frequência e um espaço de
+        sugestões e reclamações dos alunos.
+      </p>
+
+      <div class="aviso" role="note">
+        <strong>Versão de demonstração</strong>
+        <p>
+          O Facilita original usava AWS (Cognito, Lambda, AppSync) e MongoDB Atlas, e os códigos
+          de confirmação e de recuperação de senha chegavam por email de verdade.
+        </p>
+        <p>
+          Aqui tudo roda no seu navegador: os emails chegam na <strong>caixa de entrada fictícia</strong>
+          e os dados ficam salvos só neste aparelho.
+        </p>
+      </div>
+
+      <h2>Como testar</h2>
+      <ol class="passos">
+        <li>Entre com <code>demo@facilita.app</code> e a senha <code>Facilita123</code>.</li>
+        <li>Ou crie uma conta com a matrícula <code>2024002</code>, <code>2024003</code> ou <code>2024004</code> e pegue o código na caixa de entrada.</li>
+        <li>Teste também o "Esqueci minha senha".</li>
+      </ol>
+
+      <div class="acoes">
+        <a class="botao botao-principal so-celular" href="#app">Abrir o app</a>
+        <button class="botao" type="button" id="resetar">Resetar demonstração</button>
+      </div>
+    </section>
+
+    <section class="aparelho" id="app" aria-label="App Facilita">
+      <div class="moldura-espaco">
+        <div class="moldura">
+          <div class="entalhe" aria-hidden="true"></div>
+          <iframe id="app-frame" src="app/" title="App Facilita em execução"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <aside class="caixa" id="caixa" aria-labelledby="titulo-caixa">
+      <div class="caixa-cabecalho">
+        <div>
+          <h2 id="titulo-caixa">Caixa de entrada</h2>
+          <p class="caixa-sub">Email fictício da demonstração</p>
+        </div>
+        <button class="fechar so-celular" type="button" id="fechar-caixa" aria-label="Fechar caixa de entrada">×</button>
+      </div>
+
+      <ul class="lista" id="lista" aria-live="polite"></ul>
+      <p class="vazia" id="vazia">
+        Nenhum email ainda. Crie uma conta ou use "Esqueci minha senha" no app para receber um código.
+      </p>
+
+      <article class="leitura" id="leitura" hidden>
+        <button class="voltar" type="button" id="voltar">← Voltar</button>
+        <h3 id="leitura-assunto"></h3>
+        <dl class="leitura-meta">
+          <dt>De</dt><dd>Equipe de Suporte Facilita &lt;suporte@facilita.app&gt;</dd>
+          <dt>Para</dt><dd id="leitura-para"></dd>
+        </dl>
+        <div class="leitura-corpo" id="leitura-corpo"></div>
+        <button class="botao botao-principal" type="button" id="copiar">Copiar código</button>
+      </article>
+    </aside>
+  </main>
+
+  <button class="abrir-caixa so-celular" type="button" id="abrir-caixa" aria-controls="caixa">
+    ✉ <span>Emails</span> <span class="contador" id="contador" hidden>0</span>
+  </button>
+
+  <div class="notificacao" id="notificacao" role="status" hidden></div>
+
+  <script src="vitrine.js"></script>
+</body>
+</html>

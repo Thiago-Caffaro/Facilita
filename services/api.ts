@@ -9,6 +9,7 @@ import {
   registrosFrequencia,
   likedPosts,
   MATRICULA_REFERENCIA,
+  salvarEstado,
 } from '@/services/demo/dados';
 import { espera } from '@/services/demo/espera';
 
@@ -66,6 +67,7 @@ const rotas: Record<string, (body: Body) => object> = {
       ids[mesmoLado].push(postId);
     }
     likedPosts[matricula] = ids;
+    salvarEstado();
     return { success: true, message: 'Operação realizada com sucesso!' };
   },
 };

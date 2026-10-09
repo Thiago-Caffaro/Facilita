@@ -4,6 +4,12 @@ App escolar feito por uma equipe de alunos no último ano do ensino médio técn
 
 > **Versão de demonstração.** O backend original (AWS e MongoDB Atlas) foi desligado depois do projeto. Esta versão roda sem servidor: o login, os dados e a rede social são simulados no próprio app, com a mesma lógica das funções originais. O código do backend continua no repositório, na pasta [`backend/`](backend).
 
+### ▶ [Testar a demonstração online](https://thiago-caffaro.github.io/Facilita/)
+
+A página mostra o app dentro de um celular, ao lado de uma caixa de entrada fictícia: os emails de confirmação de cadastro e de recuperação de senha, que no original eram enviados pelo Cognito, chegam ali.
+
+<p align="center"><img src="docs/prints/vitrine.png" alt="Demonstração online: o app dentro de um celular e a caixa de entrada com o email de recuperação de senha" /></p>
+
 <p align="center">
   <img src="docs/prints/01-login.png" width="200" alt="Tela de login" />
   <img src="docs/prints/02-cardapio.png" width="200" alt="Cardápio da semana" />
@@ -27,9 +33,17 @@ npm start
 
 Depois é só abrir no navegador (tecla `w`) ou no celular com o app [Expo Go](https://expo.dev/go), lendo o QR code.
 
-**Conta de demonstração:** `demo@facilita.app` / `Facilita123` (tem um botão na tela de login que preenche). Também dá para criar uma conta com as matrículas `2024002`, `2024003` ou `2024004`. Os códigos de confirmação e de recuperação de senha são sempre `123456`.
+**Conta de demonstração:** `demo@facilita.app` / `Facilita123` (tem um botão na tela de login que preenche). Também dá para criar uma conta com as matrículas `2024002`, `2024003` ou `2024004`. Os códigos de confirmação e de recuperação de senha são gerados na hora: na demonstração online eles chegam na caixa de entrada fictícia, e rodando o app sozinho o aviso na própria tela mostra o código.
 
-Os dados ficam só na memória: ao recarregar o app, tudo volta ao estado inicial.
+Na versão web, contas, posts e votos ficam salvos no navegador (`localStorage`). A vitrine tem um botão para resetar a demonstração. No Expo Go tudo fica só na memória.
+
+### Publicação no GitHub Pages
+
+O workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) publica a cada push na `main`: ele exporta o app com o Expo em `site/app/` e monta a vitrine ([`vitrine/`](vitrine)) em volta dele. Para gerar o mesmo site localmente:
+
+```bash
+EXPO_BASE_URL=/Facilita/app npm run build:pages
+```
 
 ## Funcionalidades
 
@@ -82,6 +96,7 @@ app/                  telas (Expo Router)
 components/           componentes reaproveitados (botão, barra de navegação, alertas...)
 hooks/                lógica de login, cadastro e busca de dados
 services/             backend simulado do modo demonstração
+vitrine/              página da demonstração online (celular + caixa de entrada)
 backend/              código do backend original
 styles/               estilos compartilhados
 ```

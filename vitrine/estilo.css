@@ -1,0 +1,321 @@
+:root {
+  --verde: #429d1e;
+  --verde-escuro: #2e7313;
+  --verde-claro: #e8f3e2;
+  --fundo: #f4f7f2;
+  --superficie: #ffffff;
+  --texto: #1d2a1a;
+  --texto-suave: #5a6656;
+  --borda: #d7e0d3;
+  --escala: 1;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+code {
+  background: var(--verde-claro);
+  color: var(--verde-escuro);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 0.92em;
+}
+
+[hidden] { display: none !important; }
+
+/* Topo */
+.topo { background: var(--verde); }
+.topo-conteudo {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.topo-logo { height: 34px; }
+.topo-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  padding: 6px 12px;
+}
+.topo-link:hover { background: rgba(255, 255, 255, 0.15); }
+
+/* Layout: texto | celular | caixa de entrada */
+.pagina {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) auto minmax(280px, 360px);
+  grid-template-areas: "sobre aparelho caixa";
+  gap: 32px;
+  align-items: start;
+}
+.sobre { grid-area: sobre; }
+.aparelho { grid-area: aparelho; display: flex; justify-content: center; }
+.caixa { grid-area: caixa; }
+
+h1 { font-size: 1.9rem; line-height: 1.2; margin: 8px 0 12px; color: var(--verde-escuro); }
+h2 { font-size: 1.1rem; margin: 24px 0 8px; }
+.sobre > p { color: var(--texto-suave); margin: 0; }
+
+.aviso {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #fff8e1;
+  border: 1px solid #f0d98a;
+}
+.aviso p { margin: 6px 0 0; font-size: 0.95rem; }
+
+.passos { padding-left: 20px; margin: 0; }
+.passos li { margin-bottom: 6px; }
+
+.acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+
+.botao {
+  font: inherit;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--verde);
+  background: var(--superficie);
+  color: var(--verde-escuro);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+.botao:hover { background: var(--verde-claro); }
+.botao-principal { background: var(--verde); color: #fff; }
+.botao-principal:hover { background: var(--verde-escuro); }
+
+/* Celular */
+.moldura-espaco {
+  width: calc(414px * var(--escala));
+  height: calc(868px * var(--escala));
+}
+.moldura {
+  position: relative;
+  width: 414px;
+  height: 868px;
+  border: 12px solid #151a14;
+  border-radius: 52px;
+  overflow: hidden;
+  background: #151a14;
+  box-shadow: 0 20px 50px rgba(20, 40, 10, 0.25);
+  transform: scale(var(--escala));
+  transform-origin: top left;
+}
+.entalhe {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 110px;
+  height: 28px;
+  margin-left: -55px;
+  border-radius: 20px;
+  background: #151a14;
+  z-index: 2;
+  pointer-events: none;
+}
+#app-frame {
+  display: block;
+  width: 390px;
+  height: 844px;
+  border: 0;
+  border-radius: 40px;
+  background: var(--verde);
+}
+
+/* Caixa de entrada */
+.caixa {
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 16px;
+  max-height: calc(868px * var(--escala));
+  overflow-y: auto;
+}
+.caixa-cabecalho { display: flex; justify-content: space-between; align-items: flex-start; }
+.caixa h2 { margin: 0; }
+.caixa-sub { margin: 0; color: var(--texto-suave); font-size: 0.85rem; }
+
+.lista { list-style: none; margin: 12px 0 0; padding: 0; }
+.lista button {
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--borda);
+  padding: 10px 4px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 10px 1fr auto;
+  gap: 2px 8px;
+  align-items: center;
+}
+.lista button:hover { background: var(--fundo); }
+.ponto { width: 8px; height: 8px; border-radius: 50%; background: transparent; }
+.nao-lido .ponto { background: var(--verde); }
+.nao-lido .item-assunto { font-weight: 700; }
+.item-assunto { grid-column: 2; }
+.item-hora { grid-column: 3; color: var(--texto-suave); font-size: 0.8rem; }
+.item-para { grid-column: 2 / 4; color: var(--texto-suave); font-size: 0.85rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.vazia { color: var(--texto-suave); font-size: 0.92rem; margin: 16px 0 4px; }
+
+.leitura h3 { margin: 12px 0 8px; font-size: 1.05rem; }
+.voltar {
+  font: inherit;
+  background: none;
+  border: 0;
+  color: var(--verde-escuro);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 0;
+}
+.leitura-meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 10px;
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+.leitura-meta dt { font-weight: 600; }
+.leitura-meta dd { margin: 0; overflow-wrap: anywhere; }
+.leitura-corpo {
+  white-space: pre-wrap;
+  font-size: 0.92rem;
+  border-top: 1px solid var(--borda);
+  padding-top: 12px;
+  margin-bottom: 14px;
+}
+.codigo {
+  display: inline-block;
+  background: var(--verde-claro);
+  color: var(--verde-escuro);
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 4px;
+  padding: 2px 10px;
+  border-radius: 8px;
+}
+
+/* Notificação de email novo */
+.notificacao {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  max-width: 320px;
+  background: var(--texto);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  z-index: 20;
+}
+
+.so-celular { display: none; }
+
+/* Tela média: texto em cima, celular e caixa lado a lado */
+@media (max-width: 1100px) {
+  .pagina {
+    grid-template-columns: auto minmax(280px, 1fr);
+    grid-template-areas:
+      "sobre sobre"
+      "aparelho caixa";
+  }
+  .sobre { max-width: 760px; }
+}
+
+/* Celular de verdade: sem moldura, app em tela cheia e caixa de entrada como painel */
+@media (max-width: 720px) {
+  .pagina {
+    display: block;
+    padding: 0;
+  }
+  .sobre { padding: 16px; }
+  h1 { font-size: 1.6rem; }
+  .so-celular { display: inline-block; }
+
+  .aparelho { display: block; }
+  .moldura-espaco { width: 100%; height: 100dvh; }
+  .moldura {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+  }
+  .entalhe { display: none; }
+  #app-frame { width: 100%; height: 100%; border-radius: 0; }
+
+  .caixa {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 80dvh;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.25);
+    z-index: 30;
+    transform: translateY(105%);
+    transition: transform 0.25s ease;
+  }
+  .caixa.aberta { transform: none; }
+  .fechar {
+    font-size: 1.6rem;
+    line-height: 1;
+    background: none;
+    border: 0;
+    color: var(--texto-suave);
+    cursor: pointer;
+  }
+
+  .abrir-caixa {
+    position: fixed;
+    bottom: 76px; /* acima da barra de abas do app */
+    right: 12px;
+    z-index: 25;
+    font: inherit;
+    font-weight: 600;
+    background: var(--texto);
+    color: #fff;
+    border: 0;
+    border-radius: 999px;
+    padding: 8px 14px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  /* só aparece enquanto o app está na tela */
+  .abrir-caixa.visivel { opacity: 1; pointer-events: auto; }
+  .contador {
+    display: inline-block;
+    min-width: 20px;
+    margin-left: 4px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: #e5484d;
+    text-align: center;
+  }
+  .notificacao { left: 12px; right: 12px; top: 12px; max-width: none; }
+}

@@ -24,3 +24,4 @@ expo-env.d.ts
 # amplify
 .amplify
 amplifyconfiguration*
+site/
